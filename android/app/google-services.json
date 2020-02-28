@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "568403369035",
+    "firebase_url": "https://iwas-mit-port.firebaseio.com",
+    "project_id": "iwas-mit-port",
+    "storage_bucket": "iwas-mit-port.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568403369035:android:1282dfef9d07ff740841ce",
+        "android_client_info": {
+          "package_name": "com.iwasmitport.iwas_port"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568403369035-e2mc8sqdscrfppskc4ck9pobbfmg4hvo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5tBpPCS3HOi3gWdzI_EKiocR5ZCb5KxE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "568403369035-e2mc8sqdscrfppskc4ck9pobbfmg4hvo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

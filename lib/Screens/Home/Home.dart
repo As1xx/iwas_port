@@ -1,7 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/user.dart';
-import 'package:iwas_port/Screens/MasterDetail/Wine_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Wine_screen.dart';
 import 'package:iwas_port/styles/background_style.dart';
 import 'package:provider/provider.dart';
 

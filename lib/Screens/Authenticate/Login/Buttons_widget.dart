@@ -2,7 +2,7 @@ import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
-import 'package:iwas_port/Screens/Authenticate//AuthException.dart';
+import 'package:iwas_port/Services/AuthException.dart';
 import 'package:iwas_port/Screens/Authenticate/ResetPassword/ResetPassword_screen.dart';
 import 'package:iwas_port/Screens/Home/Home.dart';
 import 'package:iwas_port/Services/AuthenticateService.dart';
@@ -27,20 +27,13 @@ class AuthButtons extends StatelessWidget {
           Vibrate.feedback(FeedbackType.success);
           Navigator.pushNamed(context, Home.routeName);
           print('Register OK');
-        } on AuthException catch (_authError) {
-          Vibrate.feedback(FeedbackType.error);
+        } on AuthenException catch (_authError) {
           loginNotifier.isLoading = false;
-          FlushbarHelper.createError(
-            message: _authError.message,
-            duration: Duration(seconds: 3),
-          ).show(context);
+          AuthenException.showError(context, _authError.message);
+
         } catch (_otherErrors) {
-          Vibrate.feedback(FeedbackType.error);
           loginNotifier.isLoading = false;
-          FlushbarHelper.createError(
-            message: _otherErrors.message,
-            duration: Duration(seconds: 3),
-          ).show(context);
+          AuthenException.showError(context, _otherErrors.message);
         }
       }
     }
@@ -55,20 +48,12 @@ class AuthButtons extends StatelessWidget {
           Vibrate.feedback(FeedbackType.success);
          Navigator.pushNamed(context, Home.routeName);
           print('Login OK');
-        } on AuthException catch (_authError) {
-          Vibrate.feedback(FeedbackType.error);
+        } on AuthenException catch (_authError) {
           loginNotifier.isLoading = false;
-          FlushbarHelper.createError(
-            message: _authError.message,
-            duration: Duration(seconds: 3),
-          ).show(context);
+          AuthenException.showError(context, _authError.message);
         } catch (_otherErrors) {
-          Vibrate.feedback(FeedbackType.error);
           loginNotifier.isLoading = false;
-          FlushbarHelper.createError(
-            message: _otherErrors.message,
-            duration: Duration(seconds: 3),
-          ).show(context);
+          AuthenException.showError(context, _otherErrors.message);
         }
       }
     }

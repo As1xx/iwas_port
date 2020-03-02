@@ -60,4 +60,9 @@ final appTheme = ThemeData(
   iconTheme: IconThemeData(
     color: Colors.white,
   ),
+
+  dividerTheme: DividerThemeData(
+    color: Colors.white,
+    thickness: 1,
+  ),
 );

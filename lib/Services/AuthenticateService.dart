@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_user_stream/firebase_user_stream.dart';
 import 'package:iwas_port/Models/user.dart';
+import 'package:iwas_port/Services/AuthException.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -13,7 +13,7 @@ class AuthService {
       return _auth.onAuthStateChanged
           .map((FirebaseUser firebaseUser) => User.fromFireStore(firebaseUser));
     } catch (AuthError) {
-      throw AuthException(AuthError.code, AuthError.message);
+      throw AuthenException(AuthError.message);
     }
   }
 
@@ -25,7 +25,7 @@ class AuthService {
       FirebaseUser fUser = signInResult.user;
       return User.fromFireStore(fUser);
     } catch (SignInError) {
-      throw AuthException(SignInError.code, SignInError.message);
+      throw AuthenException(SignInError.message);
     }
   }
 
@@ -38,7 +38,7 @@ class AuthService {
       FirebaseUser fUser = registerResult.user;
       return User.fromFireStore(fUser);
     } catch (RegisterError) {
-      throw AuthException(RegisterError.code, RegisterError.message);
+      throw AuthenException(RegisterError.message);
     }
   }
 
@@ -46,7 +46,7 @@ class AuthService {
     try {
       await _auth.sendPasswordResetEmail(email: email);
     } catch (passwordResetError) {
-      throw AuthException(passwordResetError.code, passwordResetError.message);
+      throw AuthenException(passwordResetError.message);
     }
   }
 
@@ -55,7 +55,7 @@ class AuthService {
     try {
       return await _auth.signOut();
     } catch (signOutError) {
-      throw AuthException(signOutError.code, signOutError.message);
+      throw AuthenException(signOutError.message);
     }
   }
 }

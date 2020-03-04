@@ -27,7 +27,7 @@ class Wine {
         'Manufacturer': manufacturer ,
         'Type': type,
         'ProductID': productID,
-        'CritialQuantity': criticalQuantity,
+        'CriticalQuantity': criticalQuantity,
         'Quantity': quantity,
         'Location': location,
         'ImageURL': imageURL,

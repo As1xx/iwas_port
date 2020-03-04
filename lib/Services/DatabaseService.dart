@@ -33,6 +33,17 @@ class WineDatabaseService {
     }
   }
 
+  // Delete from Database
+  Future<void> deleteFromDatabase(Wine wineModel) async {
+    try {
+      var docReference = collectionReference.document(wineModel.docID);
+      await docReference.delete();
+    } catch (deleteFromDataBaseError) {
+      throw DatabaseException(deleteFromDataBaseError.message);
+    }
+  }
+
+
   // Upload image to database and write download link to database Model
   Future uploadImage(File imageFile, Wine wineModel) async {
     try {

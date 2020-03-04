@@ -43,6 +43,10 @@ dependencies:
   firebase_user_stream: ^0.1.0+4
   gradient_widgets: ^0.5.2
   vibrate: ^0.0.4
+  path_provider: ^1.4.4
+  network_to_file_image: ^2.2.8
+  popup_menu: ^1.0.5
+  font_awesome_flutter: ^8.7.0
 
 dev_dependencies:
   flutter_test:

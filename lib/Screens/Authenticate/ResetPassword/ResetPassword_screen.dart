@@ -20,7 +20,7 @@ class ResetPassword extends StatelessWidget {
             ? Loading()
             : Scaffold(
             appBar: AppBar(
-              iconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
+              iconTheme: Theme.of(context).appBarTheme.iconTheme,
             ),
             body: Container(
                 height: double.infinity,

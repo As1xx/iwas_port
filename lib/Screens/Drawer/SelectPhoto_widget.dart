@@ -11,7 +11,7 @@ class SelectPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Theme.of(context).accentColor.withOpacity(0.75),
+      backgroundColor: Theme.of(context).dialogBackgroundColor,
       title: Text('Select Photo'),
       content: SingleChildScrollView(
         child: ListBody(

@@ -8,11 +8,16 @@ final appTheme = ThemeData(
   focusColor: Colors.purple,
   errorColor: Colors.red,
   highlightColor: Colors.white,
+  dialogBackgroundColor: Colors.grey[800].withOpacity(0.5) ,
+  cursorColor: Colors.white,
 
   textTheme: TextTheme(
     title: TextStyle(color: Colors.white, fontSize: 24, letterSpacing: 10),
     caption: TextStyle(color: Colors.white, fontSize: 16),
     display1: TextStyle(color: Colors.white, fontSize: 16),
+    subtitle: TextStyle(color: Colors.white, fontSize: 12),
+    headline: TextStyle(color: Colors.white, fontSize: 12),
+
   ),
 
   appBarTheme: AppBarTheme(
@@ -21,6 +26,9 @@ final appTheme = ThemeData(
       title: TextStyle(color: Colors.white, fontSize: 26),
     ),
     actionsIconTheme: IconThemeData(
+      color: Colors.white,
+    ),
+    iconTheme: IconThemeData(
       color: Colors.white,
     ),
   ),
@@ -65,4 +73,6 @@ final appTheme = ThemeData(
     color: Colors.white,
     thickness: 1,
   ),
+
+
 );

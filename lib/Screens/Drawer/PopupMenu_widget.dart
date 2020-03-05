@@ -2,18 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:popup_menu/popup_menu.dart';
-import 'package:provider/provider.dart';
 
-void buildPopupMenu(BuildContext context, GlobalKey widgetKey,List<Wine> wineList){
 
-  void _sortManufacturer() {
+void buildPopupMenu(BuildContext context, GlobalKey widgetKey,List<Wine> wineList,Function sortScreen){
+
+  void _sortManufacturerAscending() {
    wineList.sort((a, b) => a.manufacturer.compareTo(b.manufacturer));
+  }
+
+  void _sortManufacturerDescending() {
+    wineList.sort((a, b) => b.manufacturer.compareTo(a.manufacturer));
   }
 
   void onClickMenu(MenuItemProvider item) {
     if(item.menuTitle == 'Sort (A-Z)'){
-      _sortManufacturer();
+      _sortManufacturerAscending();
+    }else if (item.menuTitle == 'Sort (Z-A)'){
+      _sortManufacturerDescending();
     }
+    sortScreen(wineList);
   }
 
   PopupMenu menu = PopupMenu(
@@ -43,12 +50,13 @@ menu.show(widgetKey: widgetKey);
 }
 
 void stateChanged(bool isShow) {
-  print('menu is ${isShow ? 'showing' : 'closed'}');
+ // print('menu is ${isShow ? 'showing' : 'closed'}');
+
 }
 
 
 
 void onDismiss() {
-  print('Menu is dismiss');
+ // print('Menu is dismiss');
 }
 

@@ -65,4 +65,5 @@ class WineDatabaseService {
       wineModel.imageURL = imageURL.toString();
     }
   }
+
 }

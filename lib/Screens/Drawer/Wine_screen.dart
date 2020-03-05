@@ -8,13 +8,24 @@ import 'package:provider/provider.dart';
 
 import 'WineItem_widget.dart';
 
-class WineScreen extends StatelessWidget {
+class WineScreen extends StatefulWidget {
   static const routName = '/WineScreen';
 
   @override
+  _WineScreenState createState() => _WineScreenState();
+}
+
+class _WineScreenState extends State<WineScreen> {
+  @override
   Widget build(BuildContext context) {
-    final wineList = Provider.of<List<Wine>>(context);
+    var wineList = Provider.of<List<Wine>>(context);
     GlobalKey popUpKey = GlobalKey();
+
+    void updateSortScreen(List<Wine> filteredList) {
+      setState(() {
+        wineList = filteredList;
+      });
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -25,10 +36,10 @@ class WineScreen extends StatelessWidget {
             onPressed: () => Navigator.pushNamed(context, AddWine.routName),
             icon: Icon(Icons.add),
           ),
-          IconButton(key: popUpKey ,
-            //TODO: Add Filter
+          IconButton(
+            key: popUpKey,
             onPressed: () {
-              buildPopupMenu(context,popUpKey,wineList);
+              buildPopupMenu(context, popUpKey, wineList, updateSortScreen);
             },
             icon: Icon(Icons.filter_list),
           ),

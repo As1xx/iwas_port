@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
           initialData: User(email: ''),
           create: (_) => AuthService().user,
         ),
+
       ],
       child: MaterialApp(
           theme: appTheme,
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
           // Returns a locale which will be used by the app
           localeResolutionCallback: (locale, supportedLocales) =>
               localeResolutionCallback(locale, supportedLocales),
-          home: WineScreen(),
+          home: IsLogged(),
           routes: {
             Home.routeName: (ctx) => Home(),
             Login.routeName: (ctx) => Login(),

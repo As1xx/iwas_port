@@ -51,30 +51,39 @@ class WineItem extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
         padding: EdgeInsets.only(right: 20),
       ),
-      child: Card(
-        color: Theme.of(context).backgroundColor,
-        margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
-        child: ListTile(
-          onTap: () => null, //TODO: implement Detail View
-          leading: CircleAvatar(
-            backgroundImage: NetworkImage(_wine.imageURL),
-            radius: 25.0,
-          ),
-          title: Text(
-            _wine.manufacturer,
-            style: Theme.of(context).textTheme.caption,
-          ),
-          subtitle: Text(
-            _wine.type,
-            style: Theme.of(context).textTheme.subtitle,
-          ),
-          trailing: IconButton(
-            icon: Icon(Icons.edit, color: Theme.of(context).iconTheme.color),
-            onPressed: () => Navigator.pushNamed(context, EditWine.routName,
-                arguments: _wine),
+        child: Card(
+          color: Theme.of(context).backgroundColor,
+          margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
+          child: ListTile(
+            onTap: () => null, //TODO: implement Detail View
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 5),
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(_wine.imageURL),
+                radius: 25.0,
+              ),
+            ),
+            title: Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text(
+                _wine.manufacturer,
+                style: Theme.of(context).textTheme.caption,
+              ),
+            ),
+            subtitle: Padding(
+              padding: const EdgeInsets.fromLTRB(10,10,0,0),
+              child: Text(
+                _wine.type,
+                style: Theme.of(context).textTheme.subtitle,
+              ),
+            ),
+            trailing: IconButton(
+              icon: Icon(Icons.edit, color: Theme.of(context).iconTheme.color),
+              onPressed: () => Navigator.pushNamed(context, EditWine.routName,
+                  arguments: _wine),
+            ),
           ),
         ),
-      ),
     );
   }
 }

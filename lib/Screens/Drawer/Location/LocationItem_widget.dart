@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:iwas_port/Screens/Drawer/Wine/EditWine_screen.dart';
-import 'package:iwas_port/Services/WineDatabaseService.dart';
+import 'package:iwas_port/Models/location.dart';
+import 'package:iwas_port/Screens/Drawer/Location/EditLocation_screen.dart';
+import 'package:iwas_port/Services/LocationDatabaseService.dart';
 
 
-class WineItem extends StatelessWidget {
-  final _databaseService = WineDatabaseService();
-  final _wine;
-  WineItem(this._wine);
+class LocationItem extends StatelessWidget {
+  final _databaseService = LocationDatabaseService();
+  final Location _location;
+  LocationItem(this._location);
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +39,8 @@ class WineItem extends StatelessWidget {
     return Dismissible(
       direction: DismissDirection.endToStart,
       confirmDismiss: (_) => _showDeleteDialog(),
-      onDismissed: (_) => _databaseService.deleteFromDatabase(_wine),
-      key: ValueKey(_wine.docID),
+      onDismissed: (_) => _databaseService.deleteFromDatabase(_location),
+      key: ValueKey(_location.docID),
       background: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -54,39 +55,32 @@ class WineItem extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 10, 20.0, 0.0),
         padding: EdgeInsets.only(right: 20),
       ),
-        child: Card(
-          color: Theme.of(context).backgroundColor,
-          margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
-          child: ListTile(
-            onTap: () => null, //TODO: implement Detail View
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 5),
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(_wine.imageURL),
-                radius: 25.0,
-              ),
-            ),
-            title: Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                _wine.manufacturer,
-                style: Theme.of(context).textTheme.caption,
-              ),
-            ),
-            subtitle: Padding(
-              padding: const EdgeInsets.fromLTRB(10,10,0,0),
-              child: Text(
-                _wine.type,
-                style: Theme.of(context).textTheme.subtitle,
-              ),
-            ),
-            trailing: IconButton(
-              icon: Icon(Icons.edit, color: Theme.of(context).iconTheme.color),
-              onPressed: () => Navigator.pushNamed(context, EditWine.routeName,
-                  arguments: _wine),
+      child: Card(
+        color: Theme.of(context).backgroundColor,
+        margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
+        child: ListTile(
+          onTap: () => null, //TODO: implement Detail View
+          title: Padding(
+            padding: EdgeInsets.only(left: 10),
+            child: Text(
+              _location.name,
+              style: Theme.of(context).textTheme.caption,
             ),
           ),
+          subtitle: Padding(
+            padding: const EdgeInsets.fromLTRB(10,10,0,0),
+            child: Text(
+              _location.zipCode.toString() + ' ' + _location.address + ', ' + _location.country,
+              style: Theme.of(context).textTheme.subtitle,
+            ),
+          ),
+          trailing: IconButton(
+            icon: Icon(Icons.edit, color: Theme.of(context).iconTheme.color),
+            onPressed: () => Navigator.pushNamed(context, EditLocation.routeName,
+                arguments: _location),
+          ),
         ),
+      ),
     );
   }
 }

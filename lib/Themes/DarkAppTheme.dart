@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final darkAppTheme = ThemeData(
     //fontFamily: 'Neutra-Display',
-    primaryColor: Colors.white,
+    primaryColor: Colors.black,
     accentColor: Colors.purple,
     backgroundColor: Colors.black.withOpacity(0.9),
     focusColor: Colors.purple,
@@ -36,6 +36,7 @@ final darkAppTheme = ThemeData(
       labelStyle: TextStyle(color: Colors.white, fontSize: 14),
       prefixStyle: TextStyle(color: Colors.white),
       suffixStyle: TextStyle(color: Colors.white),
+      errorStyle: TextStyle(color: Colors.red,fontSize: 11),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: Colors.white,width: 0.5),
        borderRadius: BorderRadius.circular(20.0),

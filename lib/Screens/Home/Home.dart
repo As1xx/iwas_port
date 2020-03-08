@@ -1,6 +1,9 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/fa_icon.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iwas_port/Models/user.dart';
+import 'package:iwas_port/Screens/Drawer/Location/Location_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/Wine_screen.dart';
 import 'package:iwas_port/styles/background_style.dart';
 import 'package:provider/provider.dart';
@@ -68,7 +71,9 @@ class _HomeState extends State<Home> {
                     'Locations',
                     style: Theme.of(context).textTheme.display1,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, LocationScreen.routeName);
+                  },
                 ),
                 ListTile(
                     leading: Icon(
@@ -80,7 +85,7 @@ class _HomeState extends State<Home> {
                       style: Theme.of(context).textTheme.display1,
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, WineScreen.routName);
+                      Navigator.pushNamed(context, WineScreen.routeName);
                     },
                   ),
                 ListTile(
@@ -116,6 +121,19 @@ class _HomeState extends State<Home> {
                   ),
                   onTap: () {},
                 ),
+                Divider(),
+                ListTile(
+                  leading: Icon(
+                    FontAwesomeIcons.signOutAlt,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
+                  title: Text(
+                    'Sign Out',
+                    style: Theme.of(context).textTheme.display1,
+                  ),
+                  onTap: () {},
+                ),
+
               ],
             ),
           ),

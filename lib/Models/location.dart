@@ -1,28 +1,31 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:random_string/random_string.dart';
 
 class Location {
 
-  String docID;
+  String docID = randomAlphaNumeric(20);
   String name;
-  String location;
+  String country;
   String address;
-  String zipCode;
+  int zipCode;
   bool isDefault;
   int numOfCategories;
   int numOfProducts;
-  int totalValue;
+  double totalValue;
 
-  Location({this.docID, this.name, this.location, this.address, this.zipCode,
+  Location.empty();
+
+  Location({this.docID, this.name, this.country, this.address, this.zipCode,
       this.isDefault, this.numOfCategories, this.numOfProducts,
       this.totalValue});
 
 
   // Serialize Class to JSON (Key,Value) for writing to Database
-  Map<String, dynamic> toJson() =>
+  Map<String, dynamic> toFireStore() =>
       {
         'DocumentID': docID,
         'Name': name ,
-        'Location': location,
+        'Country': country,
         'Address': address,
         'ZipCode': zipCode,
         'isDefault': isDefault,
@@ -37,14 +40,14 @@ class Location {
 
     return Location(
       docID: documentSnapshot.documentID,
-      name: documentData['Name'] ?? '',
-      location: documentData['Location'] ?? '',
-      address: documentData['Address'] ?? '',
-      zipCode: documentData['ZipCode'] ?? '',
-      isDefault: documentData['isDefault'] ?? '',
-      numOfCategories: documentData['NumberOfCategories'] ?? '',
-      numOfProducts: documentData['NumberOfProducts'] ?? '',
-      totalValue: documentData['TotalValue'] ?? ''
+      name: documentData['Name'] ?? null,
+      country: documentData['Country'] ?? null,
+      address: documentData['Address'] ?? null,
+      zipCode: documentData['ZipCode'] ?? null,
+      isDefault: documentData['isDefault'] ?? null,
+      numOfCategories: documentData['NumberOfCategories'] ?? null,
+      numOfProducts: documentData['NumberOfProducts'] ?? null,
+      totalValue: documentData['TotalValue'] ?? null
     );
   }
 

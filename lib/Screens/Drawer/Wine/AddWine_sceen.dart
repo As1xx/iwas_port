@@ -6,7 +6,7 @@ import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Screens/Authenticate/TextInputForm_decoration.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/SelectPhoto_widget.dart';
 import 'package:iwas_port/Services/DatabaseException.dart';
-import 'package:iwas_port/Services/DatabaseService.dart';
+import 'package:iwas_port/Services/WineDatabaseService.dart';
 import 'package:iwas_port/Services/ImageException.dart';
 import 'package:iwas_port/Styles/background_style.dart';
 import 'package:string_validator/string_validator.dart';
@@ -14,7 +14,7 @@ import 'package:string_validator/string_validator.dart';
 
 
 class AddWine extends StatefulWidget {
-  static const routName = '/AddWine';
+  static const routeName = '/AddWine';
 
   @override
   _AddWineState createState() => _AddWineState();

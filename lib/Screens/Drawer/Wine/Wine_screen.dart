@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/AddWine_sceen.dart';
-import 'package:iwas_port/Screens/Drawer/Wine/PopupMenu_widget.dart';
+import 'package:iwas_port/Screens/Drawer/Wine/WinePopupMenu_widget.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/WineItem_widget.dart';
 import 'package:iwas_port/Screens/Loading/loading.dart';
 import 'package:iwas_port/styles/background_style.dart';
-import 'package:iwas_port/Screens/Drawer/Wine/SearchBar.dart';
+import 'package:iwas_port/Screens/Drawer/Wine/WineSearchBar.dart';
 import 'package:provider/provider.dart';
 
 
 class WineScreen extends StatefulWidget {
-  static const routName = '/WineScreen';
+  static const routeName = '/WineScreen';
 
   @override
   _WineScreenState createState() => _WineScreenState();
@@ -46,7 +46,7 @@ class _WineScreenState extends State<WineScreen> {
         title: Text('WineList'),
         actions: <Widget>[
           IconButton(
-            onPressed: () => Navigator.pushNamed(context, AddWine.routName),
+            onPressed: () => Navigator.pushNamed(context, AddWine.routeName),
             icon: Icon(Icons.add),
           ),
           IconButton(

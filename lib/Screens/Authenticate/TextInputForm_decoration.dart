@@ -6,6 +6,7 @@ InputDecoration textFormDecoration(context) {
     prefixStyle: Theme.of(context).inputDecorationTheme.prefixStyle,
     suffixStyle: Theme.of(context).inputDecorationTheme.suffixStyle,
     labelStyle: Theme.of(context).inputDecorationTheme.labelStyle,
+    errorStyle: Theme.of(context).inputDecorationTheme.errorStyle,
     fillColor: Theme.of(context).inputDecorationTheme.fillColor,
     contentPadding: Theme.of(context).inputDecorationTheme.contentPadding,
     enabledBorder: Theme.of(context).inputDecorationTheme.enabledBorder,

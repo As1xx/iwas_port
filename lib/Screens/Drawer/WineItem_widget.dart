@@ -41,14 +41,18 @@ class WineItem extends StatelessWidget {
       onDismissed: (_) => _databaseService.deleteFromDatabase(_wine),
       key: ValueKey(_wine.docID),
       background: Container(
-        color: Theme.of(context).errorColor,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Theme.of(context).errorColor,
+        ),
+        //color: Theme.of(context).errorColor,
         child: Icon(
           Icons.delete,
           color: Theme.of(context).iconTheme.color,
           size: 40,
         ),
         alignment: Alignment.centerRight,
-        margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
+        margin: EdgeInsets.fromLTRB(20.0, 10, 20.0, 0.0),
         padding: EdgeInsets.only(right: 20),
       ),
         child: Card(

@@ -13,9 +13,10 @@ class Wine {
   String location;
   String imageURL;
   String supplier;
+  double price;
 
   Wine.empty();
-  Wine({this.docID,this.manufacturer,this.type,this.productID,this.criticalQuantity,this.quantity,this.location,this.imageURL,this.supplier});
+  Wine({this.docID,this.manufacturer,this.type,this.productID,this.criticalQuantity,this.quantity,this.location,this.imageURL,this.supplier,this.price});
 
 
 
@@ -32,6 +33,7 @@ class Wine {
         'Location': location,
         'ImageURL': imageURL,
         'Supplier': supplier,
+        'Price': price,
       };
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
@@ -48,6 +50,7 @@ class Wine {
       location: documentData['Location'] ?? null,
       imageURL: documentData['ImageURL'] ?? null,
       supplier: documentData['Supplier'] ?? null,
+      price: documentData['Price'] ?? null,
 
     );
   }

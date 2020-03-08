@@ -10,6 +10,7 @@ import 'package:iwas_port/Services/DatabaseService.dart';
 import 'package:iwas_port/Services/ImageException.dart';
 import 'package:iwas_port/Styles/background_style.dart';
 import 'package:network_to_file_image/network_to_file_image.dart';
+import 'package:string_validator/string_validator.dart';
 
 class EditWine extends StatefulWidget {
   static const routName = '/EditWine';
@@ -24,9 +25,29 @@ class _EditWineState extends State<EditWine> {
   bool isLoading;
   File myImageFile;
 
-//TODO: validate is numeric
   Widget build(BuildContext context) {
     final Wine _wine = ModalRoute.of(context).settings.arguments;
+
+
+    String _checkInteger(String text) {
+      if (text.isEmpty) {
+        return 'Please specify Field';
+      } else if (!isInt(text)) {
+        return 'Please Enter Number 0-9';
+      } else {
+        return null;
+      }
+    }
+
+    String _checkDouble(String text) {
+      if (text.isEmpty) {
+        return 'Please specify Field';
+      } else if (!isFloat(text)) {
+        return 'Please Enter Number 0-9';
+      } else {
+        return null;
+      }
+    }
 
     void _updateImage(File imageFile) {
       setState(() {
@@ -86,7 +107,7 @@ class _EditWineState extends State<EditWine> {
               child: Column(
                 children: <Widget>[
                   IconButton(
-                    iconSize: 100,
+                    iconSize: 75,
                     icon: Image(
                       image: NetworkToFileImage(
                         url: _wine.imageURL,
@@ -101,7 +122,7 @@ class _EditWineState extends State<EditWine> {
                     onSaved: (text) => _wine.manufacturer = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) =>
-                        text.isEmpty ? 'Please Enter Manufacturer' : null,
+                        text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.text,
                     cursorColor:
                         Theme.of(context).inputDecorationTheme.focusColor,
@@ -115,7 +136,7 @@ class _EditWineState extends State<EditWine> {
                     onSaved: (text) => _wine.type = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) =>
-                        text.isEmpty ? 'Please Enter Type' : null,
+                        text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.text,
                     cursorColor:
                         Theme.of(context).inputDecorationTheme.focusColor,
@@ -128,8 +149,7 @@ class _EditWineState extends State<EditWine> {
                     initialValue: _wine.productID.toString(),
                     onSaved: (text) => _wine.productID = int.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) =>
-                        text.isEmpty ? 'Please Enter Product ID' : null,
+                    validator: (text) => _checkInteger(text),
                     keyboardType: TextInputType.number,
                     cursorColor:
                         Theme.of(context).inputDecorationTheme.focusColor,
@@ -142,8 +162,7 @@ class _EditWineState extends State<EditWine> {
                     initialValue: _wine.quantity.toString(),
                     onSaved: (text) => _wine.quantity = int.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) =>
-                        text.isEmpty ? 'Please Enter Quantity' : null,
+                    validator: (text) => _checkInteger(text),
                     keyboardType: TextInputType.number,
                     cursorColor:
                         Theme.of(context).inputDecorationTheme.focusColor,
@@ -156,13 +175,23 @@ class _EditWineState extends State<EditWine> {
                     initialValue: _wine.criticalQuantity.toString(),
                     onSaved: (text) => _wine.criticalQuantity = int.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) =>
-                        text.isEmpty ? 'Please Enter Critical Quantity' : null,
+                    validator: (text) => _checkInteger(text),
                     keyboardType: TextInputType.number,
                     cursorColor:
                         Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Critical Quantity',
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    onSaved: (text) => _wine.price = double.parse(text),
+                    style: Theme.of(context).inputDecorationTheme.labelStyle,
+                    validator: (text) => _checkDouble(text),
+                    keyboardType: TextInputType.number,
+                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
+                    decoration: textFormDecoration(context).copyWith(
+                      labelText: 'Price',
                     ),
                   ),
                   SizedBox(

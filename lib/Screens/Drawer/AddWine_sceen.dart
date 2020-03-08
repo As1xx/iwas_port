@@ -9,6 +9,7 @@ import 'package:iwas_port/Services/DatabaseException.dart';
 import 'package:iwas_port/Services/DatabaseService.dart';
 import 'package:iwas_port/Services/ImageException.dart';
 import 'package:iwas_port/Styles/background_style.dart';
+import 'package:string_validator/string_validator.dart';
 
 
 
@@ -25,6 +26,27 @@ class _AddWineState extends State<AddWine> {
   final _wine = Wine.empty();
   File myImageFile;
   bool isLoading;
+
+
+  String _checkInteger(String text) {
+    if (text.isEmpty) {
+      return 'Please specify Field';
+    } else if (!isInt(text)) {
+      return 'Please Enter Number 0-9';
+    } else {
+      return null;
+    }
+  }
+
+  String _checkDouble(String text) {
+    if (text.isEmpty) {
+      return 'Please specify Field';
+    } else if (!isFloat(text)) {
+      return 'Please Enter Number 0-9';
+    } else {
+      return null;
+    }
+  }
 
   void _updateImage(File imageFile) {
     setState(() {
@@ -98,7 +120,7 @@ class _AddWineState extends State<AddWine> {
               child: Column(
                 children: <Widget>[
                   IconButton(
-                      iconSize: 100,
+                      iconSize: 75,
                       icon: _decideImage(),
                       onPressed: () => _showActionDialog(),
                   ),
@@ -106,7 +128,7 @@ class _AddWineState extends State<AddWine> {
                   TextFormField(
                     onSaved: (text) => _wine.manufacturer = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please Enter Manufacturer' : null,
+                    validator: (text) => text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.text,
                     cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
@@ -117,7 +139,7 @@ class _AddWineState extends State<AddWine> {
                   TextFormField(
                     onSaved: (text) => _wine.type = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please Enter Type' : null,
+                    validator: (text) => text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.text,
                     cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
@@ -128,7 +150,7 @@ class _AddWineState extends State<AddWine> {
                   TextFormField(
                     onSaved: (text) => _wine.productID = int.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please Enter Product ID' : null,
+                    validator: (text) => _checkInteger(text),
                     keyboardType: TextInputType.number,
                     cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
@@ -139,7 +161,7 @@ class _AddWineState extends State<AddWine> {
                   TextFormField(
                     onSaved: (text) => _wine.quantity = int.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please Enter Quantity' : null,
+                    validator: (text) => _checkInteger(text),
                     keyboardType: TextInputType.number,
                     cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
@@ -150,11 +172,22 @@ class _AddWineState extends State<AddWine> {
                   TextFormField(
                     onSaved: (text) => _wine.criticalQuantity = int.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please Enter Critical Quantity' : null,
+                    validator: (text) => _checkInteger(text),
                     keyboardType: TextInputType.number,
                     cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Critical Quantity',
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    onSaved: (text) => _wine.price = double.parse(text),
+                    style: Theme.of(context).inputDecorationTheme.labelStyle,
+                    validator: (text) => _checkDouble(text),
+                    keyboardType: TextInputType.number,
+                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
+                    decoration: textFormDecoration(context).copyWith(
+                      labelText: 'Price',
                     ),
                   ),
                   SizedBox(height: 20,),

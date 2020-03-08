@@ -47,6 +47,7 @@ dependencies:
   network_to_file_image: ^2.2.8
   popup_menu: ^1.0.5
   font_awesome_flutter: ^8.7.0
+  string_validator: ^0.1.3
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Screens/Drawer/AddWine_sceen.dart';
 import 'package:iwas_port/Screens/Drawer/PopupMenu_widget.dart';
+import 'package:iwas_port/Screens/Loading/loading.dart';
 import 'package:iwas_port/styles/background_style.dart';
 import 'package:iwas_port/Styles/SearchBar.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,9 @@ class WineScreen extends StatefulWidget {
 }
 
 class _WineScreenState extends State<WineScreen> {
+
+  bool isBusy = true;
+
   @override
   Widget build(BuildContext context) {
     var wineList = Provider.of<List<Wine>>(context);
@@ -27,7 +31,16 @@ class _WineScreenState extends State<WineScreen> {
       });
     }
 
-    return Scaffold(
+    if (wineList != null){
+      setState(() {
+        isBusy = false;
+      });
+    }
+
+
+
+
+    return isBusy ? Loading() : Scaffold(
       appBar: AppBar(
         iconTheme: Theme.of(context).appBarTheme.iconTheme,
         title: Text('WineList'),

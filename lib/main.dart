@@ -8,7 +8,8 @@ import 'package:iwas_port/Screens/Drawer/Wine_screen.dart';
 import 'package:iwas_port/Services/AuthenticateService.dart';
 import 'package:iwas_port/Screens/Authenticate/Login/Login_screen.dart';
 import 'package:iwas_port/Services/DatabaseService.dart';
-import 'package:iwas_port/Themes/AppTheme.dart';
+import 'package:iwas_port/Themes/DarkAppTheme.dart';
+import 'package:iwas_port/Themes/LightAppTheme.dart';
 import 'package:provider/provider.dart';
 import 'Screens/Drawer/AddWine_sceen.dart';
 import 'Screens/Drawer/EditWine_screen.dart';
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
 
       ],
       child: MaterialApp(
-          theme: appTheme,
+          theme: darkAppTheme,
           supportedLocales: supportedLocales,
           localizationsDelegates: localizationsDelegates,
           // Returns a locale which will be used by the app

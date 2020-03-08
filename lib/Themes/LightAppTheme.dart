@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
 
-final appTheme = ThemeData(
-    //fontFamily: 'Neutra-Display',
+final lightAppTheme = ThemeData(
+  //fontFamily: 'Neutra-Display',
     primaryColor: Colors.white,
     accentColor: Colors.purple,
-    backgroundColor: Colors.black.withOpacity(0.9),
+    backgroundColor: Colors.white,
     focusColor: Colors.purple,
     errorColor: Colors.red,
-    highlightColor: Colors.white,
+    highlightColor: Colors.purple,
     dialogBackgroundColor: Colors.grey[800].withOpacity(0.5),
-    cursorColor: Colors.white,
+    cursorColor: Colors.black,
     textTheme: TextTheme(
-      title: TextStyle(color: Colors.white, fontSize: 24, letterSpacing: 10),
-      caption: TextStyle(color: Colors.white, fontSize: 16),
-      display1: TextStyle(color: Colors.white, fontSize: 16),
-      subtitle: TextStyle(color: Colors.white, fontSize: 12),
-      headline: TextStyle(color: Colors.white, fontSize: 12),
+      title: TextStyle(color: Colors.black, fontSize: 24, letterSpacing: 10),
+      caption: TextStyle(color: Colors.black, fontSize: 16),
+      display1: TextStyle(color: Colors.black, fontSize: 16),
+      subtitle: TextStyle(color: Colors.black, fontSize: 12),
+      headline: TextStyle(color: Colors.black, fontSize: 12),
     ),
     appBarTheme: AppBarTheme(
-      color: Colors.black,
+      color: Colors.white,
       textTheme: TextTheme(
-        title: TextStyle(color: Colors.white, fontSize: 26),
+        title: TextStyle(color: Colors.black, fontSize: 26),
       ),
       actionsIconTheme: IconThemeData(
-        color: Colors.white,
+        color: Colors.black,
       ),
       iconTheme: IconThemeData(
-        color: Colors.white,
+        color: Colors.black,
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      fillColor: Colors.black,
-      focusColor: Colors.white,
+      fillColor: Colors.white,
+      focusColor: Colors.purple,
       contentPadding: EdgeInsets.all(10.0),
-      labelStyle: TextStyle(color: Colors.white, fontSize: 18),
-      prefixStyle: TextStyle(color: Colors.white),
-      suffixStyle: TextStyle(color: Colors.white),
+      labelStyle: TextStyle(color: Colors.black, fontSize: 18),
+      prefixStyle: TextStyle(color: Colors.black),
+      suffixStyle: TextStyle(color: Colors.black),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.white),
+        borderSide: BorderSide(color: Colors.black),
         borderRadius: BorderRadius.circular(20.0),
       ),
       focusedBorder: OutlineInputBorder(
@@ -55,14 +55,14 @@ final appTheme = ThemeData(
     ),
     buttonTheme: ButtonThemeData(
       textTheme: ButtonTextTheme.primary,
-      highlightColor: Colors.white,
+      highlightColor: Colors.purple,
     ),
     snackBarTheme: SnackBarThemeData(),
     iconTheme: IconThemeData(
-      color: Colors.white,
+      color: Colors.black,
     ),
     dividerTheme: DividerThemeData(
-      color: Colors.white,
+      color: Colors.black,
       thickness: 1,
     ),
 

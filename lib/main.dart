@@ -4,15 +4,15 @@ import 'package:iwas_port/Models/user.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Screens/Authenticate/ResetPassword/ResetPassword_screen.dart';
 import 'package:iwas_port/Screens/Authenticate/isLogged_widget.dart';
-import 'package:iwas_port/Screens/Drawer/Wine_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Wine/Wine_screen.dart';
 import 'package:iwas_port/Services/AuthenticateService.dart';
 import 'package:iwas_port/Screens/Authenticate/Login/Login_screen.dart';
 import 'package:iwas_port/Services/DatabaseService.dart';
 import 'package:iwas_port/Themes/DarkAppTheme.dart';
 import 'package:iwas_port/Themes/LightAppTheme.dart';
 import 'package:provider/provider.dart';
-import 'Screens/Drawer/AddWine_sceen.dart';
-import 'Screens/Drawer/EditWine_screen.dart';
+import 'Screens/Drawer/Wine/AddWine_sceen.dart';
+import 'Screens/Drawer/Wine/EditWine_screen.dart';
 import 'Screens/Home/Home.dart';
 import 'Screens/Loading/loading.dart';
 

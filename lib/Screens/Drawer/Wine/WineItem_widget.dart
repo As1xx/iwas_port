@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:iwas_port/Screens/Drawer/Wine/EditWine_screen.dart';
 import 'package:iwas_port/Services/DatabaseService.dart';
 
-import 'EditWine_screen.dart';
 
 class WineItem extends StatelessWidget {
   final _databaseService = WineDatabaseService();

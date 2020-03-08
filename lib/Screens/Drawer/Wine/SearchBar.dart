@@ -1,10 +1,7 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/wine.dart';
-import 'package:iwas_port/Screens/Drawer/WineItem_widget.dart';
+import 'package:iwas_port/Screens/Drawer/Wine/WineItem_widget.dart';
 import 'package:iwas_port/Styles/background_style.dart';
-import 'package:iwas_port/Themes/DarkAppTheme.dart';
 
 class SearchBar extends SearchDelegate {
   final List<Wine> myList;

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/ShapesPainter.dart';
-import 'package:iwas_port/Models/user.dart';
 import 'package:iwas_port/Screens/Loading/loading.dart';
 import 'package:iwas_port/Screens/Authenticate/Login/Login_notifier.dart';
 import 'package:iwas_port/Screens/Authenticate//Logo_widget.dart';
-import 'package:iwas_port/Services/AuthenticateService.dart';
 import 'package:provider/provider.dart';
 import 'Buttons_widget.dart';
 import 'InputForm_widget.dart';

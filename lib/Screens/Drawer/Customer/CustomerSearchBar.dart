@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:iwas_port/Models/wine.dart';
-import 'package:iwas_port/Screens/Drawer/Wine/WineItem_widget.dart';
+import 'package:iwas_port/Models/customer.dart';
+import 'package:iwas_port/Screens/Drawer/Customer/CustomerItem_widget.dart';
 import 'package:iwas_port/Styles/background_style.dart';
 
-class WineSearchBar extends SearchDelegate {
-  final List<Wine> myList;
-  WineSearchBar({this.myList});
+class CustomerSearchBar extends SearchDelegate {
+  final List<Customer> myList;
+  CustomerSearchBar({this.myList});
 
-  List<Wine> _showSuggestions(String searchString) {
+  List<Customer> _showSuggestions(String searchString) {
     return myList
-        .where((wine) =>
-    wine.manufacturer
-        .toLowerCase()
-        .contains(searchString.toLowerCase()) ||
-        wine.type.toLowerCase().contains(searchString.toLowerCase()))
+        .where((customer) =>
+    customer.name.toLowerCase().contains(searchString.toLowerCase()))
         .toList();
   }
 
@@ -62,7 +59,7 @@ class WineSearchBar extends SearchDelegate {
           itemBuilder: (context, index) {
             return Padding(
                 padding: EdgeInsets.only(top: 8),
-                child: WineItem(suggestionList[index]));
+                child: CustomerItem(suggestionList[index]));
           }),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:random_string/random_string.dart';
 
 
@@ -13,10 +14,23 @@ class Wine {
   String location;
   String imageURL;
   String supplier;
-  double price;
+  double purchasePrice;
+  double sellingPrice;
 
   Wine.empty();
-  Wine({this.docID,this.manufacturer,this.type,this.productID,this.criticalQuantity,this.quantity,this.location,this.imageURL,this.supplier,this.price});
+  Wine({
+    @required this.docID,
+    @required this.manufacturer,
+    @required this.type,
+    @required this.productID,
+    @required this.criticalQuantity,
+    @required this.quantity,
+    @required this.location,
+    @required this.imageURL,
+    @required this.supplier,
+    @required this.purchasePrice,
+    @required this.sellingPrice
+  });
 
 
 
@@ -33,7 +47,8 @@ class Wine {
         'Location': location,
         'ImageURL': imageURL,
         'Supplier': supplier,
-        'Price': price,
+        'PurchasePrice': purchasePrice,
+        'SellingPrice': sellingPrice,
       };
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
@@ -50,7 +65,8 @@ class Wine {
       location: documentData['Location'] ?? null,
       imageURL: documentData['ImageURL'] ?? null,
       supplier: documentData['Supplier'] ?? null,
-      price: documentData['Price'] ?? null,
+      purchasePrice: documentData['PurchasePrice'] ?? null,
+      sellingPrice: documentData['SellingPrice'] ?? null,
 
     );
   }

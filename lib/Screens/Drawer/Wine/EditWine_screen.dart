@@ -185,13 +185,24 @@ class _EditWineState extends State<EditWine> {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    onSaved: (text) => _wine.price = double.parse(text),
+                    onSaved: (text) => _wine.purchasePrice = double.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => _checkDouble(text),
                     keyboardType: TextInputType.number,
                     cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Price',
+                      labelText: 'Purchase Price',
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    onSaved: (text) => _wine.sellingPrice = double.parse(text),
+                    style: Theme.of(context).inputDecorationTheme.labelStyle,
+                    validator: (text) => _checkDouble(text),
+                    keyboardType: TextInputType.number,
+                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
+                    decoration: textFormDecoration(context).copyWith(
+                      labelText: 'Selling Price',
                     ),
                   ),
                   SizedBox(

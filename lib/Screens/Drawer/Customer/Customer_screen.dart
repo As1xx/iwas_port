@@ -1,37 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:iwas_port/Models/location.dart';
-import 'package:iwas_port/Screens/Drawer/Location/AddLocation_screen.dart';
-import 'package:iwas_port/Screens/Drawer/Location/LocationItem_widget.dart';
-import 'package:iwas_port/Screens/Drawer/Location/LocationPopupMenu_widget.dart';
-import 'package:iwas_port/Screens/Drawer/Location/LocationSearchBar.dart';
+import 'package:iwas_port/Models/customer.dart';
+import 'package:iwas_port/Screens/Drawer/Customer/AddCustomer_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Customer/CustomerItem_widget.dart';
+import 'package:iwas_port/Screens/Drawer/Customer/CustomerPopupMenu_widget.dart';
+import 'package:iwas_port/Screens/Drawer/Customer/CustomerSearchBar.dart';
 import 'package:iwas_port/Screens/Loading/loading.dart';
 import 'package:iwas_port/styles/background_style.dart';
 import 'package:provider/provider.dart';
 
 
-class LocationScreen extends StatefulWidget {
-  static const routeName = '/LocationScreen';
+class CustomerScreen extends StatefulWidget {
+  static const routeName = '/CustomerScreen';
 
   @override
-  _LocationScreenState createState() => _LocationScreenState();
+  _CustomerScreenState createState() => _CustomerScreenState();
 }
 
-class _LocationScreenState extends State<LocationScreen> {
+class _CustomerScreenState extends State<CustomerScreen> {
 
   bool isBusy = true;
 
   @override
   Widget build(BuildContext context) {
-    var locationList = Provider.of<List<Location>>(context);
+    var customerList = Provider.of<List<Customer>>(context);
     GlobalKey popUpKey = GlobalKey();
 
-    void updateSortScreen(List<Location> filteredList) {
+    void updateSortScreen(List<Customer> filteredList) {
       setState(() {
-        locationList = filteredList;
+        customerList = filteredList;
       });
     }
 
-    if (locationList != null){
+    if (customerList != null){
       setState(() {
         isBusy = false;
       });
@@ -43,23 +43,23 @@ class _LocationScreenState extends State<LocationScreen> {
     return isBusy ? Loading() : Scaffold(
       appBar: AppBar(
         iconTheme: Theme.of(context).appBarTheme.iconTheme,
-        title: Text('Location List'),
+        title: Text('Customer List'),
         actions: <Widget>[
           IconButton(
-            onPressed: () => Navigator.pushNamed(context, AddLocation.routeName),
+            onPressed: () => Navigator.pushNamed(context, AddCustomer.routeName),
             icon: Icon(Icons.add),
           ),
           IconButton(
             key: popUpKey,
             onPressed: () {
-              buildPopupMenu(context, popUpKey, locationList, updateSortScreen);
+              buildPopupMenu(context, popUpKey, customerList, updateSortScreen);
             },
             icon: Icon(Icons.filter_list),
           ),
           IconButton(
             onPressed: () {
               showSearch(
-                  context: context, delegate: LocationSearchBar(myList: locationList));
+                  context: context, delegate: CustomerSearchBar(myList: customerList));
             },
             icon: Icon(Icons.search),
           ),
@@ -67,11 +67,11 @@ class _LocationScreenState extends State<LocationScreen> {
       ),
       body: Background(
           child: ListView.builder(
-            itemCount: locationList.length,
+            itemCount: customerList.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(top: 8),
-                child: LocationItem(locationList[index]),
+                child: CustomerItem(customerList[index]),
               );
             },
           )),

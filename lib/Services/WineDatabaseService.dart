@@ -8,7 +8,7 @@ class WineDatabaseService {
   CollectionReference collectionReference;
 
   WineDatabaseService() {
-    this.collectionReference = Firestore.instance.collection('Wines');
+    this.collectionReference = Firestore.instance.collection('Products');
   }
 
   // Get Stream for Reading Data from Database

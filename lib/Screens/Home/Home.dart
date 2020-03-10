@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/fa_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iwas_port/Models/user.dart';
+import 'package:iwas_port/Screens/Drawer/Customer/Customer_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/Location_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/Wine_screen.dart';
 import 'package:iwas_port/styles/background_style.dart';
@@ -108,7 +109,9 @@ class _HomeState extends State<Home> {
                     'Customer',
                     style: Theme.of(context).textTheme.display1,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, CustomerScreen.routeName);
+                  },
                 ),
                 ListTile(
                   leading: Icon(

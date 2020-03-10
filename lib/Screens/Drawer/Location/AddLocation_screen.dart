@@ -12,7 +12,7 @@ import 'package:string_validator/string_validator.dart';
 
 
 class AddLocation extends StatefulWidget {
-  static const routName = '/AddLocation';
+  static const routeName = '/AddLocation';
 
   @override
   _AddLocationState createState() => _AddLocationState();
@@ -41,6 +41,7 @@ class _AddLocationState extends State<AddLocation> {
     void _validateForm() async {
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
+        _location.isDefault = switchState;
 
         try {
           await _databaseService.writeToDatabase(_location);
@@ -90,7 +91,7 @@ class _AddLocationState extends State<AddLocation> {
                     onSaved: (text) => _location.zipCode = int.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => _checkInteger(text),
-                    keyboardType: TextInputType.text,
+                    keyboardType: TextInputType.number,
                     cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Zip Code',
@@ -101,7 +102,7 @@ class _AddLocationState extends State<AddLocation> {
                     onSaved: (text) => _location.address = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => text.isEmpty ? 'Please specify Field' : null,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.text,
                     cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Address',
@@ -112,7 +113,7 @@ class _AddLocationState extends State<AddLocation> {
                     onSaved: (text) => _location.country = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => text.isEmpty ? 'Please specify Field' : null,
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.text,
                     cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Country',
@@ -128,7 +129,6 @@ class _AddLocationState extends State<AddLocation> {
                         onChanged: (bool state){
                           setState(() {
                             switchState = state;
-                            _location.isDefault = switchState;
                           });
                         } ,
                     )],

@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Locales/AppLocales.dart';
+import 'package:iwas_port/Models/customer.dart';
 import 'package:iwas_port/Models/location.dart';
 import 'package:iwas_port/Models/user.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Screens/Authenticate/ResetPassword/ResetPassword_screen.dart';
 import 'package:iwas_port/Screens/Authenticate/isLogged_widget.dart';
+import 'package:iwas_port/Screens/Drawer/Customer/AddCustomer_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Customer/Customer_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Customer/EditCustomer_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/AddLocation_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/EditLocation_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/Location_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/Wine_screen.dart';
 import 'package:iwas_port/Services/AuthenticateService.dart';
 import 'package:iwas_port/Screens/Authenticate/Login/Login_screen.dart';
+import 'package:iwas_port/Services/CustomerDatabaseService.dart';
 import 'package:iwas_port/Services/LocationDatabaseService.dart';
 import 'package:iwas_port/Services/WineDatabaseService.dart';
 import 'package:iwas_port/Themes/DarkAppTheme.dart';
@@ -29,6 +34,7 @@ void main() {
 class MyApp extends StatelessWidget {
   final WineDatabaseService _wineDatabaseService = WineDatabaseService();
   final LocationDatabaseService _locationDatabaseService = LocationDatabaseService();
+  final CustomerDatabaseService _customerDatabaseService = CustomerDatabaseService();
 
   // This widget is the root of your application.
   @override
@@ -45,6 +51,9 @@ class MyApp extends StatelessWidget {
         StreamProvider<List<Location>>(
             initialData: [],
             create: (_) => _locationDatabaseService.locationListOfCollection),
+        StreamProvider<List<Customer>>(
+            initialData: [],
+            create: (_) => _customerDatabaseService.customerListOfCollection),
       ],
       child: MaterialApp(
           theme: darkAppTheme,
@@ -62,8 +71,11 @@ class MyApp extends StatelessWidget {
             AddWine.routeName: (ctx) => AddWine(),
             EditWine.routeName: (ctx) => EditWine(),
             LocationScreen.routeName: (ctx) => LocationScreen(),
-            AddLocation.routName: (ctx) => AddLocation(),
+            AddLocation.routeName: (ctx) => AddLocation(),
             EditLocation.routeName: (ctx) => EditLocation(),
+            CustomerScreen.routeName: (ctx) => CustomerScreen(),
+            AddCustomer.routeName: (ctx) => AddCustomer(),
+            EditCustomer.routeName: (ctx) => EditCustomer(),
           }),
     );
   }

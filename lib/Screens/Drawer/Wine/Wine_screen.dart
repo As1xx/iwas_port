@@ -59,7 +59,7 @@ class _WineScreenState extends State<WineScreen> {
           IconButton(
             onPressed: () {
               showSearch(
-                  context: context, delegate: SearchBar(myList: wineList));
+                  context: context, delegate: WineSearchBar(myList: wineList));
             },
             icon: Icon(Icons.search),
           ),

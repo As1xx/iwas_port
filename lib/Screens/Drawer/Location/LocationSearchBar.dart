@@ -3,9 +3,9 @@ import 'package:iwas_port/Models/location.dart';
 import 'package:iwas_port/Screens/Drawer/Location/LocationItem_widget.dart';
 import 'package:iwas_port/Styles/background_style.dart';
 
-class SearchBar extends SearchDelegate {
+class LocationSearchBar extends SearchDelegate {
   final List<Location> myList;
-  SearchBar({this.myList});
+  LocationSearchBar({this.myList});
 
   List<Location> _showSuggestions(String searchString) {
     return myList

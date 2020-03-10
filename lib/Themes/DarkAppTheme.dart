@@ -10,6 +10,8 @@ final darkAppTheme = ThemeData(
     highlightColor: Colors.white,
     dialogBackgroundColor: Colors.grey[800].withOpacity(0.5),
     cursorColor: Colors.white,
+
+
     textTheme: TextTheme(
       title: TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 10),
       caption: TextStyle(color: Colors.white, fontSize: 16),
@@ -73,4 +75,6 @@ final darkAppTheme = ThemeData(
           Radius.circular(20.0),
         ),
       ),
-    ));
+    )
+
+);

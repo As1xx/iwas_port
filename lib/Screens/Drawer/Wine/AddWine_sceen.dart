@@ -2,13 +2,17 @@ import 'dart:io';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iwas_port/Models/location.dart';
+import 'package:iwas_port/Models/supplier.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Screens/Authenticate/TextInputForm_decoration.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/SelectPhoto_widget.dart';
+import 'package:iwas_port/Screens/Drawer/Wine/WineItem_widget.dart';
 import 'package:iwas_port/Services/DatabaseException.dart';
 import 'package:iwas_port/Services/WineDatabaseService.dart';
 import 'package:iwas_port/Services/ImageException.dart';
 import 'package:iwas_port/Styles/background_style.dart';
+import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 
 
@@ -26,6 +30,7 @@ class _AddWineState extends State<AddWine> {
   final _wine = Wine.empty();
   File myImageFile;
   bool isLoading;
+  var selectedSupplier;
 
 
   String _checkInteger(String text) {
@@ -66,6 +71,10 @@ class _AddWineState extends State<AddWine> {
 
 
   Widget build(BuildContext context) {
+
+    final supplierList = Provider.of<List<Supplier>>(context);
+    final locationList = Provider.of<List<Location>>(context);
+
 
     _showActionDialog() {
       return showDialog(
@@ -202,9 +211,29 @@ class _AddWineState extends State<AddWine> {
                     ),
                   ),
                   SizedBox(height: 20,),
-                  DropdownButtonFormField(
-                    items: null,
-                  ),
+                    DropdownButtonFormField(
+                      validator: (supplier) => supplier == null ? 'Please specify Field' : null,
+                      iconEnabledColor: Theme.of(context).iconTheme.color,
+                      style: Theme.of(context).inputDecorationTheme.labelStyle,
+                      decoration: textFormDecoration(context),
+                      isDense: true,
+                      value: selectedSupplier,
+                      hint: Text('Select Supplier',
+                      style: Theme.of(context).inputDecorationTheme.labelStyle),
+                      isExpanded: true,
+                      items: supplierList.map((item){
+                        return DropdownMenuItem(
+                          value:item,
+                          child: Text(item.name),
+                        );
+                      }).toList(),
+                      onChanged: (selectedItem){
+                        setState(() {
+                          selectedSupplier = selectedItem;
+                        });
+                      },
+                      onSaved: (supplier)  => _wine.supplier = supplier,
+                    ),
                 ],
               ),
             ),

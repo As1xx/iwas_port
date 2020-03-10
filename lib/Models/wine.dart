@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:iwas_port/Models/location.dart';
+import 'package:iwas_port/Models/supplier.dart';
 import 'package:random_string/random_string.dart';
 
 
@@ -11,9 +13,9 @@ class Wine {
   int productID;
   int quantity;
   int criticalQuantity;
-  String location;
+  Location location;
   String imageURL;
-  String supplier;
+  Supplier supplier; //TODO:supplier from Firestore?
   double purchasePrice;
   double sellingPrice;
 
@@ -46,7 +48,7 @@ class Wine {
         'Quantity': quantity,
         'Location': location,
         'ImageURL': imageURL,
-        'Supplier': supplier,
+        'Supplier': supplier.toFireStore(),
         'PurchasePrice': purchasePrice,
         'SellingPrice': sellingPrice,
       };
@@ -64,7 +66,7 @@ class Wine {
       criticalQuantity: documentData['CriticalQuantity'] ?? null,
       location: documentData['Location'] ?? null,
       imageURL: documentData['ImageURL'] ?? null,
-      supplier: documentData['Supplier'] ?? null,
+      supplier: Supplier.fromFireStore(documentSnapshot) ?? null,
       purchasePrice: documentData['PurchasePrice'] ?? null,
       sellingPrice: documentData['SellingPrice'] ?? null,
 

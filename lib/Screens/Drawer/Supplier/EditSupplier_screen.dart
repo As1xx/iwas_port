@@ -1,29 +1,29 @@
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iwas_port/Models/customer.dart';
+import 'package:iwas_port/Models/supplier.dart';
 import 'package:iwas_port/Screens/Authenticate/TextInputForm_decoration.dart';
-import 'package:iwas_port/Services/CustomerDatabaseService.dart';
 import 'package:iwas_port/Services/DatabaseException.dart';
+import 'package:iwas_port/Services/SupplierDatabaseService.dart';
 import 'package:iwas_port/Styles/background_style.dart';
 import 'package:string_validator/string_validator.dart';
 
-class EditCustomer extends StatefulWidget {
-  static const routeName = '/EditCustomer';
+class EditSupplier extends StatefulWidget {
+  static const routeName = '/EditSupplier';
 
   @override
-  _EditCustomerState createState() => _EditCustomerState();
+  _EditSupplierState createState() => _EditSupplierState();
 }
 
-class _EditCustomerState extends State<EditCustomer> {
-  final _databaseService = CustomerDatabaseService();
+class _EditSupplierState extends State<EditSupplier> {
+  final _databaseService = SupplierDatabaseService();
   final _formKey = GlobalKey<FormState>();
   bool isLoading;
 
 
 
   Widget build(BuildContext context) {
-    final Customer _customer = ModalRoute.of(context).settings.arguments;
+    final Supplier _supplier = ModalRoute.of(context).settings.arguments;
 
     String _checkInteger(String text) {
       if (text.isEmpty) {
@@ -42,7 +42,7 @@ class _EditCustomerState extends State<EditCustomer> {
         _formKey.currentState.save();
 
         try {
-          await _databaseService.writeToDatabase(_customer);
+          await _databaseService.writeToDatabase(_supplier);
           FlushbarHelper.createSuccess(
               message: 'Data successfully uploaded to Cloud')
               .show(context);
@@ -58,7 +58,7 @@ class _EditCustomerState extends State<EditCustomer> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: Theme.of(context).appBarTheme.iconTheme,
-        title: Text('Edit Customer'),
+        title: Text('Edit Supplier'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.done),
@@ -76,8 +76,8 @@ class _EditCustomerState extends State<EditCustomer> {
                 children: <Widget>[
                   SizedBox(height: 20.0),
                   TextFormField(
-                    initialValue: _customer.name,
-                    onSaved: (text) => _customer.name = text,
+                    initialValue: _supplier.name,
+                    onSaved: (text) => _supplier.name = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) =>
                     text.isEmpty ? 'Please specify Field' : null,
@@ -90,8 +90,8 @@ class _EditCustomerState extends State<EditCustomer> {
                   ),
                   SizedBox(height: 20.0),
                   TextFormField(
-                    initialValue: _customer.zipCode.toString(),
-                    onSaved: (text) => _customer.zipCode = int.parse(text),
+                    initialValue: _supplier.zipCode.toString(),
+                    onSaved: (text) => _supplier.zipCode = int.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => _checkInteger(text),
                     keyboardType: TextInputType.number,
@@ -103,8 +103,8 @@ class _EditCustomerState extends State<EditCustomer> {
                   ),
                   SizedBox(height: 20.0),
                   TextFormField(
-                    initialValue: _customer.address,
-                    onSaved: (text) => _customer.address = text,
+                    initialValue: _supplier.address,
+                    onSaved: (text) => _supplier.address = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.text,
@@ -116,8 +116,8 @@ class _EditCustomerState extends State<EditCustomer> {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    initialValue: _customer.country,
-                    onSaved: (text) => _customer.country = text,
+                    initialValue: _supplier.country,
+                    onSaved: (text) => _supplier.country = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.text,
@@ -129,8 +129,8 @@ class _EditCustomerState extends State<EditCustomer> {
                   ),
                   SizedBox(height:20),
                   TextFormField(
-                    initialValue: _customer.email,
-                    onSaved: (text) => _customer.email = text,
+                    initialValue: _supplier.email,
+                    onSaved: (text) => _supplier.email = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.emailAddress,
@@ -141,8 +141,8 @@ class _EditCustomerState extends State<EditCustomer> {
                   ),
                   SizedBox(height:20),
                   TextFormField(
-                    initialValue: _customer.phoneNumber,
-                    onSaved: (text) => _customer.phoneNumber = text,
+                    initialValue: _supplier.phoneNumber,
+                    onSaved: (text) => _supplier.phoneNumber = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.phone,
@@ -153,8 +153,8 @@ class _EditCustomerState extends State<EditCustomer> {
                   ),
                   SizedBox(height:20),
                   TextFormField(
-                    initialValue: _customer.taxNumber,
-                    onSaved: (text) => _customer.taxNumber = text,
+                    initialValue: _supplier.taxNumber,
+                    onSaved: (text) => _supplier.taxNumber = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.number,
@@ -166,13 +166,13 @@ class _EditCustomerState extends State<EditCustomer> {
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      Text('Invoice Address = Deliver Address?',style: Theme.of(context).textTheme.display1,),
+                      Text('Default Supplier?',style: Theme.of(context).textTheme.display1,),
                       Spacer(),
                       Switch(
-                        value: _customer.isInvoiceAddress,
+                        value: _supplier.isDefault,
                         onChanged: (bool state){
                           setState(() {
-                            _customer.isInvoiceAddress = state;
+                            _supplier.isDefault = state;
                           });
                         },
                       )],

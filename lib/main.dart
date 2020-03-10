@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iwas_port/Locales/AppLocales.dart';
 import 'package:iwas_port/Models/customer.dart';
 import 'package:iwas_port/Models/location.dart';
+import 'package:iwas_port/Models/supplier.dart';
 import 'package:iwas_port/Models/user.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Screens/Authenticate/ResetPassword/ResetPassword_screen.dart';
@@ -12,11 +13,15 @@ import 'package:iwas_port/Screens/Drawer/Customer/EditCustomer_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/AddLocation_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/EditLocation_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/Location_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Supplier/AddSupplier_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Supplier/EditSupplier_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Supplier/Supplier_Screen.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/Wine_screen.dart';
 import 'package:iwas_port/Services/AuthenticateService.dart';
 import 'package:iwas_port/Screens/Authenticate/Login/Login_screen.dart';
 import 'package:iwas_port/Services/CustomerDatabaseService.dart';
 import 'package:iwas_port/Services/LocationDatabaseService.dart';
+import 'package:iwas_port/Services/SupplierDatabaseService.dart';
 import 'package:iwas_port/Services/WineDatabaseService.dart';
 import 'package:iwas_port/Themes/DarkAppTheme.dart';
 import 'package:iwas_port/Themes/LightAppTheme.dart';
@@ -35,6 +40,7 @@ class MyApp extends StatelessWidget {
   final WineDatabaseService _wineDatabaseService = WineDatabaseService();
   final LocationDatabaseService _locationDatabaseService = LocationDatabaseService();
   final CustomerDatabaseService _customerDatabaseService = CustomerDatabaseService();
+  final SupplierDatabaseService _supplierDatabaseService = SupplierDatabaseService();
 
   // This widget is the root of your application.
   @override
@@ -54,6 +60,9 @@ class MyApp extends StatelessWidget {
         StreamProvider<List<Customer>>(
             initialData: [],
             create: (_) => _customerDatabaseService.customerListOfCollection),
+        StreamProvider<List<Supplier>>(
+            initialData: [],
+            create: (_) => _supplierDatabaseService.supplierListOfCollection),
       ],
       child: MaterialApp(
           theme: darkAppTheme,
@@ -76,6 +85,9 @@ class MyApp extends StatelessWidget {
             CustomerScreen.routeName: (ctx) => CustomerScreen(),
             AddCustomer.routeName: (ctx) => AddCustomer(),
             EditCustomer.routeName: (ctx) => EditCustomer(),
+            SupplierScreen.routeName: (ctx) => SupplierScreen(),
+            AddSupplier.routeName: (ctx) => AddSupplier(),
+            EditSupplier.routeName: (ctx) => EditSupplier(),
           }),
     );
   }

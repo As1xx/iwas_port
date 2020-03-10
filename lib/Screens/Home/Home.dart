@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iwas_port/Models/user.dart';
 import 'package:iwas_port/Screens/Drawer/Customer/Customer_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/Location_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Supplier/Supplier_Screen.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/Wine_screen.dart';
 import 'package:iwas_port/styles/background_style.dart';
 import 'package:provider/provider.dart';
@@ -98,7 +99,9 @@ class _HomeState extends State<Home> {
                     'Supplier',
                     style: Theme.of(context).textTheme.display1,
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, SupplierScreen.routeName);
+                  },
                 ),
                 ListTile(
                   leading: Icon(

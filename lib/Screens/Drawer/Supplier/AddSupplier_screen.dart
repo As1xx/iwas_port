@@ -1,50 +1,47 @@
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iwas_port/Models/customer.dart';
+import 'package:iwas_port/Models/supplier.dart';
 import 'package:iwas_port/Screens/Authenticate/TextInputForm_decoration.dart';
-import 'package:iwas_port/Services/CustomerDatabaseService.dart';
 import 'package:iwas_port/Services/DatabaseException.dart';
+import 'package:iwas_port/Services/SupplierDatabaseService.dart';
 import 'package:iwas_port/Styles/background_style.dart';
 import 'package:string_validator/string_validator.dart';
 
-class EditCustomer extends StatefulWidget {
-  static const routeName = '/EditCustomer';
+class AddSupplier extends StatefulWidget {
+  static const routeName = '/AddSupplier';
 
   @override
-  _EditCustomerState createState() => _EditCustomerState();
+  _AddSupplierState createState() => _AddSupplierState();
 }
 
-class _EditCustomerState extends State<EditCustomer> {
-  final _databaseService = CustomerDatabaseService();
+class _AddSupplierState extends State<AddSupplier> {
+  final _databaseService = SupplierDatabaseService();
   final _formKey = GlobalKey<FormState>();
+  final _supplier = Supplier.empty();
   bool isLoading;
+  bool switchState = true;
 
-
+  String _checkInteger(String text) {
+    if (text.isEmpty) {
+      return 'Please specify Field';
+    } else if (!isInt(text)) {
+      return 'Please Enter Number 0-9';
+    } else {
+      return null;
+    }
+  }
 
   Widget build(BuildContext context) {
-    final Customer _customer = ModalRoute.of(context).settings.arguments;
-
-    String _checkInteger(String text) {
-      if (text.isEmpty) {
-        return 'Please specify Field';
-      } else if (!isInt(text)) {
-        return 'Please Enter Number 0-9';
-      } else {
-        return null;
-      }
-    }
-
-
-
     void _validateForm() async {
       if (_formKey.currentState.validate()) {
         _formKey.currentState.save();
+        _supplier.isDefault = switchState;
 
         try {
-          await _databaseService.writeToDatabase(_customer);
+          await _databaseService.writeToDatabase(_supplier);
           FlushbarHelper.createSuccess(
-              message: 'Data successfully uploaded to Cloud')
+                  message: 'Data successfully uploaded to Cloud')
               .show(context);
           //Navigator.of(context).pop();
         } on DatabaseException catch (error) {
@@ -57,8 +54,7 @@ class _EditCustomerState extends State<EditCustomer> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: Theme.of(context).appBarTheme.iconTheme,
-        title: Text('Edit Customer'),
+        title: Text('Add Supplier'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.done),
@@ -76,89 +72,90 @@ class _EditCustomerState extends State<EditCustomer> {
                 children: <Widget>[
                   SizedBox(height: 20.0),
                   TextFormField(
-                    initialValue: _customer.name,
-                    onSaved: (text) => _customer.name = text,
+                    onSaved: (text) => _supplier.name = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) =>
-                    text.isEmpty ? 'Please specify Field' : null,
+                        text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.text,
                     cursorColor:
-                    Theme.of(context).inputDecorationTheme.focusColor,
+                        Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Name',
                     ),
                   ),
                   SizedBox(height: 20.0),
                   TextFormField(
-                    initialValue: _customer.zipCode.toString(),
-                    onSaved: (text) => _customer.zipCode = int.parse(text),
+                    onSaved: (text) => _supplier.zipCode = int.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => _checkInteger(text),
-                    keyboardType: TextInputType.number,
+                    keyboardType: TextInputType.numberWithOptions(),
                     cursorColor:
-                    Theme.of(context).inputDecorationTheme.focusColor,
+                        Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Zip Code',
                     ),
                   ),
                   SizedBox(height: 20.0),
                   TextFormField(
-                    initialValue: _customer.address,
-                    onSaved: (text) => _customer.address = text,
+                    onSaved: (text) => _supplier.address = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please specify Field' : null,
+                    validator: (text) =>
+                        text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.text,
                     cursorColor:
-                    Theme.of(context).inputDecorationTheme.focusColor,
+                        Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Address',
                     ),
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    initialValue: _customer.country,
-                    onSaved: (text) => _customer.country = text,
+                    onSaved: (text) => _supplier.country = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please specify Field' : null,
+                    validator: (text) =>
+                        text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.text,
                     cursorColor:
-                    Theme.of(context).inputDecorationTheme.focusColor,
+                        Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Country',
                     ),
                   ),
-                  SizedBox(height:20),
+                  SizedBox(height: 20),
                   TextFormField(
-                    initialValue: _customer.email,
-                    onSaved: (text) => _customer.email = text,
+                    onSaved: (text) => _supplier.email = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please specify Field' : null,
+                    validator: (text) =>
+                        text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.emailAddress,
-                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
+                    cursorColor:
+                        Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Email',
                     ),
                   ),
-                  SizedBox(height:20),
+                  SizedBox(height: 20),
                   TextFormField(
-                    initialValue: _customer.phoneNumber,
-                    onSaved: (text) => _customer.phoneNumber = text,
+                    onSaved: (text) => _supplier.phoneNumber = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please specify Field' : null,
+                    validator: (text) =>
+                        text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.phone,
-                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
+                    cursorColor:
+                        Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'PhoneNumber',
                     ),
                   ),
-                  SizedBox(height:20),
+                  SizedBox(height: 20),
                   TextFormField(
-                    initialValue: _customer.taxNumber,
-                    onSaved: (text) => _customer.taxNumber = text,
+                    onSaved: (text) => _supplier.taxNumber = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please specify Field' : null,
+                    validator: (text) =>
+                        text.isEmpty ? 'Please specify Field' : null,
                     keyboardType: TextInputType.number,
-                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
+                    cursorColor:
+                        Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'TaxNumber',
                     ),
@@ -166,16 +163,20 @@ class _EditCustomerState extends State<EditCustomer> {
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      Text('Invoice Address = Deliver Address?',style: Theme.of(context).textTheme.display1,),
+                      Text(
+                        'Is Default?',
+                        style: Theme.of(context).textTheme.display1,
+                      ),
                       Spacer(),
                       Switch(
-                        value: _customer.isInvoiceAddress,
-                        onChanged: (bool state){
+                        value: switchState,
+                        onChanged: (bool state) {
                           setState(() {
-                            _customer.isInvoiceAddress = state;
+                            switchState = state;
                           });
                         },
-                      )],
+                      )
+                    ],
                   ),
                 ],
               ),

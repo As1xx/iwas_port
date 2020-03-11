@@ -72,8 +72,6 @@ class _AddWineState extends State<AddWine> {
 
   Widget build(BuildContext context) {
 
-    final supplierList = Provider.of<List<Supplier>>(context);
-    final locationList = Provider.of<List<Location>>(context);
 
 
     _showActionDialog() {
@@ -166,17 +164,6 @@ class _AddWineState extends State<AddWine> {
                       labelText: 'ProductID',
                     ),
                   ),
-                  SizedBox(height:20),
-                  TextFormField(
-                    onSaved: (text) => _wine.quantity = int.parse(text),
-                    style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => _checkInteger(text),
-                    keyboardType: TextInputType.number,
-                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
-                    decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Quantity',
-                    ),
-                  ),
                   SizedBox(height: 20),
                   TextFormField(
                     onSaved: (text) => _wine.criticalQuantity = int.parse(text),
@@ -190,17 +177,6 @@ class _AddWineState extends State<AddWine> {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    onSaved: (text) => _wine.purchasePrice = double.parse(text),
-                    style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => _checkDouble(text),
-                    keyboardType: TextInputType.number,
-                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
-                    decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Purchase Price',
-                    ),
-                  ),
-                  SizedBox(height: 20,),
-                  TextFormField(
                     onSaved: (text) => _wine.sellingPrice = double.parse(text),
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) => _checkDouble(text),
@@ -210,30 +186,6 @@ class _AddWineState extends State<AddWine> {
                       labelText: 'Selling Price',
                     ),
                   ),
-                  SizedBox(height: 20,),
-                    DropdownButtonFormField(
-                      validator: (supplier) => supplier == null ? 'Please specify Field' : null,
-                      iconEnabledColor: Theme.of(context).iconTheme.color,
-                      style: Theme.of(context).inputDecorationTheme.labelStyle,
-                      decoration: textFormDecoration(context),
-                      isDense: true,
-                      value: selectedSupplier,
-                      hint: Text('Select Supplier',
-                      style: Theme.of(context).inputDecorationTheme.labelStyle),
-                      isExpanded: true,
-                      items: supplierList.map((item){
-                        return DropdownMenuItem(
-                          value:item,
-                          child: Text(item.name),
-                        );
-                      }).toList(),
-                      onChanged: (selectedItem){
-                        setState(() {
-                          selectedSupplier = selectedItem;
-                        });
-                      },
-                      onSaved: (supplier)  => _wine.supplier = supplier,
-                    ),
                 ],
               ),
             ),

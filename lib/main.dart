@@ -17,6 +17,7 @@ import 'package:iwas_port/Screens/Drawer/Supplier/AddSupplier_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Supplier/EditSupplier_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Supplier/Supplier_Screen.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/Wine_screen.dart';
+import 'package:iwas_port/Screens/Shop/ShopDetail_screen.dart';
 import 'package:iwas_port/Services/AuthenticateService.dart';
 import 'package:iwas_port/Screens/Authenticate/Login/Login_screen.dart';
 import 'package:iwas_port/Services/CustomerDatabaseService.dart';
@@ -88,6 +89,7 @@ class MyApp extends StatelessWidget {
             SupplierScreen.routeName: (ctx) => SupplierScreen(),
             AddSupplier.routeName: (ctx) => AddSupplier(),
             EditSupplier.routeName: (ctx) => EditSupplier(),
+            ShopDetailScreen.routeName: (ctx) => ShopDetailScreen(),
           }),
     );
   }

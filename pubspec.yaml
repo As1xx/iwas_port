@@ -14,7 +14,7 @@ description: Irgendwas mit Port App
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -49,6 +49,8 @@ dependencies:
   font_awesome_flutter: ^8.7.0
   string_validator: ^0.1.3
   folding_cell: ^0.1.2
+  badges: ^1.1.1
+  getflutter: ^1.0.10
 
 dev_dependencies:
   flutter_test:

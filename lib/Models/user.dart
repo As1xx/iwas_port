@@ -9,6 +9,8 @@ class User{
   User({this.uid,this.email,this.isEmailVerified});
 
 
+
+
   // Deserialize JSON (Key,Value) to Class for reading from Database
   factory User.fromFireStore(FirebaseUser firebaseUser){
       return User(

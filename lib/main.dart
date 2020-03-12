@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Locales/AppLocales.dart';
+import 'package:iwas_port/Models/Cart.dart';
 import 'package:iwas_port/Models/customer.dart';
 import 'package:iwas_port/Models/location.dart';
 import 'package:iwas_port/Models/supplier.dart';
@@ -7,6 +8,7 @@ import 'package:iwas_port/Models/user.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Screens/Authenticate/ResetPassword/ResetPassword_screen.dart';
 import 'package:iwas_port/Screens/Authenticate/isLogged_widget.dart';
+import 'package:iwas_port/Screens/Cart/Cart_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Customer/AddCustomer_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Customer/Customer_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Customer/EditCustomer_screen.dart';
@@ -64,6 +66,10 @@ class MyApp extends StatelessWidget {
         StreamProvider<List<Supplier>>(
             initialData: [],
             create: (_) => _supplierDatabaseService.supplierListOfCollection),
+        ChangeNotifierProvider.value(
+          value: Cart(),
+        ),
+
       ],
       child: MaterialApp(
           theme: darkAppTheme,
@@ -90,6 +96,7 @@ class MyApp extends StatelessWidget {
             AddSupplier.routeName: (ctx) => AddSupplier(),
             EditSupplier.routeName: (ctx) => EditSupplier(),
             ShopDetailScreen.routeName: (ctx) => ShopDetailScreen(),
+            CartScreen.routeName: (ctx) => CartScreen(),
           }),
     );
   }

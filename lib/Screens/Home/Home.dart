@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/fa_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iwas_port/Models/Cart.dart';
 import 'package:iwas_port/Models/user.dart';
+import 'package:iwas_port/Screens/Cart/Cart_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Customer/Customer_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/Location_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Supplier/Supplier_Screen.dart';
@@ -36,13 +37,7 @@ class _HomeState extends State<Home> {
 
     final user = Provider.of<User>(context);
 
-      return MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(
-            value: Cart(),
-          )
-        ],
-        child: Scaffold(
+      return Scaffold(
           appBar: AppBar(
             iconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
             title: Text(
@@ -53,16 +48,16 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: EdgeInsets.only(right:40),
                 child: Consumer<Cart>(
-                  child: IconButton(
-                      onPressed: () => null, //TODO: GO TO CART
-                      icon: Icon(Icons.shopping_cart,color: Theme.of(context).iconTheme.color)
-                  ),
                   builder: (_,cart,givenChild) => Badge(
                     child: givenChild,
                     toAnimate: true,
                     animationType: BadgeAnimationType.scale,
                     badgeColor: Theme.of(context).accentColor,
                     badgeContent: Text(cart.cartItemCount.toString()),
+                  ),
+                  child: IconButton(
+                      onPressed: () => Navigator.pushNamed(context, CartScreen.routeName),
+                      icon: Icon(Icons.shopping_cart,color: Theme.of(context).iconTheme.color)
                   ),
                 ),
               )
@@ -198,7 +193,6 @@ class _HomeState extends State<Home> {
               });
             },
           ),
-    ),
-      );
+    );
   }
 }

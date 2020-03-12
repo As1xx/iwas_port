@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getflutter/components/card/gf_card.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Styles/background_style.dart';
 
@@ -18,8 +19,14 @@ class ShopDetailScreen extends StatelessWidget {
       ),
       body: Background(
         child: Hero(
-            tag: 'detail',
-            child: Image.network(productItem.imageURL,fit: BoxFit.scaleDown)
+            tag: productItem.docID,
+            child: GFCard(
+              boxFit: BoxFit.cover,
+                image: Image.network(productItem.imageURL,fit: BoxFit.fitWidth),
+              content: Text('Test',style: Theme.of(context).textTheme.display1,),
+
+
+            ),
         ),
       ),
     );

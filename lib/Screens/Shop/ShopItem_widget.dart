@@ -13,8 +13,11 @@ class ShopItem extends StatelessWidget {
     final cart = Provider.of<Cart>(context);
     CartItem cartItem = CartItem(
         id: productItem.docID,
-        title: productItem.manufacturer,
-        price: productItem.sellingPrice);
+        imageURL: productItem.imageURL,
+        type: productItem.type,
+        manufacturer: productItem.manufacturer,
+        price: productItem.sellingPrice,
+        maxStockQuantity: productItem.quantity);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
@@ -23,7 +26,7 @@ class ShopItem extends StatelessWidget {
           onTap: () => Navigator.pushNamed(context, ShopDetailScreen.routeName,
               arguments: productItem),
           child: Hero(
-              tag: 'detail',
+              tag: productItem.docID,
               child: Image.network(
                 productItem.imageURL,
                 fit: BoxFit.cover,

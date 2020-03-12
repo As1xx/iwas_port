@@ -10,6 +10,7 @@ final darkAppTheme = ThemeData(
     highlightColor: Colors.white,
     dialogBackgroundColor: Colors.grey[800].withOpacity(0.5),
     cursorColor: Colors.white,
+    cardColor: Colors.black,
 
 
     textTheme: TextTheme(

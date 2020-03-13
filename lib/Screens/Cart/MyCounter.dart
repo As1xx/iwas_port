@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_counter/flutter_counter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:getflutter/components/button/gf_icon_button.dart';
 import 'package:getflutter/getflutter.dart';

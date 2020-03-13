@@ -30,7 +30,6 @@ class _AddWineState extends State<AddWine> {
   final _wine = Wine.empty();
   File myImageFile;
   bool isLoading;
-  var selectedSupplier;
 
 
   String _checkInteger(String text) {

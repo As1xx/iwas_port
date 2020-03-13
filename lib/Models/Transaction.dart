@@ -10,6 +10,7 @@ import 'package:iwas_port/Models/wine.dart';
 import 'package:random_string/random_string.dart';
 
 class Transaction {
+  static const taxPercent = 0.19;
   String docID = randomAlphaNumeric(20);
   String user;
   Location location;
@@ -18,6 +19,10 @@ class Transaction {
   List<Wine> products;
   DateTime date;
   double amount;
+  double discount = 0;
+  double tax = 0;
+
+  Transaction.empty();
 
   Transaction(
       {@required this.docID,
@@ -27,7 +32,9 @@ class Transaction {
       @required this.customer,
       @required this.products,
       @required this.date,
-      @required this.amount});
+      @required this.amount,
+      @required this.discount,
+      @required this.tax});
 
   // Serialize Class to JSON (Key,Value) for writing to Database
   Map<String, dynamic> toFireStore() => {
@@ -39,6 +46,8 @@ class Transaction {
         'Products': products,
         'Date': date,
         'Amount': amount,
+        'Discount': discount,
+        'Tax': tax,
       };
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
@@ -54,6 +63,8 @@ class Transaction {
       products: documentData['Products'] ?? null,
       date: documentData['Date'] ?? null,
       amount: documentData['Amount'] ?? null,
+      discount: documentData['Discount'] ?? null,
+      tax: documentData['Tax'] ?? null,
     );
   }
 }

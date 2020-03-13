@@ -11,6 +11,7 @@ final darkAppTheme = ThemeData(
     dialogBackgroundColor: Colors.grey[800].withOpacity(0.5),
     cursorColor: Colors.white,
     cardColor: Colors.black,
+    unselectedWidgetColor: Colors.white,
 
 
 
@@ -21,6 +22,7 @@ final darkAppTheme = ThemeData(
       subtitle: TextStyle(color: Colors.white, fontSize: 12),
       headline: TextStyle(color: Colors.white, fontSize: 12),
       body1: TextStyle(color: Colors.white, fontSize: 20),
+      body2: TextStyle(color: Colors.white, fontSize: 24),
     ),
     appBarTheme: AppBarTheme(
       color: Colors.black,

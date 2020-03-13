@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:getflutter/components/button/gf_button.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:iwas_port/Models/Cart.dart';
+import 'package:iwas_port/Screens/Order/Order_screen.dart';
 import 'package:iwas_port/Styles/background_style.dart';
 import 'package:provider/provider.dart';
 import 'package:iwas_port/Screens/Cart/CartItem_widget.dart';
@@ -39,18 +40,18 @@ class CartScreen extends StatelessWidget {
                       text: '${cart.totalAmount} €',
                       textStyle: Theme.of(context).textTheme.caption,
                       color: Theme.of(context).accentColor,
-                      type: GFButtonType.solid,
+                      type: GFButtonType.outline2x,
                       shape: GFButtonShape.pills,
                       onPressed: null,
                       size: GFSize.SMALL,
                     ),
                     GFButton(
-                      text: 'Place Order',
-                      textStyle: Theme.of(context).textTheme.subtitle,
+                      text: 'Checkout',
+                      textStyle: Theme.of(context).textTheme.subtitle.copyWith(fontSize: 24),
                       color: Theme.of(context).accentColor,
-                      type: GFButtonType.outline2x,
+                      type: GFButtonType.solid,
                       shape: GFButtonShape.pills,
-                      onPressed: null,
+                      onPressed: () => Navigator.pushNamed(context, OrderScreen.routeName),
                       size: GFSize.LARGE,
                     ),
                   ],

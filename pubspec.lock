@@ -237,13 +237,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_counter:
-    dependency: "direct main"
-    description:
-      name: flutter_counter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -256,6 +249,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.14"
+  flutter_masked_text:
+    dependency: "direct main"
+    description:
+      name: flutter_masked_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.8.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -579,13 +579,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.3"
-  stepper_touch:
-    dependency: "direct main"
-    description:
-      name: stepper_touch
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1"
   stream_channel:
     dependency: transitive
     description:
@@ -628,6 +621,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.11"
+  toggle_switch:
+    dependency: "direct main"
+    description:
+      name: toggle_switch
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.4"
   transformer_page_view:
     dependency: transitive
     description:

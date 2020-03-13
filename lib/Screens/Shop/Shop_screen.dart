@@ -6,6 +6,7 @@ import 'package:iwas_port/Styles/background_style.dart';
 import 'package:provider/provider.dart';
 
 class ShopScreen extends StatelessWidget {
+  static const routeName = '/ShopScreen';
   @override
   Widget build(BuildContext context) {
     final productList = Provider.of<List<Wine>>(context);

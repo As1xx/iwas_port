@@ -13,12 +13,14 @@ final darkAppTheme = ThemeData(
     cardColor: Colors.black,
 
 
+
     textTheme: TextTheme(
       title: TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 10),
       caption: TextStyle(color: Colors.white, fontSize: 16),
       display1: TextStyle(color: Colors.white, fontSize: 16),
       subtitle: TextStyle(color: Colors.white, fontSize: 12),
       headline: TextStyle(color: Colors.white, fontSize: 12),
+      body1: TextStyle(color: Colors.white, fontSize: 20),
     ),
     appBarTheme: AppBarTheme(
       color: Colors.black,

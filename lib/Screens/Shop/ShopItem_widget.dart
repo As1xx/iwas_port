@@ -24,13 +24,11 @@ class ShopItem extends StatelessWidget {
       child: GridTile(
         child: GestureDetector(
           onTap: () => Navigator.pushNamed(context, ShopDetailScreen.routeName,
-              arguments: productItem),
-          child: Hero(
-              tag: productItem.docID,
+              arguments: cartItem),
               child: Image.network(
                 productItem.imageURL,
                 fit: BoxFit.cover,
-              )),
+              ),
         ),
         footer: GridTileBar(
           backgroundColor: Theme.of(context).backgroundColor,

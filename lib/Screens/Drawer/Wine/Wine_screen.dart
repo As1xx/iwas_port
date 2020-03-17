@@ -31,7 +31,7 @@ class _WineScreenState extends State<WineScreen> {
       });
     }
 
-    if (wineList != null){
+    if (wineList.isEmpty == false){
       setState(() {
         isBusy = false;
       });

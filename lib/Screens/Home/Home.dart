@@ -1,7 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/fa_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:iwas_port/Models/Cart.dart';
 import 'package:iwas_port/Models/user.dart';
@@ -16,7 +15,6 @@ import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   static const routeName = '/home';
-  
 
   @override
   _HomeState createState() => _HomeState();
@@ -24,7 +22,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  
+  User user;
   int _selectedPage = 0;
   final _pageLayout = [
     ShopScreen(),
@@ -32,9 +30,10 @@ class _HomeState extends State<Home> {
     Text('Item 3'),
   ];
 
+
+
   @override
   Widget build(BuildContext context) {
-
     final user = Provider.of<User>(context);
 
       return Scaffold(

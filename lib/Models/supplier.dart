@@ -4,14 +4,14 @@ import 'package:random_string/random_string.dart';
 
 class Supplier {
   String docID = randomAlphaNumeric(20);
-  String name;
-  String country;
-  String address;
-  int zipCode;
-  String phoneNumber;
-  String email;
-  String taxNumber;
-  bool isDefault;
+  String name = '';
+  String country = '';
+  String address = '';
+  int zipCode = 0;
+  String phoneNumber = '';
+  String email = '';
+  String taxNumber = '';
+  bool isDefault = false;
 
 
   Supplier.empty();
@@ -57,4 +57,16 @@ class Supplier {
       isDefault: documentData['isDefault'] ?? null,
     );
   }
+
+  static Supplier findByName(List<Supplier> list, String itemName){
+    return list.firstWhere((item) => item.name == itemName);
+  }
+
+  static List<Supplier> initStreamData(){
+    // Create Empty List with 1 Object for initialization
+    List<Supplier> initList = <Supplier>[];
+    initList.add(Supplier.empty());
+    return initList;
+  }
+
 }

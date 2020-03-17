@@ -6,7 +6,7 @@ class User{
   final String email;
   final bool isEmailVerified;
 
-  User({this.uid,this.email,this.isEmailVerified});
+  User({this.uid = '',this.email = '',this.isEmailVerified = false});
 
 
 

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:iwas_port/Models/Order.dart';
 import 'package:iwas_port/Screens/Authenticate/TextInputForm_decoration.dart';
 
 class Notes extends StatefulWidget {
+  final Order transaction;
+
+  Notes({this.transaction});
+
   @override
   _NotesState createState() => _NotesState();
 }
@@ -33,8 +38,7 @@ class _NotesState extends State<Notes> {
                   children: <Widget>[
                     Expanded(
                       child: TextField(
-                        onChanged: (text) =>
-                            null, //TODO: Assigning to Transaction,
+                        onChanged: (text) => widget.transaction.note = text,
                         style:
                             Theme.of(context).inputDecorationTheme.labelStyle,
                         controller: notesController,
@@ -43,7 +47,7 @@ class _NotesState extends State<Notes> {
                         cursorColor:
                             Theme.of(context).inputDecorationTheme.focusColor,
                         decoration: textFormDecoration(context).copyWith(
-                          labelText: 'Discount',
+                          labelText: 'Notes',
                         ),
                       ),
                     ),

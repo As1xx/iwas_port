@@ -13,6 +13,10 @@ final darkAppTheme = ThemeData(
     cardColor: Colors.black,
     unselectedWidgetColor: Colors.white,
 
+    accentTextTheme: TextTheme(
+      button: TextStyle(color: Colors.purple, fontSize: 14),
+    ),
+
 
 
     textTheme: TextTheme(
@@ -23,6 +27,7 @@ final darkAppTheme = ThemeData(
       headline: TextStyle(color: Colors.white, fontSize: 12),
       body1: TextStyle(color: Colors.white, fontSize: 20),
       body2: TextStyle(color: Colors.white, fontSize: 24),
+      subhead: TextStyle(color: Colors.white, fontSize: 16),
     ),
     appBarTheme: AppBarTheme(
       color: Colors.black,
@@ -62,7 +67,7 @@ final darkAppTheme = ThemeData(
       ),
     ),
     buttonTheme: ButtonThemeData(
-      textTheme: ButtonTextTheme.primary,
+      textTheme: ButtonTextTheme.accent,
       highlightColor: Colors.white,
     ),
     snackBarTheme: SnackBarThemeData(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/Cart.dart';
-import 'package:iwas_port/Models/Transaction.dart';
+import 'package:iwas_port/Models/Order.dart';
 import 'package:iwas_port/Screens/Order/Discount_bottomSheet.dart';
 
 class OrderTotal extends StatefulWidget {
@@ -10,7 +10,7 @@ class OrderTotal extends StatefulWidget {
     @required this.cart,
   }) : super(key: key);
 
-  final Transaction transaction;
+  final Order transaction;
   final Cart cart;
 
   @override

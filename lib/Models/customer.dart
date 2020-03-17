@@ -4,15 +4,15 @@ import 'package:random_string/random_string.dart';
 
 class Customer {
   String docID = randomAlphaNumeric(20);
-  String name;
-  String country;
-  String address;
-  int zipCode;
-  String phoneNumber;
-  String email;
-  String taxNumber;
-  bool isInvoiceAddress;
-  String invoiceAddress;
+  String name = '';
+  String country = '';
+  String address = '';
+  int zipCode = 0;
+  String phoneNumber = '';
+  String email = '' ;
+  String taxNumber = '';
+  bool isInvoiceAddress = false;
+  String invoiceAddress = '';
 
   Customer.empty();
 
@@ -48,16 +48,27 @@ class Customer {
     Map documentData = documentSnapshot.data;
 
     return Customer(
-        docID: documentSnapshot.documentID,
-        name: documentData['Name'] ?? null,
-        country: documentData['Country'] ?? null,
-        address: documentData['Address'] ?? null,
-        zipCode: documentData['ZipCode'] ?? null,
-        email: documentData['Email'] ?? null,
-        isInvoiceAddress: documentData['isInvoiceAddress'] ?? null,
-        invoiceAddress: documentData['InvoiceAddress'] ?? null,
-        phoneNumber: documentData['PhoneNumber'] ?? null,
-        taxNumber: documentData['TaxNumber'] ?? null,
+      docID: documentSnapshot.documentID,
+      name: documentData['Name'] ?? null,
+      country: documentData['Country'] ?? null,
+      address: documentData['Address'] ?? null,
+      zipCode: documentData['ZipCode'] ?? null,
+      email: documentData['Email'] ?? null,
+      isInvoiceAddress: documentData['isInvoiceAddress'] ?? null,
+      invoiceAddress: documentData['InvoiceAddress'] ?? null,
+      phoneNumber: documentData['PhoneNumber'] ?? null,
+      taxNumber: documentData['TaxNumber'] ?? null,
     );
+  }
+
+  static Customer findByName(List<Customer> list, String itemName) {
+    return list.firstWhere((item) => item.name == itemName);
+  }
+
+  static List<Customer> initStreamData() {
+    // Create Empty List with 1 Object for initialization
+    List<Customer> initList = <Customer>[];
+    initList.add(Customer.empty());
+    return initList;
   }
 }

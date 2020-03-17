@@ -47,7 +47,7 @@ class CartScreen extends StatelessWidget {
                     ),
                     GFButton(
                       text: 'Checkout',
-                      textStyle: Theme.of(context).textTheme.subtitle.copyWith(fontSize: 24),
+                      textStyle: Theme.of(context).textTheme.subtitle.copyWith(fontSize: 18),
                       color: Theme.of(context).accentColor,
                       type: GFButtonType.solid,
                       shape: GFButtonShape.pills,

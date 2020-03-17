@@ -4,16 +4,16 @@ import 'package:random_string/random_string.dart';
 
 class Location {
   String docID = randomAlphaNumeric(20);
-  String name;
-  String country;
-  String address;
-  int zipCode;
-  bool isDefault;
-  int numOfCategories;
-  int numOfProducts;
-  double totalValue;
+  String name = '';
+  String country = '';
+  String address = '';
+  int zipCode = 0;
+  bool isDefault = false;
+  int numOfCategories = 0;
+  int numOfProducts = 0;
+  double totalValue  = 0;
 
-  Location.empty();
+   Location.empty();
 
   Location(
       {@required this.docID,
@@ -53,5 +53,16 @@ class Location {
         numOfCategories: documentData['NumberOfCategories'] ?? null,
         numOfProducts: documentData['NumberOfProducts'] ?? null,
         totalValue: documentData['TotalValue'] ?? null);
+  }
+
+  static Location findByName(List<Location> list, String itemName) {
+    return list.firstWhere((item) => item.name == itemName);
+  }
+
+  static List<Location> initStreamData() {
+    // Create Empty List with 1 Object for initialization
+    List<Location> initList = <Location>[];
+    initList.add(Location.empty());
+    return initList;
   }
 }

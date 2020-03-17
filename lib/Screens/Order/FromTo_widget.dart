@@ -1,141 +1,178 @@
+import 'package:after_init/after_init.dart';
+import 'package:direct_select_flutter/direct_select_container.dart';
+import 'package:direct_select_flutter/direct_select_item.dart';
+import 'package:direct_select_flutter/direct_select_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_material_pickers/flutter_material_pickers.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:iwas_port/Models/Order.dart';
 import 'package:iwas_port/Models/customer.dart';
 import 'package:iwas_port/Models/location.dart';
 import 'package:iwas_port/Models/supplier.dart';
-import 'package:iwas_port/Screens/Authenticate/TextInputForm_decoration.dart';
 import 'package:provider/provider.dart';
 
 class FromTo extends StatefulWidget {
   final isBuy;
+  final Order transaction;
 
-  FromTo(this.isBuy);
+  FromTo({this.isBuy, this.transaction});
 
   @override
   _FromToState createState() => _FromToState();
 }
 
 class _FromToState extends State<FromTo> {
-  var selectedSupplier;
-  var selectedCustomer;
-  var selectedLocation;
+  List<Location> locationList;
+  List<Supplier> supplierList;
+  List<Customer> customerList;
+  String selectedSupplier;
+  String selectedCustomer;
+  String selectedLocation;
+  bool isBusy = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    locationList = Provider.of<List<Location>>(context);
+    supplierList = Provider.of<List<Supplier>>(context);
+    customerList = Provider.of<List<Customer>>(context);
+    selectedSupplier = supplierList[0].name;
+    selectedCustomer = customerList[0].name;
+    selectedLocation = locationList[0].name;
+  }
 
   @override
   Widget build(BuildContext context) {
-    final supplierList = Provider.of<List<Supplier>>(context);
-    final customerList = Provider.of<List<Customer>>(context);
-    final locationList = Provider.of<List<Location>>(context);
+    widget.transaction.location =
+        Location.findByName(locationList, selectedLocation);
+    widget.transaction.supplier =
+        Supplier.findByName(supplierList, selectedSupplier);
+    widget.transaction.location =
+        Location.findByName(locationList, selectedLocation);
 
-    var supplierDropDown = Flexible(flex:3,
-      child: DropdownButtonFormField(
-        validator: (supplier) =>
-            supplier == null ? 'Please specify Field' : null,
-        iconEnabledColor: Theme.of(context).iconTheme.color,
-        style: Theme.of(context).inputDecorationTheme.labelStyle,
-        decoration: textFormDecoration(context),
-        isDense: true,
-        value: selectedSupplier,
-        hint: Text('Select Supplier',
-            style: Theme.of(context).inputDecorationTheme.labelStyle),
-        items: supplierList.map((item) {
-          return DropdownMenuItem(
-            value: item,
-            child: Text(item.name),
-          );
-        }).toList(),
-        onChanged: (selectedItem) {
-          setState(() {
-            selectedSupplier = selectedItem;
-          });
-        },
-      ),
-    );
+    if (supplierList.isNotEmpty &&
+        locationList.isNotEmpty &&
+        customerList.isNotEmpty) {
+      setState(() {
+        isBusy = false;
+      });
+    }
 
-    var customerDropDown = Flexible(flex:3,
-      child: DropdownButtonFormField(
-        validator: (customer) =>
-        customer == null ? 'Please specify Field' : null,
-        iconEnabledColor: Theme.of(context).iconTheme.color,
-        style: Theme.of(context).inputDecorationTheme.labelStyle,
-        decoration: textFormDecoration(context),
-        isDense: true,
-        value: selectedCustomer,
-        hint: Text('Select Customer',
-            style: Theme.of(context).inputDecorationTheme.labelStyle),
-        items: customerList.map((item) {
-          return DropdownMenuItem(
-            value: item,
-            child: Text(item.name),
-          );
-        }).toList(),
-        onChanged: (selectedItem) {
-          setState(() {
-            selectedCustomer = selectedItem;
-          });
-        },
-      ),
-    );
-
-
-    return Stack(children: <Widget>[
-      Container(
-        height: 175,
-        child: Card(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text('From', style: Theme.of(context).textTheme.body1),
-                    Icon(FontAwesomeIcons.longArrowAltRight),
-                    Text('To', style: Theme.of(context).textTheme.body1),
-                  ],
-                ),
-                Divider(
-                  height: 40,
-                ),
-                Row(
-                  //mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Flexible(flex:3,
-                      child: DropdownButtonFormField(
-                        validator: (location) =>
-                            location == null ? 'Please specify Field' : null,
-                        iconEnabledColor: Theme.of(context).iconTheme.color,
-                        style:
-                            Theme.of(context).inputDecorationTheme.labelStyle,
-                        decoration: textFormDecoration(context),
-                        isDense: true,
-                        value: selectedLocation,
-                        hint: Text('Select Location',
-                            style: Theme.of(context)
-                                .inputDecorationTheme
-                                .labelStyle),
-                        items: locationList.map((item) {
-                          return DropdownMenuItem(
-                            value: item,
-                            child: Text(item.name),
-                          );
-                        }).toList(),
-                        onChanged: (selectedItem) {
-                          setState(() {
-                            selectedLocation = selectedItem;
-                          });
-                        },
-                      ),
-                    ),
-                    Spacer(flex: 1,),
-                    widget.isBuy == true ? customerDropDown : supplierDropDown,
-                  ],
-                ),
-              ],
-            ),
+    var supplierDropDown = Column(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        Container(
+          child: RaisedButton(
+            color: Colors.transparent,
+            child: Icon(Icons.local_shipping),
+            onPressed: () {
+              showMaterialScrollPicker(
+                buttonTextColor: Theme.of(context).accentColor,
+                context: context,
+                title: "Pick Supplier",
+                items: supplierList.map((item) => item.name).toList(),
+                selectedItem: selectedSupplier,
+                onChanged: (value) => setState(() => selectedSupplier = value),
+              );
+            },
           ),
         ),
-      ),
-    ]);
+        Text(selectedSupplier),
+      ],
+    );
+
+    var customerDropDown = Column(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        Container(
+          child: RaisedButton(
+            color: Colors.transparent,
+            child: Icon(Icons.people),
+            onPressed: () {
+              showMaterialScrollPicker(
+                buttonTextColor: Theme.of(context).accentColor,
+                context: context,
+                title: "Pick Customer",
+                items: customerList.map((item) => item.name).toList(),
+                selectedItem: selectedCustomer,
+                onChanged: (value) => setState(() => selectedCustomer = value),
+              );
+            },
+          ),
+        ),
+        Text(selectedCustomer),
+      ],
+    );
+
+    var locationDropDown = Column(
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[
+        Container(
+          child: RaisedButton(
+            color: Colors.transparent,
+            child: Icon(Icons.location_on),
+            onPressed: () {
+              showMaterialScrollPicker(
+                buttonTextColor: Theme.of(context).accentColor,
+                context: context,
+                title: "Pick Location",
+                items: locationList.map((item) => item.name).toList(),
+                selectedItem: selectedLocation,
+                onChanged: (value) => setState(() => selectedLocation = value),
+              );
+            },
+          ),
+        ),
+        Text(selectedLocation),
+      ],
+    );
+
+    return isBusy
+        ? SpinKitFadingCircle(
+            color: Theme.of(context).accentColor,
+          )
+        : Stack(children: <Widget>[
+            Container(
+              height: 200,
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text('From',
+                              style: Theme.of(context).textTheme.body1),
+                          Icon(FontAwesomeIcons.longArrowAltRight),
+                          Text('To', style: Theme.of(context).textTheme.body1),
+                        ],
+                      ),
+                      Divider(
+                        height: 40,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        //mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          locationDropDown,
+                          Spacer(
+                            flex: 1,
+                          ),
+                          widget.isBuy == true
+                              ? customerDropDown
+                              : supplierDropDown,
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ]);
   }
 }

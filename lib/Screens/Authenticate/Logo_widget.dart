@@ -16,7 +16,7 @@ Container buildBoxedLogo(BuildContext context) {
       margin: EdgeInsets.only(top: 8),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).highlightColor,
         ),
       ),
       child: FittedBox(

@@ -1,23 +1,6 @@
 import 'package:flutter/material.dart';
-
-class CartItem {
-  final String id;
-  final String imageURL;
-  final String manufacturer;
-  final String type;
-  final int quantity;
-  final double price;
-  final int maxStockQuantity;
-
-  CartItem(
-      {@required this.id,
-      @required this.manufacturer,
-      @required this.type,
-      @required this.price,
-      @required this.maxStockQuantity,
-      this.imageURL,
-      this.quantity});
-}
+import 'package:iwas_port/Models/CartItem.dart';
+import 'package:iwas_port/Models/wine.dart';
 
 class Cart with ChangeNotifier {
   Map<String, CartItem> _cartItems = {};
@@ -92,10 +75,29 @@ class Cart with ChangeNotifier {
   }
 
 
-
-
   void removeCartItem(String productID){
     _cartItems.remove(productID);
     notifyListeners();
   }
+
+  void clearCart(){
+    _cartItems = {};
+  }
+
+  List<Wine> findProductsFromCart(List<Wine> productList){
+
+    final cartItemList =_cartItems.values.toList();
+    final List<Wine> filteredProductList = [];
+
+    for (int i =0; i<productList.length; i++){
+      for (int j = 0; j<cartItemList.length; j++){
+
+        if (productList[i].docID == cartItemList[j].id){
+          filteredProductList.add(productList[i]);
+        }
+      }
+    }
+    return filteredProductList;
+  }
+
 }

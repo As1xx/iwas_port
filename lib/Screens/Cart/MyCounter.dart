@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:getflutter/components/button/gf_icon_button.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:iwas_port/Models/Cart.dart';
+import 'package:iwas_port/Models/CartItem.dart';
 import 'package:provider/provider.dart';
 
 class MyCounter extends StatefulWidget {

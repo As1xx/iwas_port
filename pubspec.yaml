@@ -53,6 +53,9 @@ dependencies:
   getflutter: ^1.0.10
   flutter_masked_text: ^0.8.0
   toggle_switch: ^0.1.4
+  flutter_material_pickers: ^1.2.0
+  direct_select_flutter: ^1.0.5
+  after_init: ^0.1.2
 
 dev_dependencies:
   flutter_test:

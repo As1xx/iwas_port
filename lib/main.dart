@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Locales/AppLocales.dart';
 import 'package:iwas_port/Models/Cart.dart';
+import 'package:iwas_port/Models/Order.dart';
 import 'package:iwas_port/Models/customer.dart';
 import 'package:iwas_port/Models/location.dart';
 import 'package:iwas_port/Models/supplier.dart';
@@ -26,10 +27,12 @@ import 'package:iwas_port/Services/AuthenticateService.dart';
 import 'package:iwas_port/Screens/Authenticate/Login/Login_screen.dart';
 import 'package:iwas_port/Services/CustomerDatabaseService.dart';
 import 'package:iwas_port/Services/LocationDatabaseService.dart';
+import 'package:iwas_port/Services/OrderDatabaseService.dart';
 import 'package:iwas_port/Services/SupplierDatabaseService.dart';
 import 'package:iwas_port/Services/WineDatabaseService.dart';
 import 'package:iwas_port/Themes/DarkAppTheme.dart';
 import 'package:iwas_port/Themes/LightAppTheme.dart';
+import 'package:iwas_port/test/dropdownneu.dart';
 import 'package:provider/provider.dart';
 import 'Screens/Drawer/Wine/AddWine_sceen.dart';
 import 'Screens/Drawer/Wine/EditWine_screen.dart';
@@ -46,6 +49,7 @@ class MyApp extends StatelessWidget {
   final LocationDatabaseService _locationDatabaseService = LocationDatabaseService();
   final CustomerDatabaseService _customerDatabaseService = CustomerDatabaseService();
   final SupplierDatabaseService _supplierDatabaseService = SupplierDatabaseService();
+  final OrderDatabaseService _orderDatabaseService = OrderDatabaseService();
 
   // This widget is the root of your application.
   @override
@@ -53,25 +57,27 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         StreamProvider<List<Wine>>(
-            initialData: [],
+            initialData: <Wine>[],
             create: (_) => _wineDatabaseService.wineListOfCollection),
         StreamProvider<User>(
           initialData: User(email: ''),
           create: (_) => AuthService().user,
         ),
         StreamProvider<List<Location>>(
-            initialData: [],
+            initialData: Location.initStreamData(),
             create: (_) => _locationDatabaseService.locationListOfCollection),
         StreamProvider<List<Customer>>(
-            initialData: [],
+            initialData: Customer.initStreamData(),
             create: (_) => _customerDatabaseService.customerListOfCollection),
         StreamProvider<List<Supplier>>(
-            initialData: [],
+            initialData: Supplier.initStreamData(),
             create: (_) => _supplierDatabaseService.supplierListOfCollection),
         ChangeNotifierProvider.value(
           value: Cart(),
         ),
-
+        StreamProvider<List<Order>>(
+            initialData: <Order>[],
+            create: (_) => _orderDatabaseService.orderListOfCollection),
       ],
       child: MaterialApp(
           theme: darkAppTheme,

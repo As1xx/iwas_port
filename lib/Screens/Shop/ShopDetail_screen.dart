@@ -1,9 +1,8 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/Cart.dart';
-import 'package:iwas_port/Models/wine.dart';
+import 'package:iwas_port/Models/CartItem.dart';
 import 'package:iwas_port/Screens/Cart/Cart_screen.dart';
-import 'package:iwas_port/Screens/Shop/Shop_screen.dart';
 import 'package:provider/provider.dart';
 
 class ShopDetailScreen extends StatefulWidget {

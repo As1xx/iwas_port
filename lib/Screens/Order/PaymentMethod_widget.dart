@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:iwas_port/Models/Order.dart';
 
 class PaymentMethod extends StatefulWidget {
+  final Order transaction;
+
+  PaymentMethod({this.transaction});
+
   @override
   _PaymentMethodState createState() => _PaymentMethodState();
 }
 
 class _PaymentMethodState extends State<PaymentMethod> {
   int groupRadioValue = 1;
+  bool checkBoxValue = true;
+  String paymentMethod = 'Bank Transfer';
 
   @override
   Widget build(BuildContext context) {
+
+    widget.transaction.isPaymentPending = checkBoxValue;
+    widget.transaction.paymentMethod = paymentMethod;
+
     return Stack(children: <Widget>[
       Container(
         height: 210,
@@ -37,11 +48,23 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       onChanged: (state) {
                         setState(() {
                           groupRadioValue = state;
+                          paymentMethod = 'BankTransfer';
                         });
                       },
                     ),
                     Text('Bank Transfer',
                         style: Theme.of(context).textTheme.headline),
+                    Spacer(),
+                    Text('isPaid?',
+                            style: Theme.of(context).textTheme.headline),
+                        Checkbox(
+                        value: checkBoxValue,
+                        onChanged: (state){
+                          setState(() {
+                            checkBoxValue =! checkBoxValue;
+                          });
+                        },
+                      ),
                   ],
                 ),
                 Row(
@@ -53,6 +76,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
                       onChanged: (state) {
                         setState(() {
                           groupRadioValue = state;
+                          paymentMethod = 'Cash';
                         });
                       },
                     ),

@@ -25,7 +25,7 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   final _databaseService = OrderDatabaseService();
   final transaction = Order.empty();
-  bool buySellSwitchState = true;
+  bool sellSwitchState = true;
 
   @override
   Widget build(BuildContext context) {
@@ -101,10 +101,10 @@ class _OrderScreenState extends State<OrderScreen> {
                 ),
                 Text('Buy'),
                 Switch(
-                  value: buySellSwitchState,
+                  value: sellSwitchState,
                   onChanged: (state) {
                     setState(() {
-                      buySellSwitchState = !buySellSwitchState;
+                      sellSwitchState = !sellSwitchState;
                     });
                   },
                 ),
@@ -122,7 +122,7 @@ class _OrderScreenState extends State<OrderScreen> {
               transaction: transaction,
             ),
             FromTo(
-              isBuy: buySellSwitchState,
+              isSell: sellSwitchState,
               transaction: transaction,
             ),
             Notes(

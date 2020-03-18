@@ -76,7 +76,7 @@ class MyApp extends StatelessWidget {
           value: Cart(),
         ),
         StreamProvider<List<Order>>(
-            initialData: <Order>[],
+            initialData: Order.initStreamData(),
             create: (_) => _orderDatabaseService.orderListOfCollection),
       ],
       child: MaterialApp(

@@ -31,8 +31,8 @@ class CartItem {
   };
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
-  factory CartItem.fromFireStore(DocumentSnapshot documentSnapshot) {
-    Map documentData = documentSnapshot.data;
+  factory CartItem.fromFireStore(Map<String, dynamic> documentData) {
+
 
     return CartItem(
       id: documentData['ID'] ?? null,

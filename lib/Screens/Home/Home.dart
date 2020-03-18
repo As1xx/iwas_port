@@ -9,6 +9,7 @@ import 'package:iwas_port/Screens/Drawer/Customer/Customer_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/Location_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Supplier/Supplier_Screen.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/Wine_screen.dart';
+import 'package:iwas_port/Screens/History/History_screen.dart';
 import 'package:iwas_port/Screens/Shop/Shop_screen.dart';
 import 'package:iwas_port/styles/background_style.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +28,7 @@ class _HomeState extends State<Home> {
   final _pageLayout = [
     ShopScreen(),
     Text('Item 2'),
-    Text('Item 3'),
+    HistoryScreen(),
   ];
 
 

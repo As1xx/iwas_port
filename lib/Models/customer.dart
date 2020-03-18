@@ -71,4 +71,21 @@ class Customer {
     initList.add(Customer.empty());
     return initList;
   }
+
+  // Deserialize JSON (Key,Value) to Class for reading from Database
+  factory Customer.fromOrder(Map<String,dynamic> documentData) {
+
+    return Customer(
+      docID: documentData['DocumentID'] ?? null,
+      name: documentData['Name'] ?? null,
+      country: documentData['Country'] ?? null,
+      address: documentData['Address'] ?? null,
+      zipCode: documentData['ZipCode'] ?? null,
+      email: documentData['Email'] ?? null,
+      isInvoiceAddress: documentData['isInvoiceAddress'] ?? null,
+      invoiceAddress: documentData['InvoiceAddress'] ?? null,
+      phoneNumber: documentData['PhoneNumber'] ?? null,
+      taxNumber: documentData['TaxNumber'] ?? null,
+    );
+  }
 }

@@ -42,7 +42,7 @@ class Location {
   // Deserialize JSON (Key,Value) to Class for reading from Database
   factory Location.fromFireStore(DocumentSnapshot documentSnapshot) {
     Map documentData = documentSnapshot.data;
-
+//TODO: Location to firestore, documentSnapshot not good, maybe map better?
     return Location(
         docID: documentSnapshot.documentID,
         name: documentData['Name'] ?? null,
@@ -65,4 +65,21 @@ class Location {
     initList.add(Location.empty());
     return initList;
   }
+
+  // Deserialize JSON (Key,Value) to Class for reading from Database
+  factory Location.fromOrder(Map<String,dynamic> documentData) {
+
+    return Location(
+        docID: documentData['DocumentID'] ?? null,
+        name: documentData['Name'] ?? null,
+        country: documentData['Country'] ?? null,
+        address: documentData['Address'] ?? null,
+        zipCode: documentData['ZipCode'] ?? null,
+        isDefault: documentData['isDefault'] ?? null,
+        numOfCategories: documentData['NumberOfCategories'] ?? null,
+        numOfProducts: documentData['NumberOfProducts'] ?? null,
+        totalValue: documentData['TotalValue'] ?? null);
+  }
+
+
 }

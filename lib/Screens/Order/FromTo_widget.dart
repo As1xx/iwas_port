@@ -14,10 +14,10 @@ import 'package:iwas_port/Models/supplier.dart';
 import 'package:provider/provider.dart';
 
 class FromTo extends StatefulWidget {
-  final isBuy;
+  final isSell;
   final Order transaction;
 
-  FromTo({this.isBuy, this.transaction});
+  FromTo({this.isSell, this.transaction});
 
   @override
   _FromToState createState() => _FromToState();
@@ -49,8 +49,8 @@ class _FromToState extends State<FromTo> {
         Location.findByName(locationList, selectedLocation);
     widget.transaction.supplier =
         Supplier.findByName(supplierList, selectedSupplier);
-    widget.transaction.location =
-        Location.findByName(locationList, selectedLocation);
+    widget.transaction.customer =
+        Customer.findByName(customerList, selectedCustomer);
 
     if (supplierList.isNotEmpty &&
         locationList.isNotEmpty &&
@@ -163,7 +163,7 @@ class _FromToState extends State<FromTo> {
                           Spacer(
                             flex: 1,
                           ),
-                          widget.isBuy == true
+                          widget.isSell == true
                               ? customerDropDown
                               : supplierDropDown,
                         ],

@@ -69,4 +69,20 @@ class Supplier {
     return initList;
   }
 
+  // Deserialize JSON (Key,Value) to Class for reading from Database
+  factory Supplier.fromOrder(Map<String,dynamic> documentData) {
+
+    return Supplier(
+      docID: documentData['DocumentID'] ?? null,
+      name: documentData['Name'] ?? null,
+      country: documentData['Country'] ?? null,
+      address: documentData['Address'] ?? null,
+      zipCode: documentData['ZipCode'] ?? null,
+      email: documentData['Email'] ?? null,
+      phoneNumber: documentData['PhoneNumber'] ?? null,
+      taxNumber: documentData['TaxNumber'] ?? null,
+      isDefault: documentData['isDefault'] ?? null,
+    );
+  }
+
 }

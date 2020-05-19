@@ -142,7 +142,7 @@ class _DiscountScreenState extends State<DiscountScreen> {
                     child: RaisedButton(
                       onPressed: () => _validateDiscount(),
                       color: Theme.of(context).accentColor,
-                      child: Text('OK'),
+                      child: Text('OK',style: Theme.of(context).textTheme.button,),
                     ),
                   ),
                 ]),

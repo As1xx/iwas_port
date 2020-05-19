@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
@@ -43,8 +44,16 @@ class _OrderScreenState extends State<OrderScreen> {
           1
         ]);
 
+    void setDiscount(double discountValue) {
+      setState(() {
+        transaction.discount = discountValue;
+      });
+    }
+
+
     final cart = Provider.of<Cart>(context);
     final user = Provider.of<User>(context);
+    final productList = Provider.of<List<Wine>>(context);
 
     // Fill Transaction Object with Data
     transaction.tax = (cart.totalAmount * Order.taxPercent);
@@ -53,6 +62,7 @@ class _OrderScreenState extends State<OrderScreen> {
     transaction.products = cart.cartItems.values.toList();
     transaction.user = user.email;
     transaction.date = date;
+    transaction.isSold = sellSwitchState;
 
     void submitTransaction() async {
       if (transaction.docID != null &&
@@ -69,6 +79,11 @@ class _OrderScreenState extends State<OrderScreen> {
           FlushbarHelper.createSuccess(
                   message: 'Data successfully uploaded to Cloud')
               .show(context);
+
+          cart.updateProduct(productList,transaction.isSold);
+          cart.clearCart();
+          transaction.discount = 0;
+
           //Navigator.of(context).pop();
         } on DatabaseException catch (error) {
           DatabaseException.showError(context, error.message);
@@ -80,7 +95,6 @@ class _OrderScreenState extends State<OrderScreen> {
       }
     }
 
-//TODO: Hit Submit and create Transaction -> Upload to Database -> Show in History -> Calculate Stock (maybe new Class)
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
@@ -117,7 +131,7 @@ class _OrderScreenState extends State<OrderScreen> {
       body: Background(
         child: SingleChildScrollView(
           child: Column(children: <Widget>[
-            OrderTotal(transaction: transaction, cart: cart),
+            OrderTotal(transaction: transaction, cart: cart,setDiscount: setDiscount,),
             PaymentMethod(
               transaction: transaction,
             ),

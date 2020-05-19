@@ -31,7 +31,7 @@ class _CustomerScreenState extends State<CustomerScreen> {
       });
     }
 
-    if (customerList.isEmpty == false){
+    if (customerList.isEmpty != null){
       setState(() {
         isBusy = false;
       });

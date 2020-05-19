@@ -16,7 +16,6 @@ TimelineModel timelineBuilder(BuildContext context, Order order) {
       frontWidget: buildFrontWidget(order, context, _foldingCellKey),
       innerTopWidget: buildInnerTopWidget(order, context, _foldingCellKey),
       innerBottomWidget: buildInnerBottomWidget(order, context, _foldingCellKey),
-      unfoldCell: true,
     ),
   );
 }
@@ -25,6 +24,39 @@ Card buildFrontWidget(
     Order order, BuildContext context, GlobalKey<SimpleFoldingCellState> key) {
   final username = order.user.split('@')[0].toUpperCase();
   final formattedDate = formatDate(order.date, [dd, '-', mm, '-', yyyy]);
+
+  var isSoldWidget = Column(
+    children: <Widget>[
+      Text('+ ${order.amount} €',
+          style: Theme.of(context)
+              .textTheme
+              .headline
+              .copyWith(color: Colors.green)),
+      Icon(FontAwesomeIcons.longArrowAltRight, color: Colors.green),
+      Text('- ${order.totalOrderQuantity} x',
+          style: Theme.of(context)
+              .textTheme
+              .headline
+              .copyWith(color: Colors.red)),
+    ],
+  );
+
+  var isBoughtWidget = Column(
+    children: <Widget>[
+      Text('- ${order.amount} €',
+          style: Theme.of(context)
+              .textTheme
+              .headline
+              .copyWith(color: Colors.red)),
+      Icon(FontAwesomeIcons.longArrowAltLeft, color: Colors.red),
+      Text('+ ${order.totalOrderQuantity} x',
+          style: Theme.of(context)
+              .textTheme
+              .headline
+              .copyWith(color: Colors.green)),
+    ],
+  );
+
 
   return Card(
     margin: EdgeInsets.symmetric(vertical: 16.0),
@@ -49,23 +81,9 @@ Card buildFrontWidget(
             children: <Widget>[
               Text(order.location.name,
                   style: Theme.of(context).textTheme.headline),
-              Column(
-                children: <Widget>[
-                  Text('+ ${order.amount} €',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline
-                          .copyWith(color: Colors.green)),
-                  Icon(FontAwesomeIcons.longArrowAltRight, color: Colors.green),
-                  Text('- ${order.totalOrderQuantity} x',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline
-                          .copyWith(color: Colors.red)),
-                ],
-              ),
+              order.isSold ? isSoldWidget : isBoughtWidget,
               Text(
-                order.customer.name,
+                order.isSold ? order.customer.name : order.supplier.name,
                 style: Theme.of(context).textTheme.headline,
               ),
             ],
@@ -93,6 +111,39 @@ Card buildInnerTopWidget(
   final username = order.user.split('@')[0].toUpperCase();
   final formattedDate = formatDate(order.date, [dd, '-', mm, '-', yyyy]);
 
+  var isSoldWidget = Column(
+    children: <Widget>[
+      Text('+ ${order.amount} €',
+          style: Theme.of(context)
+              .textTheme
+              .headline
+              .copyWith(color: Colors.green)),
+      Icon(FontAwesomeIcons.longArrowAltRight, color: Colors.green),
+      Text('- ${order.totalOrderQuantity} x',
+          style: Theme.of(context)
+              .textTheme
+              .headline
+              .copyWith(color: Colors.red)),
+    ],
+  );
+
+  var isBoughtWidget = Column(
+    children: <Widget>[
+      Text('- ${order.amount} €',
+          style: Theme.of(context)
+              .textTheme
+              .headline
+              .copyWith(color: Colors.red)),
+      Icon(FontAwesomeIcons.longArrowAltLeft, color: Colors.red),
+      Text('+ ${order.totalOrderQuantity} x',
+          style: Theme.of(context)
+              .textTheme
+              .headline
+              .copyWith(color: Colors.green)),
+    ],
+  );
+
+
   return Card(
     margin: EdgeInsets.symmetric(vertical: 8),
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -116,23 +167,9 @@ Card buildInnerTopWidget(
             children: <Widget>[
               Text(order.location.name,
                   style: Theme.of(context).textTheme.headline),
-              Column(
-                children: <Widget>[
-                  Text('+ ${order.amount} €',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline
-                          .copyWith(color: Colors.green)),
-                  Icon(FontAwesomeIcons.longArrowAltRight, color: Colors.green),
-                  Text('- ${order.totalOrderQuantity} x',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline
-                          .copyWith(color: Colors.red)),
-                ],
-              ),
+              order.isSold ? isSoldWidget : isBoughtWidget,
               Text(
-                order.customer.name,
+                order.isSold ? order.customer.name : order.supplier.name,
                 style: Theme.of(context).textTheme.headline,
               ),
             ],

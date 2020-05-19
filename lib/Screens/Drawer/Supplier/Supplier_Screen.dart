@@ -31,7 +31,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
       });
     }
 
-    if (supplierList.isEmpty == false){
+    if (supplierList.isEmpty != null){
       setState(() {
         isBusy = false;
       });

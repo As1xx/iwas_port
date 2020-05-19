@@ -18,7 +18,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
   @override
   Widget build(BuildContext context) {
 
-    widget.transaction.isPaymentPending = checkBoxValue;
+    widget.transaction.isPaymentPending = !checkBoxValue;
     widget.transaction.paymentMethod = paymentMethod;
 
     return Stack(children: <Widget>[

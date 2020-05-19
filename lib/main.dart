@@ -57,7 +57,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         StreamProvider<List<Wine>>(
-            initialData: <Wine>[],
+            updateShouldNotify: (_, __) => true,
+            initialData: Wine.initStreamData(),
             create: (_) => _wineDatabaseService.wineListOfCollection),
         StreamProvider<User>(
           initialData: User(email: ''),

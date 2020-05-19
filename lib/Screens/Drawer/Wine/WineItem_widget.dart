@@ -61,9 +61,8 @@ class WineItem extends StatelessWidget {
             onTap: () => null, //TODO: implement Detail View
             leading: Padding(
               padding: const EdgeInsets.only(left: 5),
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(_wine.imageURL),
-                radius: 25.0,
+              child: ClipOval(
+                child: Image.network(_wine.imageURL),
               ),
             ),
             title: Padding(

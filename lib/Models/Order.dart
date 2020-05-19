@@ -84,7 +84,7 @@ class Order {
       note: documentData['Note'] ?? null,
       isPaymentPending: documentData['PaymentPending?'] ?? null,
       paymentMethod: documentData['PaymentMethod'] ?? null,
-      isSold: documentData['isSold?'] ?? null,
+      isSold: documentData['IsSold?'] ?? null,
     );
   }
 

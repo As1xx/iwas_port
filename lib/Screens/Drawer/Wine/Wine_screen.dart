@@ -20,9 +20,10 @@ class _WineScreenState extends State<WineScreen> {
 
   bool isBusy = true;
 
+
   @override
   Widget build(BuildContext context) {
-    var wineList = Provider.of<List<Wine>>(context);
+    List <Wine> wineList = Provider.of<List<Wine>>(context);
     GlobalKey popUpKey = GlobalKey();
 
     void updateSortScreen(List<Wine> filteredList) {

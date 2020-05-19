@@ -42,7 +42,6 @@ class Location {
   // Deserialize JSON (Key,Value) to Class for reading from Database
   factory Location.fromFireStore(DocumentSnapshot documentSnapshot) {
     Map documentData = documentSnapshot.data;
-//TODO: Location to firestore, documentSnapshot not good, maybe map better?
     return Location(
         docID: documentSnapshot.documentID,
         name: documentData['Name'] ?? null,

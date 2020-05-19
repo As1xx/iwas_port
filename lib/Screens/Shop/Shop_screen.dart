@@ -19,8 +19,8 @@ class ShopScreen extends StatelessWidget {
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 1.5 / 2,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10),
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20),
           itemBuilder: (context, index) => ShopItem(productList[index]),
         ),
       ),

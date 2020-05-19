@@ -26,9 +26,13 @@ class ShopItem extends StatelessWidget {
         child: GestureDetector(
           onTap: () => Navigator.pushNamed(context, ShopDetailScreen.routeName,
               arguments: cartItem),
-              child: Image.network(
-                productItem.imageURL,
-                fit: BoxFit.cover,
+              child: FadeInImage(
+                height: 350,
+                fit: BoxFit.contain,
+                placeholder: AssetImage('assets/images/camera_default.png'),
+                image: NetworkImage(
+                  productItem.imageURL,
+                ),
               ),
         ),
         footer: GridTileBar(

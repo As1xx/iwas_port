@@ -19,7 +19,7 @@ class MyCounter extends StatefulWidget {
   MyCounter({
   this.counterValue = 0,
   this.step = 1,
-  this.maxValue = 100,
+  this.maxValue = 99999,
   this.minValue = 0,
   this.decimalPlaces = 0,
   this.cartItem});

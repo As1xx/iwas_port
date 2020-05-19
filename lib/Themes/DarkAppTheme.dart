@@ -28,6 +28,7 @@ final darkAppTheme = ThemeData(
       body1: TextStyle(color: Colors.white, fontSize: 20),
       body2: TextStyle(color: Colors.white, fontSize: 24),
       subhead: TextStyle(color: Colors.white, fontSize: 16),
+      button: TextStyle(color: Colors.white, fontSize: 16),
     ),
     appBarTheme: AppBarTheme(
       color: Colors.black,

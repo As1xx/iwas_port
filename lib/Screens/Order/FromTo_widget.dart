@@ -45,12 +45,23 @@ class _FromToState extends State<FromTo> {
 
   @override
   Widget build(BuildContext context) {
-    widget.transaction.location =
-        Location.findByName(locationList, selectedLocation);
-    widget.transaction.supplier =
-        Supplier.findByName(supplierList, selectedSupplier);
-    widget.transaction.customer =
-        Customer.findByName(customerList, selectedCustomer);
+
+    if (widget.isSell){
+      widget.transaction.location =
+          Location.findByName(locationList, selectedLocation);
+      widget.transaction.supplier =
+          Supplier.empty();
+      widget.transaction.customer =
+          Customer.findByName(customerList, selectedCustomer);
+    }else{
+      widget.transaction.location =
+          Location.findByName(locationList, selectedLocation);
+      widget.transaction.supplier =
+          Supplier.findByName(supplierList, selectedSupplier);
+      widget.transaction.customer =
+          Customer.empty();
+    }
+
 
     if (supplierList.isNotEmpty &&
         locationList.isNotEmpty &&

@@ -4,6 +4,7 @@ import 'package:iwas_port/Models/Cart.dart';
 import 'package:iwas_port/Models/CartItem.dart';
 import 'package:iwas_port/Screens/Cart/Cart_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ShopDetailScreen extends StatefulWidget {
   static const routeName = '/ShopDetailScreen';
@@ -21,12 +22,13 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
       appBar: AppBar(
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.only(right:40),
+            padding: EdgeInsets.only(right: 40),
             child: Badge(
               child: IconButton(
-                  onPressed: () => Navigator.pushNamed(context, CartScreen.routeName),
-                  icon: Icon(Icons.shopping_cart,color: Theme.of(context).iconTheme.color)
-              ),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, CartScreen.routeName),
+                  icon: Icon(Icons.shopping_cart,
+                      color: Theme.of(context).iconTheme.color)),
               toAnimate: true,
               animationType: BadgeAnimationType.scale,
               badgeColor: Theme.of(context).accentColor,
@@ -42,10 +44,13 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
           children: <Widget>[
             Stack(
               children: <Widget>[
-                Image.network(
-                  cartItem.imageURL,
+                FadeInImage(
                   height: 350,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
+                  placeholder: AssetImage('assets/camera_default.png'),
+                  image: NetworkImage(
+                    cartItem.imageURL,
+                  ),
                 ),
                 Align(
                   alignment: Alignment.topCenter,
@@ -60,11 +65,11 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                           // Add one stop for each color. Stops should increase from 0 to 1
                           colors: [
                             // Colors are easy thanks to Flutter's Colors class.
-                            Colors.black.withOpacity(0.7),
-                            Colors.black.withOpacity(0.5),
-                            Colors.black.withOpacity(0.07),
+                            Colors.black.withOpacity(0.4),
+                            Colors.black.withOpacity(0.3),
+                            Colors.black.withOpacity(0.25),
+                            Colors.black.withOpacity(0.1),
                             Colors.black.withOpacity(0.05),
-                            Colors.black.withOpacity(0.025),
                           ],
                         ),
                       ),
@@ -85,10 +90,11 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                           // Add one stop for each color. Stops should increase from 0 to 1
                           colors: [
                             // Colors are easy thanks to Flutter's Colors class.
-                            Colors.black.withOpacity(0.8),
-                            Colors.black.withOpacity(0.6),
-                            Colors.black.withOpacity(0.6),
-                            Colors.black.withOpacity(0.4),
+                            Colors.black.withOpacity(0.2),
+                            Colors.black.withOpacity(0.1),
+                            Colors.black.withOpacity(0.25),
+                            Colors.black.withOpacity(0.2),
+                            Colors.black.withOpacity(0.1),
                             Colors.black.withOpacity(0.07),
                             Colors.black.withOpacity(0.05),
                             Colors.black.withOpacity(0.025),
@@ -116,7 +122,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                           Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(
-                              '${cartItem.price} €',
+                              '${cartItem.price.toStringAsFixed(2)} €',
                               textAlign: TextAlign.end,
                               style: Theme.of(context)
                                   .textTheme

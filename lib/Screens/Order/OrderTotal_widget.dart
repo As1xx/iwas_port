@@ -8,21 +8,30 @@ class OrderTotal extends StatefulWidget {
     Key key,
     @required this.transaction,
     @required this.cart,
+    @required this.setDiscount,
   }) : super(key: key);
 
   final Order transaction;
   final Cart cart;
+  final Function setDiscount;
 
   @override
   _OrderTotalState createState() => _OrderTotalState();
 }
 
 class _OrderTotalState extends State<OrderTotal> {
-  void setDiscount(double discountValue) {
-    setState(() {
-      widget.transaction.discount = discountValue;
-    });
+
+  double initOrderAmount;
+
+  @override
+  void initState() {
+    super.initState();
+    initOrderAmount = widget.transaction.amount;
   }
+
+
+
+
 
   void addDiscount(double orderAmount, Function setter) {
     showModalBottomSheet(
@@ -49,7 +58,7 @@ class _OrderTotalState extends State<OrderTotal> {
                     Text('Total', style: Theme.of(context).textTheme.body1),
                     FlatButton(
                       onPressed: () =>
-                          addDiscount(widget.transaction.amount, setDiscount),
+                          addDiscount(initOrderAmount, widget.setDiscount),
                       child: Row(
                         children: <Widget>[
                           Icon(Icons.add, color: Theme.of(context).accentColor),
@@ -128,4 +137,8 @@ class _OrderTotalState extends State<OrderTotal> {
       ),
     ]);
   }
+
+
+
+
 }

@@ -2,19 +2,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:random_string/random_string.dart';
 
+//TODO: Build Real Database
+//TODO: Check if Stock is updated
+//TODO: Test + BugFixes
 
 class Wine {
 
   String docID = randomAlphaNumeric(20);
-  String manufacturer;
-  String type;
-  int productID;
-  int criticalQuantity;
-  String imageURL;
-  double sellingPrice;
-  int quantity;
+  String manufacturer = '';
+  String type = '';
+  int productID = 0;
+  int criticalQuantity = 0;
+  String imageURL = 'https://firebasestorage.googleapis.com/v0/b/iwas-mit-port.appspot.com/o/Defaults%2Fcamera_default.png?alt=media&token=61b25e74-210a-4c63-b6dd-b88fe09be0a4';
+  double sellingPrice = 0;
+  int quantity = 0;
 
   Wine.empty();
+
   Wine({
     @required this.docID,
     @required this.manufacturer,
@@ -60,6 +64,12 @@ class Wine {
   }
 
 
+  static List<Wine> initStreamData() {
+    // Create Empty List with 1 Object for initialization
+    List<Wine> initList = <Wine>[];
+    initList.add(Wine.empty());
+    return initList;
+  }
 
 
 

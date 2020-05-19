@@ -58,6 +58,8 @@ dependencies:
   after_init: ^0.1.2
   timeline_list: ^0.0.3
   date_format: ^1.0.8
+  transparent_image: ^1.0.0
+  linear_gradient: ^0.1.12
 
 dev_dependencies:
   flutter_test:

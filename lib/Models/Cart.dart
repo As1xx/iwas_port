@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/CartItem.dart';
 import 'package:iwas_port/Models/wine.dart';
+import 'package:iwas_port/Services/WineDatabaseService.dart';
 
 class Cart with ChangeNotifier {
   Map<String, CartItem> _cartItems = {};
@@ -84,20 +85,32 @@ class Cart with ChangeNotifier {
     _cartItems = {};
   }
 
-  List<Wine> findProductsFromCart(List<Wine> productList){
+  Wine findProductFromCart(List<Wine> productList,CartItem cartItem){
 
-    final cartItemList =_cartItems.values.toList();
-    final List<Wine> filteredProductList = [];
+    Wine product = Wine.empty();
 
     for (int i =0; i<productList.length; i++){
-      for (int j = 0; j<cartItemList.length; j++){
-
-        if (productList[i].docID == cartItemList[j].id){
-          filteredProductList.add(productList[i]);
+        if (productList[i].docID == cartItem.id){
+          product = productList[i];
         }
-      }
+
     }
-    return filteredProductList;
+    return product;
   }
+
+  void updateProduct(List<Wine> productList, bool isSold ){
+    final cartItemList = _cartItems.values.toList();
+    cartItemList.forEach((cartItem) {
+      final product = findProductFromCart(productList,cartItem);
+      if (isSold){
+        product.quantity -= cartItem.quantity;
+      }else{
+        product.quantity += cartItem.quantity;
+      }
+      WineDatabaseService().writeToDatabase(product);
+    });
+  }
+
+
 
 }

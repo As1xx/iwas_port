@@ -31,7 +31,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
       });
     }
 
-    if (supplierList.isEmpty != null){
+    if (supplierList.isNotEmpty){
       setState(() {
         isBusy = false;
       });
@@ -43,7 +43,7 @@ class _SupplierScreenState extends State<SupplierScreen> {
     return isBusy ? Loading() : Scaffold(
       appBar: AppBar(
         iconTheme: Theme.of(context).appBarTheme.iconTheme,
-        title: Text('Supplier List'),
+        title: Text('Lieferanten',style: Theme.of(context).appBarTheme.textTheme.caption),
         actions: <Widget>[
           IconButton(
             onPressed: () => Navigator.pushNamed(context, AddSupplier.routeName),

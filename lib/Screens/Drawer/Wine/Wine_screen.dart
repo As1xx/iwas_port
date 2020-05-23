@@ -44,7 +44,7 @@ class _WineScreenState extends State<WineScreen> {
     return isBusy ? Loading() : Scaffold(
       appBar: AppBar(
         iconTheme: Theme.of(context).appBarTheme.iconTheme,
-        title: Text('WineList'),
+        title: Text('Produkte',style: Theme.of(context).appBarTheme.textTheme.caption),
         actions: <Widget>[
           IconButton(
             onPressed: () => Navigator.pushNamed(context, AddWine.routeName),

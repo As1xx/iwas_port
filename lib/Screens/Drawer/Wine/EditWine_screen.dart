@@ -77,8 +77,7 @@ class _EditWineState extends State<EditWine> {
           await _databaseService.writeToDatabase(_wine);
           FlushbarHelper.createSuccess(
                   message: 'Daten erfolgreich in die Cloud hochgeladen!')
-              .show(context);
-          //Navigator.of(context).pop();
+              .show(context).then((r) =>Navigator.of(context).pop());
         } on DatabaseException catch (error) {
           DatabaseException.showError(context, error.message);
         } catch (otherError) {

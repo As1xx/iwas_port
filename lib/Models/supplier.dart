@@ -4,13 +4,10 @@ import 'package:random_string/random_string.dart';
 
 class Supplier {
   String docID = randomAlphaNumeric(20);
-  String name = '';
-  String country = '';
-  String address = '';
-  int zipCode = 0;
-  String phoneNumber = '';
-  String email = '';
-  String taxNumber = '';
+  String name ;
+  String address;
+  String phoneNumber;
+  String email ;
   bool isDefault = false;
 
 
@@ -19,12 +16,9 @@ class Supplier {
   Supplier({
     @required this.docID,
     @required this.name,
-    this.country,
-    this.address,
-    this.zipCode,
+    @required this.address,
     this.email,
     this.phoneNumber,
-    this.taxNumber,
     this.isDefault,
   });
 
@@ -32,12 +26,9 @@ class Supplier {
   Map<String, dynamic> toFireStore() => {
     'DocumentID': docID,
     'Name': name,
-    'Country': country,
     'Address': address,
-    'ZipCode': zipCode,
     'Email': email,
     'PhoneNumber': phoneNumber,
-    'TaxNumber': taxNumber,
     'isDefault': isDefault,
   };
 
@@ -48,12 +39,9 @@ class Supplier {
     return Supplier(
       docID: documentSnapshot.documentID,
       name: documentData['Name'] ?? null,
-      country: documentData['Country'] ?? null,
       address: documentData['Address'] ?? null,
-      zipCode: documentData['ZipCode'] ?? null,
       email: documentData['Email'] ?? null,
       phoneNumber: documentData['PhoneNumber'] ?? null,
-      taxNumber: documentData['TaxNumber'] ?? null,
       isDefault: documentData['isDefault'] ?? null,
     );
   }
@@ -75,12 +63,9 @@ class Supplier {
     return Supplier(
       docID: documentData['DocumentID'] ?? null,
       name: documentData['Name'] ?? null,
-      country: documentData['Country'] ?? null,
       address: documentData['Address'] ?? null,
-      zipCode: documentData['ZipCode'] ?? null,
       email: documentData['Email'] ?? null,
       phoneNumber: documentData['PhoneNumber'] ?? null,
-      taxNumber: documentData['TaxNumber'] ?? null,
       isDefault: documentData['isDefault'] ?? null,
     );
   }

@@ -31,19 +31,17 @@ class _CustomerScreenState extends State<CustomerScreen> {
       });
     }
 
-    if (customerList.isEmpty != null){
+    if (customerList.isNotEmpty){
       setState(() {
         isBusy = false;
       });
     }
 
 
-
-
     return isBusy ? Loading() : Scaffold(
       appBar: AppBar(
         iconTheme: Theme.of(context).appBarTheme.iconTheme,
-        title: Text('Customer List'),
+        title: Text('Kunden',style: Theme.of(context).appBarTheme.textTheme.caption,),
         actions: <Widget>[
           IconButton(
             onPressed: () => Navigator.pushNamed(context, AddCustomer.routeName),

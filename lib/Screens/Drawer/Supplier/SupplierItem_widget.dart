@@ -16,17 +16,17 @@ class SupplierItem extends StatelessWidget {
       return showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            backgroundColor: Theme.of(context).dialogBackgroundColor,elevation: 100,
-            title: Text('Are you sure?',style: Theme.of(context).textTheme.caption,),
+            backgroundColor: Theme.of(context).dialogTheme.backgroundColor,elevation: 100,
+            title: Text('Bist du sicher?',style: Theme.of(context).textTheme.caption,),
             actions: <Widget>[
               FlatButton(
-                child: Text('Yes',style: Theme.of(context).textTheme.display1,),
+                child: Text('Ja',style: Theme.of(context).textTheme.bodyText1,),
                 onPressed: (){
                   Navigator.of(context).pop(true);
                 },
               ),
               FlatButton(
-                child: Text('No',style: Theme.of(context).textTheme.display1,),
+                child: Text('Nein',style: Theme.of(context).textTheme.bodyText1,),
                 onPressed: (){
                   Navigator.of(context).pop(false);
                 },
@@ -56,7 +56,7 @@ class SupplierItem extends StatelessWidget {
         padding: EdgeInsets.only(right: 20),
       ),
       child: Card(
-        color: Theme.of(context).backgroundColor,
+        color: Theme.of(context).cardTheme.color,
         margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
         child: ListTile(
           onTap: () => null, //TODO: implement Detail View
@@ -64,14 +64,14 @@ class SupplierItem extends StatelessWidget {
             padding: EdgeInsets.only(left: 10),
             child: Text(
               _supplier.name,
-              style: Theme.of(context).textTheme.caption,
+              style: Theme.of(context).textTheme.headline2,
             ),
           ),
           subtitle: Padding(
             padding: const EdgeInsets.fromLTRB(10,10,0,0),
             child: Text(
-              _supplier.email,
-              style: Theme.of(context).textTheme.subtitle,
+              _supplier.address,
+              style: Theme.of(context).textTheme.headline5,
             ),
           ),
           trailing: IconButton(

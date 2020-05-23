@@ -67,7 +67,7 @@ class _AddLocationState extends State<AddLocation> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lager hinzufügen'),
+        title: Text('Lager hinzufügen',style: Theme.of(context).appBarTheme.textTheme.caption),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.done),

@@ -32,11 +32,11 @@ class _DiscountScreenState extends State<DiscountScreen> {
     // Switch Symbol depending on SwitchState
     if (percentageSwitchState == true) {
       discountTextController = MoneyMaskedTextController(
-          rightSymbol: '%', precision: 2, decimalSeparator: '.');
+          rightSymbol: '%', precision: 2, decimalSeparator: ',');
       discountTextController.updateValue(controllerValue);
     } else {
       discountTextController = MoneyMaskedTextController(
-          rightSymbol: '€', precision: 2, decimalSeparator: '.');
+          rightSymbol: '€', precision: 2, decimalSeparator: ',');
       discountTextController.updateValue(controllerValue);
     }
 

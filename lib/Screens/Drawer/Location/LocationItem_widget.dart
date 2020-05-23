@@ -16,7 +16,7 @@ class LocationItem extends StatelessWidget {
       return showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            backgroundColor: Theme.of(context).dialogBackgroundColor,elevation: 100,
+            backgroundColor: Theme.of(context).dialogTheme.backgroundColor,elevation: 100,
             title: Text('Bist du sicher?',style: Theme.of(context).textTheme.caption,),
             actions: <Widget>[
               FlatButton(
@@ -56,7 +56,7 @@ class LocationItem extends StatelessWidget {
         padding: EdgeInsets.only(right: 20),
       ),
       child: Card(
-        color: Theme.of(context).backgroundColor,
+        color: Theme.of(context).cardTheme.color,
         margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
         child: ListTile(
           onTap: () => null, //TODO: implement Detail View

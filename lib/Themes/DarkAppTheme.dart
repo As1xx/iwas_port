@@ -8,11 +8,8 @@ final darkAppTheme = ThemeData(
     focusColor: Colors.purple,
     errorColor: Colors.red,
     highlightColor: Colors.white,
-    dialogBackgroundColor: Colors.grey[800].withOpacity(0.5),
     cursorColor: Colors.white,
-    cardColor: Colors.black,
     unselectedWidgetColor: Colors.white,
-    brightness: Brightness.light,
 
 
 
@@ -30,8 +27,8 @@ final darkAppTheme = ThemeData(
       headline4: TextStyle(color: Colors.white, fontSize: 14),
       headline5: TextStyle(color: Colors.white, fontSize: 12),
       headline6: TextStyle(color: Colors.white, fontSize: 10),
-      bodyText1: TextStyle(color: Colors.white, fontSize: 12),
-      bodyText2: TextStyle(color: Colors.white, fontSize: 10),
+      bodyText1: TextStyle(color: Colors.white, fontSize: 14),
+      bodyText2: TextStyle(color: Colors.white, fontSize: 12),
       button: TextStyle(color: Colors.white, fontSize: 16),
     ),
 
@@ -88,11 +85,21 @@ final darkAppTheme = ThemeData(
     ),
 
     cardTheme: CardTheme(
+      color: Colors.black26,
       shape: RoundedRectangleBorder(
         borderRadius: const BorderRadius.all(
           Radius.circular(20.0),
         ),
       ),
-    )
+    ),
+
+    dialogTheme: DialogTheme(
+      backgroundColor:  Colors.grey[800].withOpacity(0.9),
+      titleTextStyle: TextStyle(color: Colors.white, fontSize: 14),
+      contentTextStyle: TextStyle(color: Colors.white, fontSize: 18),
+    ),
+
+    popupMenuTheme: PopupMenuThemeData(
+    ),
 
 );

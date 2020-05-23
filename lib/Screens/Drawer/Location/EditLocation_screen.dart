@@ -64,7 +64,7 @@ class _EditLocationState extends State<EditLocation> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: Theme.of(context).appBarTheme.iconTheme,
-        title: Text('Lager bearbeiten'),
+        title: Text('Lager bearbeiten',style: Theme.of(context).appBarTheme.textTheme.caption),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.done),

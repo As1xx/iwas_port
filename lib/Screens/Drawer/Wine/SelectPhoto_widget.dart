@@ -12,13 +12,13 @@ class SelectPhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: Theme.of(context).dialogBackgroundColor,
-      title: Text('Select Photo'),
+      title: Text('Select Photo',style: Theme.of(context).dialogTheme.titleTextStyle,),
       content: SingleChildScrollView(
         child: ListBody(
           children: <Widget>[
             FlatButton.icon(
                 icon: Icon(Icons.camera_alt,color: Theme.of(context).iconTheme.color,),
-                label: Text('From Camera',style: Theme.of(context).textTheme.display1,),
+                label: Text('From Camera',style: Theme.of(context).dialogTheme.contentTextStyle,),
                 onPressed: () async{
                   var imageFile = await ImageService().imageFromCamera ?? null;
                     imageHandler(imageFile);
@@ -30,7 +30,7 @@ class SelectPhoto extends StatelessWidget {
             ),
             FlatButton.icon(
               icon: Icon(Icons.photo,color: Theme.of(context).iconTheme.color,),
-              label: Text('From Gallery',style: Theme.of(context).textTheme.display1,),
+              label: Text('From Gallery',style: Theme.of(context).dialogTheme.contentTextStyle,),
               onPressed: ()  async {
                 var imageFile = await ImageService().imageFromGallery ?? null;
                 imageHandler(imageFile);

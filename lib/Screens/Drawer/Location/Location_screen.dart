@@ -31,7 +31,7 @@ class _LocationScreenState extends State<LocationScreen> {
       });
     }
 
-    if (locationList.isEmpty == false){
+    if (locationList.isNotEmpty){
       setState(() {
         isBusy = false;
       });

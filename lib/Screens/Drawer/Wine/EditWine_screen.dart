@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Screens/Authenticate/TextInputForm_decoration.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/SelectPhoto_widget.dart';
@@ -25,29 +26,28 @@ class _EditWineState extends State<EditWine> {
   bool isLoading;
   File myImageFile;
 
+
+
   Widget build(BuildContext context) {
     final Wine _wine = ModalRoute.of(context).settings.arguments;
 
+    final purchasePriceTextController = MoneyMaskedTextController(
+      rightSymbol: '€', precision: 2, decimalSeparator: ',', initialValue: _wine.purchasePrice,);
+
+    final sellingPriceTextController = MoneyMaskedTextController(
+        rightSymbol: '€', precision: 2, decimalSeparator: ',', initialValue: _wine.sellingPrice,);
 
     String _checkInteger(String text) {
       if (text.isEmpty) {
-        return 'Please specify Field';
+        return 'Bitte Zahl eingeben';
       } else if (!isInt(text)) {
-        return 'Please Enter Number 0-9';
+        return 'Bitte Zahl zwischen 0-9 eingeben!';
       } else {
         return null;
       }
     }
 
-    String _checkDouble(String text) {
-      if (text.isEmpty) {
-        return 'Please specify Field';
-      } else if (!isFloat(text)) {
-        return 'Please Enter Number 0-9';
-      } else {
-        return null;
-      }
-    }
+
 
     void _updateImage(File imageFile) {
       setState(() {
@@ -76,7 +76,7 @@ class _EditWineState extends State<EditWine> {
         try {
           await _databaseService.writeToDatabase(_wine);
           FlushbarHelper.createSuccess(
-                  message: 'Data successfully uploaded to Cloud')
+                  message: 'Daten erfolgreich in die Cloud hochgeladen!')
               .show(context);
           //Navigator.of(context).pop();
         } on DatabaseException catch (error) {
@@ -90,7 +90,7 @@ class _EditWineState extends State<EditWine> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: Theme.of(context).appBarTheme.iconTheme,
-        title: Text('Edit Wine'),
+        title: Text('Produkt bearbeiten',style: Theme.of(context).appBarTheme.textTheme.caption),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.done),
@@ -122,12 +122,12 @@ class _EditWineState extends State<EditWine> {
                     onSaved: (text) => _wine.manufacturer = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) =>
-                        text.isEmpty ? 'Please specify Field' : null,
+                        text.isEmpty ? 'Bitte Text eingeben!' : null,
                     keyboardType: TextInputType.text,
                     cursorColor:
                         Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Manufacturer',
+                      labelText: 'Hersteller',
                     ),
                   ),
                   SizedBox(height: 20.0),
@@ -136,12 +136,12 @@ class _EditWineState extends State<EditWine> {
                     onSaved: (text) => _wine.type = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) =>
-                        text.isEmpty ? 'Please specify Field' : null,
+                        text.isEmpty ? 'Bitte Text eingeben!' : null,
                     keyboardType: TextInputType.text,
                     cursorColor:
                         Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Type',
+                      labelText: 'Typ',
                     ),
                   ),
                   SizedBox(height: 20.0),
@@ -154,31 +154,31 @@ class _EditWineState extends State<EditWine> {
                     cursorColor:
                         Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
-                      labelText: 'ProductID',
+                      labelText: 'Produkt-ID',
                     ),
                   ),
                   SizedBox(height: 20),
                   TextFormField(
-                    initialValue: _wine.criticalQuantity.toString(),
-                    onSaved: (text) => _wine.criticalQuantity = int.parse(text),
+                    controller: purchasePriceTextController,
+                    onSaved: (text) => _wine.purchasePrice = purchasePriceTextController.numberValue,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => _checkInteger(text),
-                    keyboardType: TextInputType.number,
-                    cursorColor:
-                        Theme.of(context).inputDecorationTheme.focusColor,
-                    decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Critical Quantity',
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextFormField(
-                    onSaved: (text) => _wine.sellingPrice = double.parse(text),
-                    style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => _checkDouble(text),
+                    validator: (text) => purchasePriceTextController.numberValue <= 0 ? 'Einkaufspreis kann nicht 0 sein!':null,
                     keyboardType: TextInputType.number,
                     cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Selling Price',
+                      labelText: 'Einkaufspreis',
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  TextFormField(
+                    controller: sellingPriceTextController,
+                    onSaved: (text) => _wine.sellingPrice = sellingPriceTextController.numberValue,
+                    style: Theme.of(context).inputDecorationTheme.labelStyle,
+                    validator: (text) => sellingPriceTextController.numberValue <= 0 ? 'Verkaufspreis kann nicht 0 sein!':null,
+                    keyboardType: TextInputType.number,
+                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
+                    decoration: textFormDecoration(context).copyWith(
+                      labelText: 'Verkaufspreis',
                     ),
                   ),
                 ],

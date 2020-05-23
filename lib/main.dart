@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
       providers: [
         StreamProvider<List<Wine>>(
             updateShouldNotify: (_, __) => true,
-            initialData: Wine.initStreamData(),
+            initialData: null,//Wine.initStreamData(),
             create: (_) => _wineDatabaseService.wineListOfCollection),
         StreamProvider<User>(
           initialData: User(email: ''),

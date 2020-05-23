@@ -31,19 +31,17 @@ class _LocationScreenState extends State<LocationScreen> {
       });
     }
 
-    if (locationList.isEmpty != null){
+    if (locationList.isEmpty == false){
       setState(() {
         isBusy = false;
       });
     }
 
 
-
-
     return isBusy ? Loading() : Scaffold(
       appBar: AppBar(
         iconTheme: Theme.of(context).appBarTheme.iconTheme,
-        title: Text('Location List'),
+        title: Text('Alle Lager',style: Theme.of(context).appBarTheme.textTheme.caption,),
         actions: <Widget>[
           IconButton(
             onPressed: () => Navigator.pushNamed(context, AddLocation.routeName),

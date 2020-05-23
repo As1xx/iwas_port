@@ -1,15 +1,14 @@
-import 'dart:io';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:iwas_port/Models/location.dart';
 import 'package:iwas_port/Screens/Authenticate/TextInputForm_decoration.dart';
 import 'package:iwas_port/Services/DatabaseException.dart';
 import 'package:iwas_port/Services/LocationDatabaseService.dart';
 import 'package:iwas_port/Styles/background_style.dart';
-import 'package:string_validator/string_validator.dart';
-
-
+import 'package:iwas_port/Credentials.dart';
+import 'package:google_maps_webservice/places.dart' as Places;
 
 class AddLocation extends StatefulWidget {
   static const routeName = '/AddLocation';
@@ -19,21 +18,18 @@ class AddLocation extends StatefulWidget {
 }
 
 class _AddLocationState extends State<AddLocation> {
+
   final _databaseService = LocationDatabaseService();
   final _formKey = GlobalKey<FormState>();
   final _location = Location.empty();
   bool isLoading;
   bool switchState = false;
 
-  String _checkInteger(String text) {
-    if (text.isEmpty) {
-      return 'Please specify Field';
-    } else if (!isInt(text)) {
-      return 'Please Enter Number 0-9';
-    } else {
-      return null;
-    }
-  }
+
+  var selectedPlace;
+  Places.GoogleMapsPlaces _places =
+      Places.GoogleMapsPlaces(apiKey: PLACES_API_KEY);
+
 
 
   Widget build(BuildContext context) {
@@ -46,7 +42,8 @@ class _AddLocationState extends State<AddLocation> {
         try {
           await _databaseService.writeToDatabase(_location);
           FlushbarHelper.createSuccess(
-              message: 'Data successfully uploaded to Cloud').show(context);
+                  message: 'Daten erfolgreich in die Cloud hochgeladen!')
+              .show(context);
           //Navigator.of(context).pop();
         } on DatabaseException catch (error) {
           DatabaseException.showError(context, error.message);
@@ -56,10 +53,21 @@ class _AddLocationState extends State<AddLocation> {
       }
     }
 
+    Future getAddressFromPrediction(Places.Prediction p) async {
+      if (p != null) {
+        Places.PlacesDetailsResponse detail =
+            await _places.getDetailsByPlaceId(p.placeId);
+        setState(() {
+          _location.address = detail.result.formattedAddress; // Address
+        });
+
+      }
+    }
+
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Location'),
+        title: Text('Lager hinzufügen'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.done),
@@ -79,61 +87,65 @@ class _AddLocationState extends State<AddLocation> {
                   TextFormField(
                     onSaved: (text) => _location.name = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please specify Field' : null,
+                    validator: (text) =>
+                        text.isEmpty ? 'Bitte Text eingeben' : null,
                     keyboardType: TextInputType.text,
-                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
+                    cursorColor:
+                        Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
                       labelText: 'Name',
-                    ),
-                  ),
-                  SizedBox(height: 20.0),
-                  TextFormField(
-                    onSaved: (text) => _location.zipCode = int.parse(text),
-                    style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => _checkInteger(text),
-                    keyboardType: TextInputType.number,
-                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
-                    decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Zip Code',
-                    ),
-                  ),
-                  SizedBox(height:20.0),
-                  TextFormField(
-                    onSaved: (text) => _location.address = text,
-                    style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please specify Field' : null,
-                    keyboardType: TextInputType.text,
-                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
-                    decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Address',
-                    ),
-                  ),
-                  SizedBox(height:20),
-                  TextFormField(
-                    onSaved: (text) => _location.country = text,
-                    style: Theme.of(context).inputDecorationTheme.labelStyle,
-                    validator: (text) => text.isEmpty ? 'Please specify Field' : null,
-                    keyboardType: TextInputType.text,
-                    cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
-                    decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Country',
                     ),
                   ),
                   SizedBox(height: 20),
                   Row(
                     children: [
-                      Text('Default Location?',style: Theme.of(context).textTheme.display1,),
+                      Text(
+                        'Adresse',
+                        style: Theme.of(context).textTheme.headline2,
+                      ),
+                      Spacer(),
+                      FlatButton.icon(
+                        icon: Icon(Icons.location_on),
+                        label: Text('Suche',style: Theme.of(context).textTheme.headline2,),
+                        onPressed: () async {
+                          selectedPlace = await PlacesAutocomplete.show(
+                              context: context,
+                              apiKey: PLACES_API_KEY,
+                              mode: Mode.fullscreen, // Mode.fullscreen
+                              language: "de",
+                              components: [
+                                Places.Component(Places.Component.country, "de")
+                              ]);
+                            getAddressFromPrediction(selectedPlace);
+                        },
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Text(_location.address != null ? _location.address:'',style: Theme.of(context).textTheme.headline4,),
+                    ],
+                  ),
+                  SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      Text(
+                        'Standard Lager?',
+                        style: Theme.of(context).textTheme.headline2,
+                      ),
                       Spacer(),
                       Switch(
                         value: switchState,
-                        onChanged: (bool state){
+                        onChanged: (bool state) {
                           setState(() {
                             switchState = state;
                           });
-                        } ,
-                    )],
+                        },
+                      )
+                    ],
                   ),
-
                 ],
               ),
             ),

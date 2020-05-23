@@ -15,9 +15,9 @@ void buildPopupMenu(BuildContext context, GlobalKey widgetKey,List<Location> loc
   }
 
   void onClickMenu(MenuItemProvider item) {
-    if(item.menuTitle == 'Sort (A-Z)'){
+    if(item.menuTitle == 'Sortiere (A-Z)'){
       _sortManufacturerAscending();
-    }else if (item.menuTitle == 'Sort (Z-A)'){
+    }else if (item.menuTitle == 'Sortiere (Z-A)'){
       _sortManufacturerDescending();
     }
     sortScreen(locationList);
@@ -29,12 +29,12 @@ void buildPopupMenu(BuildContext context, GlobalKey widgetKey,List<Location> loc
     highlightColor: Theme.of(context).accentColor,
     items: [
       MenuItem(
-          title:'Sort (A-Z)',
+          title:'Sortiere (A-Z)',
           image: Icon(
             FontAwesomeIcons.sortAlphaDown,
           )),
       MenuItem(
-        title: 'Sort (Z-A)',
+        title: 'Sortiere (Z-A)',
         image:Icon(
             FontAwesomeIcons.sortAlphaUp
         ),

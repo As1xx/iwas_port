@@ -12,28 +12,33 @@ final darkAppTheme = ThemeData(
     cursorColor: Colors.white,
     cardColor: Colors.black,
     unselectedWidgetColor: Colors.white,
+    brightness: Brightness.light,
+
+
 
     accentTextTheme: TextTheme(
-      button: TextStyle(color: Colors.purple, fontSize: 14),
+      button: TextStyle(color: Colors.white, fontSize: 14),
     ),
 
 
 
     textTheme: TextTheme(
-      title: TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 10),
-      caption: TextStyle(color: Colors.white, fontSize: 16),
-      display1: TextStyle(color: Colors.white, fontSize: 16),
-      subtitle: TextStyle(color: Colors.white, fontSize: 12),
-      headline: TextStyle(color: Colors.white, fontSize: 12),
-      body1: TextStyle(color: Colors.white, fontSize: 20),
-      body2: TextStyle(color: Colors.white, fontSize: 24),
-      subhead: TextStyle(color: Colors.white, fontSize: 16),
+      caption: TextStyle(color: Colors.white, fontSize: 18),
+      headline1: TextStyle(color: Colors.white, fontSize: 20),
+      headline2: TextStyle(color: Colors.white, fontSize: 18),
+      headline3: TextStyle(color: Colors.white, fontSize: 16),
+      headline4: TextStyle(color: Colors.white, fontSize: 14),
+      headline5: TextStyle(color: Colors.white, fontSize: 12),
+      headline6: TextStyle(color: Colors.white, fontSize: 10),
+      bodyText1: TextStyle(color: Colors.white, fontSize: 12),
+      bodyText2: TextStyle(color: Colors.white, fontSize: 10),
       button: TextStyle(color: Colors.white, fontSize: 16),
     ),
+
     appBarTheme: AppBarTheme(
       color: Colors.black,
       textTheme: TextTheme(
-        title: TextStyle(color: Colors.white, fontSize: 20),
+        caption: TextStyle(color: Colors.white, fontSize: 18),
       ),
       actionsIconTheme: IconThemeData(
         color: Colors.white,
@@ -42,14 +47,16 @@ final darkAppTheme = ThemeData(
         color: Colors.white,
       ),
     ),
+
     inputDecorationTheme: InputDecorationTheme(
       fillColor: Colors.black,
       focusColor: Colors.white,
       contentPadding: EdgeInsets.all(10.0),
-      labelStyle: TextStyle(color: Colors.white, fontSize: 14),
+      labelStyle: TextStyle(color: Colors.white, fontSize: 16),
       prefixStyle: TextStyle(color: Colors.white),
       suffixStyle: TextStyle(color: Colors.white),
-      errorStyle: TextStyle(color: Colors.red,fontSize: 11),
+      errorStyle: TextStyle(color: Colors.red,fontSize: 12),
+      hintStyle: TextStyle(color: Colors.white, fontSize: 16),
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: Colors.white,width: 0.5),
        borderRadius: BorderRadius.circular(20.0),

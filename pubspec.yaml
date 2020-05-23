@@ -27,10 +27,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   firebase_auth: ^0.15.4
-  cloud_firestore: ^0.13.0+1
+  cloud_firestore: ^0.13.5
   firebase_storage: ^3.1.1
   provider: ^4.0.2
-  flushbar: ^1.9.1
+  flushbar: ^1.10.4
   flutter_spinkit: ^4.1.1
   flutter_login: ^1.0.14
   json_serializable: ^3.2.5
@@ -40,7 +40,6 @@ dependencies:
   random_string: ^2.0.1
   firebase_image: ^0.1.5
   flappy_search_bar: ^1.7.2
-  firebase_user_stream: ^0.1.0+4
   gradient_widgets: ^0.5.2
   vibrate: ^0.0.4
   path_provider: ^1.4.4
@@ -60,6 +59,9 @@ dependencies:
   date_format: ^1.0.8
   transparent_image: ^1.0.0
   linear_gradient: ^0.1.12
+  flutter_google_places: ^0.2.5
+  geocoder: ^0.2.1
+  geolocator: ^5.3.1
 
 dev_dependencies:
   flutter_test:

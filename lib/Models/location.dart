@@ -4,23 +4,19 @@ import 'package:random_string/random_string.dart';
 
 class Location {
   String docID = randomAlphaNumeric(20);
-  String name = '';
-  String country = '';
-  String address = '';
-  int zipCode = 0;
-  bool isDefault = false;
-  int numOfCategories = 0;
-  int numOfProducts = 0;
-  double totalValue  = 0;
+  String name ;
+  String address;
+  bool isDefault;
+  int numOfCategories;
+  int numOfProducts;
+  double totalValue;
 
    Location.empty();
 
   Location(
       {@required this.docID,
       @required this.name,
-      @required this.country,
       @required this.address,
-      @required this.zipCode,
       @required this.isDefault,
       this.numOfCategories,
       this.numOfProducts,
@@ -30,9 +26,7 @@ class Location {
   Map<String, dynamic> toFireStore() => {
         'DocumentID': docID,
         'Name': name,
-        'Country': country,
         'Address': address,
-        'ZipCode': zipCode,
         'isDefault': isDefault,
         'NumberOfCategories': numOfCategories,
         'NumberOfProducts': numOfProducts,
@@ -45,9 +39,7 @@ class Location {
     return Location(
         docID: documentSnapshot.documentID,
         name: documentData['Name'] ?? null,
-        country: documentData['Country'] ?? null,
         address: documentData['Address'] ?? null,
-        zipCode: documentData['ZipCode'] ?? null,
         isDefault: documentData['isDefault'] ?? null,
         numOfCategories: documentData['NumberOfCategories'] ?? null,
         numOfProducts: documentData['NumberOfProducts'] ?? null,
@@ -61,7 +53,7 @@ class Location {
   static List<Location> initStreamData() {
     // Create Empty List with 1 Object for initialization
     List<Location> initList = <Location>[];
-    initList.add(Location.empty());
+    //initList.add(Location.empty());
     return initList;
   }
 
@@ -71,9 +63,7 @@ class Location {
     return Location(
         docID: documentData['DocumentID'] ?? null,
         name: documentData['Name'] ?? null,
-        country: documentData['Country'] ?? null,
         address: documentData['Address'] ?? null,
-        zipCode: documentData['ZipCode'] ?? null,
         isDefault: documentData['isDefault'] ?? null,
         numOfCategories: documentData['NumberOfCategories'] ?? null,
         numOfProducts: documentData['NumberOfProducts'] ?? null,

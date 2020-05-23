@@ -17,16 +17,16 @@ class LocationItem extends StatelessWidget {
           context: context,
           builder: (context) => AlertDialog(
             backgroundColor: Theme.of(context).dialogBackgroundColor,elevation: 100,
-            title: Text('Are you sure?',style: Theme.of(context).textTheme.caption,),
+            title: Text('Bist du sicher?',style: Theme.of(context).textTheme.caption,),
             actions: <Widget>[
               FlatButton(
-                child: Text('Yes',style: Theme.of(context).textTheme.display1,),
+                child: Text('Ja',style: Theme.of(context).textTheme.bodyText1,),
                 onPressed: (){
                   Navigator.of(context).pop(true);
                 },
               ),
               FlatButton(
-                child: Text('No',style: Theme.of(context).textTheme.display1,),
+                child: Text('Nein',style: Theme.of(context).textTheme.bodyText1,),
                 onPressed: (){
                   Navigator.of(context).pop(false);
                 },
@@ -64,14 +64,14 @@ class LocationItem extends StatelessWidget {
             padding: EdgeInsets.only(left: 10),
             child: Text(
               _location.name,
-              style: Theme.of(context).textTheme.caption,
+              style: Theme.of(context).textTheme.headline2,
             ),
           ),
           subtitle: Padding(
             padding: const EdgeInsets.fromLTRB(10,10,0,0),
             child: Text(
-              _location.zipCode.toString() + ' ' + _location.address + ', ' + _location.country,
-              style: Theme.of(context).textTheme.subtitle,
+               _location.address,
+              style: Theme.of(context).textTheme.headline5,
             ),
           ),
           trailing: IconButton(

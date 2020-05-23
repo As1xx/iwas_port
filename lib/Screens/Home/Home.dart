@@ -42,7 +42,7 @@ class _HomeState extends State<Home> {
             iconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
             title: Text(
               'HomeScreen',
-              style: Theme.of(context).appBarTheme.textTheme.title,
+              style: Theme.of(context).appBarTheme.textTheme.caption,
             ),
             actions: <Widget>[
               Padding(

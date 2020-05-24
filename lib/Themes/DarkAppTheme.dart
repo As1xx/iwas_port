@@ -12,7 +12,6 @@ final darkAppTheme = ThemeData(
     unselectedWidgetColor: Colors.white,
 
 
-
     accentTextTheme: TextTheme(
       button: TextStyle(color: Colors.white, fontSize: 14),
     ),
@@ -30,6 +29,8 @@ final darkAppTheme = ThemeData(
       bodyText1: TextStyle(color: Colors.white, fontSize: 14),
       bodyText2: TextStyle(color: Colors.white, fontSize: 12),
       button: TextStyle(color: Colors.white, fontSize: 16),
+      subtitle1: TextStyle(color: Colors.white, fontSize: 16),
+      subtitle2: TextStyle(color: Colors.white, fontSize: 12),
     ),
 
     appBarTheme: AppBarTheme(
@@ -102,4 +103,7 @@ final darkAppTheme = ThemeData(
     popupMenuTheme: PopupMenuThemeData(
     ),
 
+  tooltipTheme: TooltipThemeData(
+    textStyle: TextStyle(color: Colors.purple, fontSize: 14),
+  ),
 );

@@ -116,7 +116,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                             padding: const EdgeInsets.all(10.0),
                             child: Text(
                               cartItem.manufacturer + ' ' + cartItem.type,
-                              style: Theme.of(context).textTheme.body1,
+                              style: Theme.of(context).textTheme.headline2,
                             ),
                           ),
                           Padding(
@@ -126,7 +126,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                               textAlign: TextAlign.end,
                               style: Theme.of(context)
                                   .textTheme
-                                  .body1
+                                  .headline2
                                   .copyWith(fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -155,7 +155,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                         padding: const EdgeInsets.all(30),
                         child: Text(
                           'Description:\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1',
-                          style: Theme.of(context).textTheme.display1,
+                          style: Theme.of(context).textTheme.headline4,
                         ),
                       ),
                     ),
@@ -171,7 +171,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                             child: Text(
                               'Add to Cart',
                               textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.body1,
+                              style: Theme.of(context).textTheme.headline2,
                             ),
                           )),
                     ),

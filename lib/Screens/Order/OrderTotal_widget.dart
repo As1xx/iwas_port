@@ -21,6 +21,7 @@ class OrderTotal extends StatefulWidget {
 
 class _OrderTotalState extends State<OrderTotal> {
 
+  // for calculating the Discount (percentage)
   double initOrderAmount;
 
   @override
@@ -55,17 +56,17 @@ class _OrderTotalState extends State<OrderTotal> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Total', style: Theme.of(context).textTheme.body1),
+                    Text('Übersicht', style: Theme.of(context).textTheme.headline2),
                     FlatButton(
                       onPressed: () =>
                           addDiscount(initOrderAmount, widget.setDiscount),
                       child: Row(
                         children: <Widget>[
                           Icon(Icons.add, color: Theme.of(context).accentColor),
-                          Text('Add Discount',
+                          Text('Rabatt',
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline
+                                  .headline4
                                   .copyWith(
                                       color: Theme.of(context).accentColor)),
                         ],
@@ -87,7 +88,7 @@ class _OrderTotalState extends State<OrderTotal> {
                   ),
                   child: Text(
                     '${widget.transaction.amount.toStringAsFixed(2)} €',
-                    style: Theme.of(context).textTheme.body2,
+                    style: Theme.of(context).textTheme.caption,
                   ),
                 )),
                 SizedBox(
@@ -98,33 +99,33 @@ class _OrderTotalState extends State<OrderTotal> {
                   children: <Widget>[
                     Column(
                       children: <Widget>[
-                        Text('Discount',
-                            style: Theme.of(context).textTheme.headline),
+                        Text('Rabatt',
+                            style: Theme.of(context).textTheme.headline3),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                              '${widget.transaction.discount.toStringAsFixed(2)} €'),
+                              '${widget.transaction.discount.toStringAsFixed(2)} €',style:Theme.of(context).textTheme.headline5,),
                         ),
                       ],
                     ),
                     Column(
                       children: <Widget>[
-                        Text('Subtotal',
-                            style: Theme.of(context).textTheme.headline),
+                        Text('Netto',
+                            style: Theme.of(context).textTheme.headline3),
                         Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                                '${widget.cart.totalAmount.toStringAsFixed(2)} €')),
+                                '${widget.cart.totalAmount.toStringAsFixed(2)} €',style:Theme.of(context).textTheme.headline5,)),
                       ],
                     ),
                     Column(
                       children: <Widget>[
-                        Text('Tax',
-                            style: Theme.of(context).textTheme.headline),
+                        Text('MwSt. ${(Order.taxPercent*100).toStringAsFixed(0)} %',
+                            style: Theme.of(context).textTheme.headline3),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                              '${widget.transaction.tax.toStringAsFixed(2)} €'),
+                              '${widget.transaction.tax.toStringAsFixed(2)} €',style:Theme.of(context).textTheme.headline5,),
                         ),
                       ],
                     ),

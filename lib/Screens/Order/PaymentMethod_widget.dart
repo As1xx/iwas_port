@@ -12,14 +12,12 @@ class PaymentMethod extends StatefulWidget {
 
 class _PaymentMethodState extends State<PaymentMethod> {
   int groupRadioValue = 1;
-  bool checkBoxValue = true;
-  String paymentMethod = 'Bank Transfer';
+  String paymentMethod = Order.empty().paymentMethod;
+  bool checkBoxValue = !Order.empty().isPaymentPending;
 
   @override
   Widget build(BuildContext context) {
 
-    widget.transaction.isPaymentPending = !checkBoxValue;
-    widget.transaction.paymentMethod = paymentMethod;
 
     return Stack(children: <Widget>[
       Container(
@@ -32,8 +30,8 @@ class _PaymentMethodState extends State<PaymentMethod> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Text('Payment Method',
-                        style: Theme.of(context).textTheme.body1),
+                    Text('Bezahlung',
+                        style: Theme.of(context).textTheme.headline2),
                   ],
                 ),
                 Divider(
@@ -49,19 +47,21 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         setState(() {
                           groupRadioValue = state;
                           paymentMethod = 'BankTransfer';
+                          widget.transaction.paymentMethod = paymentMethod;
                         });
                       },
                     ),
                     Text('Bank Transfer',
-                        style: Theme.of(context).textTheme.headline),
+                        style: Theme.of(context).textTheme.headline4),
                     Spacer(),
-                    Text('isPaid?',
-                            style: Theme.of(context).textTheme.headline),
+                    Text('Bezahlt?',
+                            style: Theme.of(context).textTheme.headline4),
                         Checkbox(
                         value: checkBoxValue,
                         onChanged: (state){
                           setState(() {
                             checkBoxValue =! checkBoxValue;
+                            widget.transaction.isPaymentPending = !checkBoxValue;
                           });
                         },
                       ),
@@ -77,10 +77,11 @@ class _PaymentMethodState extends State<PaymentMethod> {
                         setState(() {
                           groupRadioValue = state;
                           paymentMethod = 'Cash';
+                          widget.transaction.paymentMethod = paymentMethod;
                         });
                       },
                     ),
-                    Text('Cash', style: Theme.of(context).textTheme.headline),
+                    Text('Cash', style: Theme.of(context).textTheme.headline4),
                   ],
                 ),
               ],

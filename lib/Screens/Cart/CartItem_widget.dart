@@ -21,17 +21,17 @@ class _CartItemWidgetState extends State<CartItemWidget> {
       return showDialog(
           context: context,
           builder: (context) => AlertDialog(
-                backgroundColor: Theme.of(context).dialogBackgroundColor,
+                backgroundColor: Theme.of(context).dialogTheme.backgroundColor,
                 elevation: 100,
                 title: Text(
-                  'Are you sure?',
+                  'Bist du sicher?',
                   style: Theme.of(context).textTheme.caption,
                 ),
                 actions: <Widget>[
                   FlatButton(
                     child: Text(
-                      'Yes',
-                      style: Theme.of(context).textTheme.display1,
+                      'Ja',
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop(true);
@@ -39,8 +39,8 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                   ),
                   FlatButton(
                     child: Text(
-                      'No',
-                      style: Theme.of(context).textTheme.display1,
+                      'Nein',
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop(false);
@@ -70,7 +70,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
         padding: EdgeInsets.only(right: 20),
       ),
       child: Card(
-        color: Theme.of(context).backgroundColor,
+        color: Theme.of(context).cardTheme.color,
         margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
         child: Padding(
           padding: EdgeInsets.all(8),
@@ -80,7 +80,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                 style: Theme.of(context).textTheme.caption),
             subtitle: Text(
                 'Total: ${widget.cartItem.price * widget.cartItem.quantity} €',
-                style: Theme.of(context).textTheme.subtitle),
+                style: Theme.of(context).textTheme.headline5),
             leading: CircleAvatar(
               backgroundColor: Colors.transparent,
               child: FadeInImage(

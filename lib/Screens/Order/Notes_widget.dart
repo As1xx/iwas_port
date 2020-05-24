@@ -27,7 +27,7 @@ class _NotesState extends State<Notes> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Text('Notes', style: Theme.of(context).textTheme.body1),
+                    Text('Bemerkung', style: Theme.of(context).textTheme.headline2),
                   ],
                 ),
                 Divider(
@@ -47,7 +47,7 @@ class _NotesState extends State<Notes> {
                         cursorColor:
                             Theme.of(context).inputDecorationTheme.focusColor,
                         decoration: textFormDecoration(context).copyWith(
-                          labelText: 'Notes',
+                          labelText: 'Bemerkung',
                         ),
                       ),
                     ),

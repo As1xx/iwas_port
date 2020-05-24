@@ -98,14 +98,16 @@ class Cart with ChangeNotifier {
     return product;
   }
 
-  void updateProduct(List<Wine> productList, bool isSold ){
+  void updateProduct(List<Wine> productList, String method){
     final cartItemList = _cartItems.values.toList();
     cartItemList.forEach((cartItem) {
       final product = findProductFromCart(productList,cartItem);
-      if (isSold){
+      if (method == 'Verkaufen'){
         product.quantity -= cartItem.quantity;
-      }else{
+      }else if (method == 'Kaufen'){
         product.quantity += cartItem.quantity;
+      }else if(method == 'Transfer'){
+        product.quantity = product.quantity;
       }
       WineDatabaseService().writeToDatabase(product);
     });

@@ -18,7 +18,7 @@ class WineScreen extends StatefulWidget {
 
 class _WineScreenState extends State<WineScreen> {
 
-  bool isBusy = false;
+  bool isBusy = true;
 
 
   @override
@@ -32,7 +32,7 @@ class _WineScreenState extends State<WineScreen> {
       });
     }
 
-    if (wineList.isNotEmpty){
+    if (wineList != null){
       setState(() {
         isBusy = false;
       });

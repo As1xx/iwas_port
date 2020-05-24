@@ -20,7 +20,7 @@ class _DiscountScreenState extends State<DiscountScreen> {
 
   String _checkEmpty(String text) {
     if (text.isEmpty) {
-      return 'Please specify Field';
+      return 'Bitte ausfüllen!';
     } else {
       return null;
     }
@@ -69,8 +69,8 @@ class _DiscountScreenState extends State<DiscountScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'Discount',
-                    style: Theme.of(context).textTheme.body1,
+                    'Rabatt',
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                   Divider(),
                   SizedBox(
@@ -81,7 +81,7 @@ class _DiscountScreenState extends State<DiscountScreen> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          'Percentage',
+                          'Prozent',
                           style: Theme.of(context).textTheme.caption,
                         ),
                         Spacer(),
@@ -102,7 +102,7 @@ class _DiscountScreenState extends State<DiscountScreen> {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          'Absolute',
+                          'Absolut',
                           style: Theme.of(context).textTheme.caption,
                         ),
                         Spacer(),
@@ -131,7 +131,7 @@ class _DiscountScreenState extends State<DiscountScreen> {
                     cursorColor:
                         Theme.of(context).inputDecorationTheme.focusColor,
                     decoration: textFormDecoration(context).copyWith(
-                      labelText: 'Discount',
+                      labelText: 'Rabatt',
                     ),
                   ),
                   SizedBox(
@@ -142,7 +142,7 @@ class _DiscountScreenState extends State<DiscountScreen> {
                     child: RaisedButton(
                       onPressed: () => _validateDiscount(),
                       color: Theme.of(context).accentColor,
-                      child: Text('OK',style: Theme.of(context).textTheme.button,),
+                      child: Text('Ok',style: Theme.of(context).textTheme.button,),
                     ),
                   ),
                 ]),

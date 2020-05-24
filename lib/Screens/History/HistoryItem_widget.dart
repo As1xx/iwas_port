@@ -81,10 +81,10 @@ Card buildFrontWidget(
             children: <Widget>[
               Text(order.location.name,
                   style: Theme.of(context).textTheme.headline),
-              order.isSold ? isSoldWidget : isBoughtWidget,
-              Text(
-                order.isSold ? order.customer.name : order.supplier.name,
-                style: Theme.of(context).textTheme.headline,
+              //order.isSold ? isSoldWidget : isBoughtWidget,
+              Text(''
+                //order.isSold ? order.customer.name : order.supplier.name,
+               // style: Theme.of(context).textTheme.headline,
               ),
             ],
           ),
@@ -167,10 +167,10 @@ Card buildInnerTopWidget(
             children: <Widget>[
               Text(order.location.name,
                   style: Theme.of(context).textTheme.headline),
-              order.isSold ? isSoldWidget : isBoughtWidget,
-              Text(
-                order.isSold ? order.customer.name : order.supplier.name,
-                style: Theme.of(context).textTheme.headline,
+              //order.isSold ? isSoldWidget : isBoughtWidget,
+              Text(''
+               // order.isSold ? order.customer.name : order.supplier.name,
+                //style: Theme.of(context).textTheme.headline,
               ),
             ],
           ),

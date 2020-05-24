@@ -17,15 +17,15 @@ class CartScreen extends StatelessWidget {
       appBar: AppBar(
         iconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
         title: Text(
-          'HomeScreen',
-          style: Theme.of(context).appBarTheme.textTheme.title,
+          'Einkaufswagen',
+          style: Theme.of(context).appBarTheme.textTheme.caption,
         ),
       ),
       body: Background(
         child: Column(
           children: <Widget>[
             Card(
-              color: Theme.of(context).cardColor,
+              color: Theme.of(context).cardTheme.color,
               margin: EdgeInsets.all(15),
               child: Padding(
                 padding: EdgeInsets.all(12),
@@ -43,11 +43,11 @@ class CartScreen extends StatelessWidget {
                       type: GFButtonType.outline2x,
                       shape: GFButtonShape.pills,
                       onPressed: null,
-                      size: GFSize.SMALL,
+                      size: GFSize.LARGE,
                     ),
                     GFButton(
                       text: 'Checkout',
-                      textStyle: Theme.of(context).textTheme.subtitle.copyWith(fontSize: 18),
+                      textStyle: Theme.of(context).textTheme.headline2,
                       color: Theme.of(context).accentColor,
                       type: GFButtonType.solid,
                       shape: GFButtonShape.pills,

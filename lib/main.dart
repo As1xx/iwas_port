@@ -65,13 +65,14 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthService().user,
         ),
         StreamProvider<List<Location>>(
-            initialData: Location.initStreamData(),
+            updateShouldNotify: (_, __) => true,
+            initialData: null,//Location.initStreamData(),
             create: (_) => _locationDatabaseService.locationListOfCollection),
         StreamProvider<List<Customer>>(
-            initialData: Customer.initStreamData(),
+            initialData: null,//Customer.initStreamData(),
             create: (_) => _customerDatabaseService.customerListOfCollection),
         StreamProvider<List<Supplier>>(
-            initialData: Supplier.initStreamData(),
+            initialData: null,//Supplier.initStreamData(),
             create: (_) => _supplierDatabaseService.supplierListOfCollection),
         ChangeNotifierProvider.value(
           value: Cart(),

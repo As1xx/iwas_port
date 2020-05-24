@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
   int _selectedPage = 0;
   final _pageLayout = [
     ShopScreen(),
-    Text('Item 2'),
+    Text('in Bearbeitung'),
     HistoryScreen(),
   ];
 
@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
           appBar: AppBar(
             iconTheme: Theme.of(context).appBarTheme.actionsIconTheme,
             title: Text(
-              'HomeScreen',
+              'Home',
               style: Theme.of(context).appBarTheme.textTheme.caption,
             ),
             actions: <Widget>[
@@ -77,9 +77,9 @@ class _HomeState extends State<Home> {
                       decoration: BoxDecoration(
                         color: Theme.of(context).accentColor,
                       ),
-                      accountEmail: Text(user.email,style: Theme.of(context).textTheme.display1,),
+                      accountEmail: Text(user.email,style: Theme.of(context).textTheme.caption,),
                       currentAccountPicture: CircleAvatar(
-                        backgroundColor: Colors.white,
+                        backgroundColor: Theme.of(context).accentColor,
                       ),
                     ),
                   ),
@@ -89,8 +89,8 @@ class _HomeState extends State<Home> {
                       color: Theme.of(context).iconTheme.color,
                     ),
                     title: Text(
-                      'Locations',
-                      style: Theme.of(context).textTheme.display1,
+                      'Lager',
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                     onTap: () {
                       Navigator.pushNamed(context, LocationScreen.routeName);
@@ -102,8 +102,8 @@ class _HomeState extends State<Home> {
                         color: Theme.of(context).iconTheme.color,
                       ),
                       title: Text(
-                        'Products',
-                        style: Theme.of(context).textTheme.display1,
+                        'Produkte',
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                       onTap: () {
                         Navigator.pushNamed(context, WineScreen.routeName);
@@ -115,8 +115,8 @@ class _HomeState extends State<Home> {
                       color: Theme.of(context).iconTheme.color,
                     ),
                     title: Text(
-                      'Supplier',
-                      style: Theme.of(context).textTheme.display1,
+                      'Lieferanten',
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                     onTap: () {
                       Navigator.pushNamed(context, SupplierScreen.routeName);
@@ -128,8 +128,8 @@ class _HomeState extends State<Home> {
                       color: Theme.of(context).iconTheme.color,
                     ),
                     title: Text(
-                      'Customer',
-                      style: Theme.of(context).textTheme.display1,
+                      'Kunden',
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                     onTap: () {
                       Navigator.pushNamed(context, CustomerScreen.routeName);
@@ -142,7 +142,7 @@ class _HomeState extends State<Home> {
                     ),
                     title: Text(
                       'Import/Export',
-                      style: Theme.of(context).textTheme.display1,
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                     onTap: () {},
                   ),
@@ -153,8 +153,8 @@ class _HomeState extends State<Home> {
                       color: Theme.of(context).iconTheme.color,
                     ),
                     title: Text(
-                      'Sign Out',
-                      style: Theme.of(context).textTheme.display1,
+                      'Abmelden',
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                     onTap: () {},
                   ),

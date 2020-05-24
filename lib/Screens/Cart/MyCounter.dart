@@ -71,7 +71,7 @@ class _MyCounterState extends State<MyCounter> {
           Padding(
             padding: EdgeInsets.all(10),
             child: Text('${num.parse((widget.counterValue).toStringAsFixed(widget.decimalPlaces))} x',
-                style: Theme.of(context).textTheme.caption),
+                style: Theme.of(context).textTheme.headline3),
           ),
           GFIconButton(
             onPressed: increment,

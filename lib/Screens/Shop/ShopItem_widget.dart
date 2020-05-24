@@ -37,8 +37,8 @@ class ShopItem extends StatelessWidget {
         ),
         footer: GridTileBar(
           backgroundColor: Theme.of(context).backgroundColor,
-          title: Text(productItem.manufacturer, textAlign: TextAlign.center),
-          subtitle: Text(productItem.type, textAlign: TextAlign.center),
+          title: Text(productItem.manufacturer, textAlign: TextAlign.center,style: Theme.of(context).textTheme.subtitle1,),
+          subtitle: Text(productItem.type, textAlign: TextAlign.center,style: Theme.of(context).textTheme.subtitle2,),
           trailing: IconButton(
             onPressed: () => cart.addCartItem(cartItem),
             icon: Icon(Icons.shopping_cart,

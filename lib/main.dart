@@ -15,6 +15,7 @@ import 'package:iwas_port/Screens/Drawer/Customer/Customer_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Customer/EditCustomer_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/AddLocation_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/EditLocation_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Location/LocationDetailScreen.dart';
 import 'package:iwas_port/Screens/Drawer/Location/Location_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Supplier/AddSupplier_screen.dart';
 import 'package:iwas_port/Screens/Drawer/Supplier/EditSupplier_screen.dart';
@@ -109,6 +110,7 @@ class MyApp extends StatelessWidget {
             CartScreen.routeName: (ctx) => CartScreen(),
             ShopScreen.routeName: (ctx) => ShopScreen(),
             OrderScreen.routeName: (ctx) => OrderScreen(),
+            LocationDetailScreen.routeName: (ctx) => LocationDetailScreen(),
           }),
     );
   }

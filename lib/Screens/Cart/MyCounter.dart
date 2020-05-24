@@ -36,7 +36,7 @@ class _MyCounterState extends State<MyCounter> {
   final cart = Provider.of<Cart>(context);
 
     void increment() {
-      if (widget.counterValue + widget.step <= widget.maxValue){
+      if (widget.counterValue + widget.step <= widget.cartItem.quantity){
         setState(() {
           widget.counterValue += widget.step;
           cart.addCartItem(widget.cartItem);

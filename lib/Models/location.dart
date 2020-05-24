@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:iwas_port/Models/wine.dart';
 import 'package:random_string/random_string.dart';
 
 class Location {
@@ -8,10 +9,10 @@ class Location {
   String address;
   bool isDefault;
   int numOfCategories;
-  int numOfProducts;
+  List<Wine> productList = [];
   double totalValue;
 
-   Location.empty();
+  Location.empty();
 
   Location(
       {@required this.docID,
@@ -19,7 +20,7 @@ class Location {
       @required this.address,
       @required this.isDefault,
       this.numOfCategories,
-      this.numOfProducts,
+      this.productList,
       this.totalValue});
 
   // Serialize Class to JSON (Key,Value) for writing to Database
@@ -29,20 +30,25 @@ class Location {
         'Address': address,
         'isDefault': isDefault,
         'NumberOfCategories': numOfCategories,
-        'NumberOfProducts': numOfProducts,
+        'ProductList': productList.map((product) => product.toFireStore()).toList(),
         'TotalValue': totalValue,
       };
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
   factory Location.fromFireStore(DocumentSnapshot documentSnapshot) {
     Map documentData = documentSnapshot.data;
+
+    var list = documentData['ProductList'] as List;
+    List<Wine> productList =
+    list.map((item) => Wine.fromFireStore(item)).toList();
+
     return Location(
         docID: documentSnapshot.documentID,
         name: documentData['Name'] ?? null,
         address: documentData['Address'] ?? null,
         isDefault: documentData['isDefault'] ?? null,
         numOfCategories: documentData['NumberOfCategories'] ?? null,
-        numOfProducts: documentData['NumberOfProducts'] ?? null,
+        productList: productList ?? null,
         totalValue: documentData['TotalValue'] ?? null);
   }
 
@@ -60,13 +66,17 @@ class Location {
   // Deserialize JSON (Key,Value) to Class for reading from Database
   factory Location.fromOrder(Map<String,dynamic> documentData) {
 
+    var list = documentData['ProductList'] as List;
+    List<Wine> productList =
+    list.map((item) => Wine.fromFireStore(item)).toList();
+
     return Location(
         docID: documentData['DocumentID'] ?? null,
         name: documentData['Name'] ?? null,
         address: documentData['Address'] ?? null,
         isDefault: documentData['isDefault'] ?? null,
         numOfCategories: documentData['NumberOfCategories'] ?? null,
-        numOfProducts: documentData['NumberOfProducts'] ?? null,
+        productList: productList ?? null,
         totalValue: documentData['TotalValue'] ?? null);
   }
 

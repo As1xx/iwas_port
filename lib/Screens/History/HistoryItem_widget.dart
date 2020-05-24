@@ -30,13 +30,13 @@ Card buildFrontWidget(
       Text('+ ${order.amount} €',
           style: Theme.of(context)
               .textTheme
-              .headline
+              .headline4
               .copyWith(color: Colors.green)),
       Icon(FontAwesomeIcons.longArrowAltRight, color: Colors.green),
       Text('- ${order.totalOrderQuantity} x',
           style: Theme.of(context)
               .textTheme
-              .headline
+              .headline4
               .copyWith(color: Colors.red)),
     ],
   );
@@ -46,13 +46,13 @@ Card buildFrontWidget(
       Text('- ${order.amount} €',
           style: Theme.of(context)
               .textTheme
-              .headline
+              .headline4
               .copyWith(color: Colors.red)),
       Icon(FontAwesomeIcons.longArrowAltLeft, color: Colors.red),
       Text('+ ${order.totalOrderQuantity} x',
           style: Theme.of(context)
               .textTheme
-              .headline
+              .headline4
               .copyWith(color: Colors.green)),
     ],
   );
@@ -70,8 +70,8 @@ Card buildFrontWidget(
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(username, style: Theme.of(context).textTheme.headline),
-              Text(formattedDate, style: Theme.of(context).textTheme.headline),
+              Text(username, style: Theme.of(context).textTheme.headline4),
+              Text(formattedDate, style: Theme.of(context).textTheme.headline4),
             ],
           ),
           SizedBox(height: 20),
@@ -79,12 +79,12 @@ Card buildFrontWidget(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(order.location.name,
-                  style: Theme.of(context).textTheme.headline),
-              //order.isSold ? isSoldWidget : isBoughtWidget,
-              Text(''
-                //order.isSold ? order.customer.name : order.supplier.name,
-               // style: Theme.of(context).textTheme.headline,
+              Text('',
+                  style: Theme.of(context).textTheme.headline4),
+              isSoldWidget,
+              Text(
+                order.from.name,
+                style: Theme.of(context).textTheme.headline,
               ),
             ],
           ),
@@ -165,7 +165,7 @@ Card buildInnerTopWidget(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(order.location.name,
+              Text('',
                   style: Theme.of(context).textTheme.headline),
               //order.isSold ? isSoldWidget : isBoughtWidget,
               Text(''

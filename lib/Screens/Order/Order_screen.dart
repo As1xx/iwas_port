@@ -93,10 +93,9 @@ class _OrderScreenState extends State<OrderScreen> {
               .show(context).then((r) =>Navigator.of(context).popUntil(ModalRoute.withName(Home.routeName)));
 
           cart.updateProduct(productList, transaction.method);
+          cart.updateLocation(transaction.method, transaction.from, transaction.to);
           cart.clearCart();
-          transaction.discount = 0;
-
-          //Navigator.of(context).pop();
+          //transaction.discount = 0;
         } on DatabaseException catch (error) {
           DatabaseException.showError(context, error.message);
         } catch (otherError) {

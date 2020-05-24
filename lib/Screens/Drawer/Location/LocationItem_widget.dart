@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/location.dart';
 import 'package:iwas_port/Screens/Drawer/Location/EditLocation_screen.dart';
+import 'package:iwas_port/Screens/Drawer/Location/LocationDetailScreen.dart';
 import 'package:iwas_port/Services/LocationDatabaseService.dart';
 
 
@@ -59,7 +60,7 @@ class LocationItem extends StatelessWidget {
         color: Theme.of(context).cardTheme.color,
         margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
         child: ListTile(
-          onTap: () => null, //TODO: implement Detail View
+          onTap: () => Navigator.pushNamed(context, LocationDetailScreen.routeName,arguments: _location),
           title: Padding(
             padding: EdgeInsets.only(left: 10),
             child: Text(

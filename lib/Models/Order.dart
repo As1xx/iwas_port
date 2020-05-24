@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/CartItem.dart';
+import 'package:iwas_port/Models/customer.dart';
+import 'package:iwas_port/Models/location.dart';
+import 'package:iwas_port/Models/supplier.dart';
 import 'package:random_string/random_string.dart';
 
 class Order {
@@ -33,9 +36,23 @@ class Order {
       @required this.isPaymentPending,
       @required this.paymentMethod,
       @required this.method,
+      @required this.from,
+      @required this.to,
       this.note = ''});
 
   // Serialize Class to JSON (Key,Value) for writing to Database
+
+  Map<String, dynamic> checkObjectTypeToFireStore(Object object) {
+    if (object is Location) {
+      return Location().toFireStore();
+    } else if (object is Supplier) {
+      return Supplier().toFireStore();
+    } else if (object is Customer) {
+      return Customer().toFireStore();
+    }
+  }
+
+
   Map<String, dynamic> toFireStore() => {
         'DocumentID': docID,
         'User': user,
@@ -48,6 +65,8 @@ class Order {
         'PaymentPending?': isPaymentPending,
         'PaymentMethod': paymentMethod,
         'Method': method,
+        'From': checkObjectTypeToFireStore(from),
+        'To': checkObjectTypeToFireStore(to),
       };
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
@@ -58,20 +77,34 @@ class Order {
     List<CartItem> cartItemList =
         list.map((item) => CartItem.fromFireStore(item)).toList();
 
+    T checkObjectTypeFromFireStore<T>(Object object, Map documentData,String objectName) {
+      if (object is Location) {
+        return Location.fromOrder(documentData[objectName]) as T;
+      } else if (object is Supplier) {
+        return Supplier.fromOrder(documentData[objectName]) as T;
+      } else if (object is Customer) {
+        return Customer.fromOrder(documentData[objectName]) as T;
+      }else{
+        return null;
+      }
+    }
+
+
     return Order(
-      docID: documentSnapshot.documentID ?? null,
-      user: documentData['User'] ?? null,
-      products: cartItemList ?? null,
-      date: DateTime.fromMillisecondsSinceEpoch(
-              documentData['Date'].millisecondsSinceEpoch) ??
-          null,
-      amount: documentData['Amount'] ?? null,
-      discount: documentData['Discount'] ?? null,
-      tax: documentData['Tax'] ?? null,
-      note: documentData['Note'] ?? null,
-      isPaymentPending: documentData['PaymentPending?'] ?? null,
-      paymentMethod: documentData['PaymentMethod'] ?? null,
-      method: documentData['IsSold?'] ?? null,
+        docID: documentSnapshot.documentID ?? null,
+        user: documentData['User'] ?? null,
+        products: cartItemList ?? null,
+        date: DateTime.fromMillisecondsSinceEpoch(
+                documentData['Date'].millisecondsSinceEpoch) ??
+            null,
+        amount: documentData['Amount'] ?? null,
+        discount: documentData['Discount'] ?? null,
+        tax: documentData['Tax'] ?? null,
+        note: documentData['Note'] ?? null,
+        isPaymentPending: documentData['PaymentPending?'] ?? null,
+        paymentMethod: documentData['PaymentMethod'] ?? null,
+        method: documentData['IsSold?'] ?? null,
+        from: ,
     );
   }
 

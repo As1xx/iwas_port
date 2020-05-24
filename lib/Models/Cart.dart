@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/CartItem.dart';
+import 'package:iwas_port/Models/location.dart';
 import 'package:iwas_port/Models/wine.dart';
+import 'package:iwas_port/Services/LocationDatabaseService.dart';
 import 'package:iwas_port/Services/WineDatabaseService.dart';
 
 class Cart with ChangeNotifier {
@@ -113,6 +115,22 @@ class Cart with ChangeNotifier {
     });
   }
 
-
+  void updateLocation(String method,Location from, Location to){
+    final cartItemList = _cartItems.values.toList();
+    cartItemList.forEach((cartItem) {
+      final fromProduct = findProductFromCart(from.productList,cartItem);
+      final toProduct =  findProductFromCart(to.productList,cartItem);
+      if (method == 'Verkaufen'){
+        fromProduct.quantity -= cartItem.quantity;
+      }else if (method == 'Kaufen'){
+        toProduct.quantity += cartItem.quantity;
+      }else if(method == 'Transfer'){
+        fromProduct.quantity -= cartItem.quantity;
+        toProduct.quantity += cartItem.quantity;
+      }
+      LocationDatabaseService().writeToDatabase(from);
+      LocationDatabaseService().writeToDatabase(to);
+    });
+  }
 
 }

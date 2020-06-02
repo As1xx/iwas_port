@@ -1,16 +1,18 @@
+import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:getflutter/components/button/gf_icon_button.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:iwas_port/Models/Cart.dart';
 import 'package:iwas_port/Models/CartItem.dart';
+import 'package:iwas_port/Models/wine.dart';
 import 'package:provider/provider.dart';
 
 class MyCounter extends StatefulWidget {
 
   double counterValue;
   final double step;
-  final double maxValue;
+  int maxValue;
   final double minValue;
   final int decimalPlaces;
   final CartItem cartItem;
@@ -30,13 +32,40 @@ class MyCounter extends StatefulWidget {
 
 class _MyCounterState extends State<MyCounter> {
 
-
   @override
   Widget build(BuildContext context) {
   final cart = Provider.of<Cart>(context);
+  final productList = Provider.of<List<Wine>>(context);
+  final product = cart.findProductFromCart(productList, widget.cartItem);
+  widget.maxValue = product.quantity;
+
+
+  void pushCriticalQuantityMessage(){
+    if (widget.counterValue >= widget.maxValue - product.criticalQuantity && widget.counterValue < widget.maxValue){
+      FlushbarHelper.createInformation(message: 'Achtung: Kritische Menge erreicht! Vom ${product.manufacturer + ' ' + product.type} sind weniger als ${product.criticalQuantity+1} x verfügbar').show(context);
+    }
+  }
+
+  void pushNoMoreQuantityMessage(){
+    if (widget.counterValue == widget.maxValue){
+      FlushbarHelper.createError(message: 'Achtung: ${product.manufacturer + ' ' + product.type} ist nicht mehr verfügbar!').show(context);
+    }
+  }
+
 
     void increment() {
-      if (widget.counterValue + widget.step <= widget.cartItem.quantity){
+
+    setState(() {
+      // To avoid showing Snackbar during rebuild
+      WidgetsBinding.instance.addPostFrameCallback((_){
+
+        // Add Your Code here.
+        pushCriticalQuantityMessage();
+        pushNoMoreQuantityMessage();
+      });
+    });
+
+      if (widget.counterValue + widget.step <= product.quantity){
         setState(() {
           widget.counterValue += widget.step;
           cart.addCartItem(widget.cartItem);
@@ -86,4 +115,6 @@ class _MyCounterState extends State<MyCounter> {
       ),
     );
   }
+
+
 }

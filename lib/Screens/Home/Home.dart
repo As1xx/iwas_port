@@ -169,7 +169,7 @@ class _HomeState extends State<Home> {
             buttonBackgroundColor: Theme.of(context).backgroundColor,
             height: 50,
             animationDuration: Duration(milliseconds: 500),
-            index: 1,
+            index: 0,
             items: <Widget>[
               Icon(
                 Icons.shopping_cart,

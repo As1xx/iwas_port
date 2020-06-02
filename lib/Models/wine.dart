@@ -13,8 +13,8 @@ class Wine {
   String imageURL = 'https://firebasestorage.googleapis.com/v0/b/iwas-mit-port.appspot.com/o/Defaults%2Fcamera_default.png?alt=media&token=61b25e74-210a-4c63-b6dd-b88fe09be0a4';
   double purchasePrice;
   double sellingPrice;
-  int criticalQuantity;
-  int quantity;
+  int criticalQuantity = 2;
+  int quantity = 0;
 
   Wine.empty();
 
@@ -65,6 +65,24 @@ class Wine {
     );
   }
 
+
+  // Deserialize JSON (Key,Value) to Class for reading from Database
+  factory Wine.fromLocation(Map<String,dynamic> documentData){
+
+
+    return Wine(
+      docID: documentData['DocumentID'] ?? null,
+      manufacturer: documentData['Manufacturer'] ?? null,
+      type: documentData['Type'] ?? null,
+      productID: documentData['ProductID'] ?? null,
+      criticalQuantity: documentData['CriticalQuantity'] ?? null,
+      imageURL: documentData['ImageURL'] ?? null,
+      purchasePrice: documentData['PurchasePrice'] ?? null,
+      sellingPrice: documentData['SellingPrice'] ?? null,
+      quantity: documentData['Quantity'] ?? null,
+
+    );
+  }
 
   static List<Wine> initStreamData() {
     // Create Empty List with 1 Object for initialization

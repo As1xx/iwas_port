@@ -7,14 +7,14 @@ class InputForm extends StatelessWidget {
 
   String _validateEmailForm(email) {
     if (email.isEmpty || !email.contains('@') || !email.contains('.')) {
-      return 'Enter a valid Email';
+      return 'Ungültige E-Mail Addresse';
     }
     return null;
   }
 
   String _validatePasswordForm(password) {
     if (password.length < 6) {
-      return 'Enter a password 6+ chars long';
+      return 'Das Passwort muss länger als 6 Zeichen sein';
     }
     return null;
   }
@@ -63,7 +63,7 @@ class InputForm extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 cursorColor: Theme.of(context).inputDecorationTheme.focusColor,
                 decoration: textFormDecoration(context).copyWith(
-                  labelText: 'Password',
+                  labelText: 'Passwort',
                   prefixIcon: Icon(Icons.lock,
                       color: Theme.of(context).inputDecorationTheme.focusColor),
                   suffixIcon: IconButton(

@@ -5,12 +5,13 @@ import 'package:random_string/random_string.dart';
 
 class Location {
   String docID = randomAlphaNumeric(20);
-  String name ;
+  String name;
   String address;
   bool isDefault;
   int numOfCategories;
   List<Wine> productList = [];
-  double totalValue;
+  double totalValue = 0;
+  String flag = 'Location';
 
   Location.empty();
 
@@ -19,6 +20,7 @@ class Location {
       @required this.name,
       @required this.address,
       @required this.isDefault,
+      @required this.flag,
       this.numOfCategories,
       this.productList,
       this.totalValue});
@@ -30,17 +32,20 @@ class Location {
         'Address': address,
         'isDefault': isDefault,
         'NumberOfCategories': numOfCategories,
-        'ProductList': productList.map((product) => product.toFireStore()).toList(),
+        'ProductList':
+            productList.map((product) => product.toFireStore()).toList() ??
+                null,
         'TotalValue': totalValue,
+        'Flag': flag,
       };
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
   factory Location.fromFireStore(DocumentSnapshot documentSnapshot) {
-    Map documentData = documentSnapshot.data;
+    Map<String, dynamic> documentData = documentSnapshot.data;
 
     var list = documentData['ProductList'] as List;
-    List<Wine> productList =
-    list.map((item) => Wine.fromFireStore(item)).toList();
+    List<Wine> productList;
+    productList = list.map((item) => Wine.fromLocation(item)).toList();
 
     return Location(
         docID: documentSnapshot.documentID,
@@ -49,6 +54,7 @@ class Location {
         isDefault: documentData['isDefault'] ?? null,
         numOfCategories: documentData['NumberOfCategories'] ?? null,
         productList: productList ?? null,
+        flag: documentData['Flag'] ?? null,
         totalValue: documentData['TotalValue'] ?? null);
   }
 
@@ -64,11 +70,10 @@ class Location {
   }
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
-  factory Location.fromOrder(Map<String,dynamic> documentData) {
-
+  factory Location.fromOrder(Map<String, dynamic> documentData) {
     var list = documentData['ProductList'] as List;
     List<Wine> productList =
-    list.map((item) => Wine.fromFireStore(item)).toList();
+        list.map((item) => Wine.fromLocation(item)).toList();
 
     return Location(
         docID: documentData['DocumentID'] ?? null,
@@ -77,8 +82,7 @@ class Location {
         isDefault: documentData['isDefault'] ?? null,
         numOfCategories: documentData['NumberOfCategories'] ?? null,
         productList: productList ?? null,
+        flag: documentData['Flag'] ?? null,
         totalValue: documentData['TotalValue'] ?? null);
   }
-
-
 }

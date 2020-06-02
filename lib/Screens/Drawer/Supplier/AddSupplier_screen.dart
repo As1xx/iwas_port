@@ -102,7 +102,7 @@ class _AddSupplierState extends State<AddSupplier> {
                     onSaved: (text) => _supplier.name = text,
                     style: Theme.of(context).inputDecorationTheme.labelStyle,
                     validator: (text) =>
-                        text.isEmpty ? 'Please specify Field' : null,
+                        text.isEmpty ? 'Bitte Text eingeben!' : null,
                     keyboardType: TextInputType.text,
                     cursorColor:
                         Theme.of(context).inputDecorationTheme.focusColor,
@@ -139,7 +139,7 @@ class _AddSupplierState extends State<AddSupplier> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Text(_supplier.address != null ? _supplier.address:'',style: Theme.of(context).textTheme.headline4,),
+                      Flexible(child: Text(_supplier.address != null ? _supplier.address:'',style: Theme.of(context).textTheme.headline4,)),
                     ],
                   ),
                   SizedBox(height: 20,),

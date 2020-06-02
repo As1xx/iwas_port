@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/EditWine_screen.dart';
 import 'package:iwas_port/Services/WineDatabaseService.dart';
 
-
 class WineItem extends StatelessWidget {
   final _databaseService = WineDatabaseService();
   final _wine;
@@ -10,30 +9,38 @@ class WineItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    Future<bool>_showDeleteDialog(){
+    Future<bool> _showDeleteDialog() {
       return showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            backgroundColor: Theme.of(context).dialogTheme.backgroundColor,elevation: 100,
-            title: Text('Bist du sicher?',style: Theme.of(context).textTheme.caption,),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Ja',style: Theme.of(context).textTheme.bodyText1,),
-                onPressed: (){
-                  Navigator.of(context).pop(true);
-                },
-              ),
-              FlatButton(
-                child: Text('Nein',style: Theme.of(context).textTheme.bodyText1,),
-                onPressed: (){
-                  Navigator.of(context).pop(false);
-                },
-              ),
-            ],
-          ));
+                backgroundColor: Theme.of(context).dialogTheme.backgroundColor,
+                elevation: 100,
+                title: Text(
+                  'Bist du sicher?',
+                  style: Theme.of(context).textTheme.caption,
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text(
+                      'Ja',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop(true);
+                    },
+                  ),
+                  FlatButton(
+                    child: Text(
+                      'Nein',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                  ),
+                ],
+              ));
     }
-
 
     return Dismissible(
       direction: DismissDirection.endToStart,
@@ -54,38 +61,45 @@ class WineItem extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 10, 20.0, 0.0),
         padding: EdgeInsets.only(right: 20),
       ),
-        child: Card(
-          color: Theme.of(context).cardTheme.color,
-          margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
-          child: ListTile(
-            onTap: () => null, //TODO: implement Detail View
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 5),
-              child: ClipOval(
-                child: Image.network(_wine.imageURL),
-              ),
+      child: Card(
+        color: Theme.of(context).cardTheme.color,
+        margin: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0.0),
+        child: ListTile(
+          onTap: () => null, //TODO: implement Detail View
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 5),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: FadeInImage(
+                width: 50,
+                height: 50,
+                fit: BoxFit.cover,
+                placeholder: AssetImage('assets/images/camera_default.png'),
+                image: NetworkImage(_wine.imageURL),
+                ),
             ),
-            title: Padding(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                _wine.manufacturer,
-                style: Theme.of(context).textTheme.headline2,
-              ),
             ),
-            subtitle: Padding(
-              padding: const EdgeInsets.fromLTRB(10,10,0,0),
-              child: Text(
-                _wine.type,
-                style: Theme.of(context).textTheme.headline5,
-              ),
-            ),
-            trailing: IconButton(
-              icon: Icon(Icons.edit, color: Theme.of(context).iconTheme.color),
-              onPressed: () => Navigator.pushNamed(context, EditWine.routeName,
-                  arguments: _wine),
+          title: Padding(
+            padding: EdgeInsets.only(left: 10),
+            child: Text(
+              _wine.manufacturer,
+              style: Theme.of(context).textTheme.headline2,
             ),
           ),
+          subtitle: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 10, 0, 0),
+            child: Text(
+              _wine.type,
+              style: Theme.of(context).textTheme.headline5,
+            ),
+          ),
+          trailing: IconButton(
+            icon: Icon(Icons.edit, color: Theme.of(context).iconTheme.color),
+            onPressed: () => Navigator.pushNamed(context, EditWine.routeName,
+                arguments: _wine),
+          ),
         ),
+      ),
     );
   }
 }

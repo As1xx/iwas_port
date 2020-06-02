@@ -138,7 +138,7 @@ class _EditSupplierState extends State<EditSupplier> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Text(_supplier.address != null ? _supplier.address:'',style: Theme.of(context).textTheme.headline4,),
+                      Flexible(child: Text(_supplier.address != null ? _supplier.address:'',style: Theme.of(context).textTheme.headline4,)),
                     ],
                   ),
                   SizedBox(height: 20,),

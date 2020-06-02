@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/customer.dart';
-import 'package:iwas_port/Models/location.dart';
 import 'package:iwas_port/Screens/Drawer/Customer/EditCustomer_screen.dart';
-import 'package:iwas_port/Screens/Drawer/Location/EditLocation_screen.dart';
 import 'package:iwas_port/Services/CustomerDatabaseService.dart';
-import 'package:iwas_port/Services/LocationDatabaseService.dart';
 
 
 class CustomerItem extends StatelessWidget {

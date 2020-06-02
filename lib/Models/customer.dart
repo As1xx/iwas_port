@@ -4,12 +4,13 @@ import 'package:random_string/random_string.dart';
 
 class Customer {
   String docID = randomAlphaNumeric(20);
-  String name ;
-  String address ;
+  String name;
+  String address;
   String phoneNumber;
   String email;
   bool isInvoiceAddress = false;
-  String invoiceAddress ;
+  String invoiceAddress;
+  String flag = 'Customer';
 
   Customer.empty();
 
@@ -17,6 +18,7 @@ class Customer {
     @required this.docID,
     @required this.name,
     @required this.address,
+    @required this.flag,
     this.email,
     this.invoiceAddress,
     this.isInvoiceAddress,
@@ -32,6 +34,7 @@ class Customer {
         'InvoiceAddress': invoiceAddress,
         'isInvoiceAddress': isInvoiceAddress,
         'PhoneNumber': phoneNumber,
+        'Flag': flag,
       };
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
@@ -46,6 +49,7 @@ class Customer {
       isInvoiceAddress: documentData['isInvoiceAddress'] ?? null,
       invoiceAddress: documentData['InvoiceAddress'] ?? null,
       phoneNumber: documentData['PhoneNumber'] ?? null,
+      flag: documentData['Flag'] ?? null,
     );
   }
 
@@ -61,8 +65,7 @@ class Customer {
   }
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
-  factory Customer.fromOrder(Map<String,dynamic> documentData) {
-
+  factory Customer.fromOrder(Map<String, dynamic> documentData) {
     return Customer(
       docID: documentData['DocumentID'] ?? null,
       name: documentData['Name'] ?? null,
@@ -71,6 +74,7 @@ class Customer {
       isInvoiceAddress: documentData['isInvoiceAddress'] ?? null,
       invoiceAddress: documentData['InvoiceAddress'] ?? null,
       phoneNumber: documentData['PhoneNumber'] ?? null,
+      flag: documentData['Flag'] ?? null,
     );
   }
 }

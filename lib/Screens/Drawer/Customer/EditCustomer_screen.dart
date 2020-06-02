@@ -135,9 +135,11 @@ class _EditCustomerState extends State<EditCustomer> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Text(
-                        _customer.address != null ? _customer.address : '',
-                        style: Theme.of(context).textTheme.headline4,
+                      Flexible(
+                        child: Text(
+                          _customer.address != null ? _customer.address : '',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
                       ),
                     ],
                   ),

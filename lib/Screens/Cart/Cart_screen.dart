@@ -37,7 +37,7 @@ class CartScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.caption,
                     ),
                     GFButton(
-                      text: '${cart.totalAmount} €',
+                      text: '${cart.totalAmount.toStringAsFixed(2)} €',
                       textStyle: Theme.of(context).textTheme.caption,
                       color: Theme.of(context).accentColor,
                       type: GFButtonType.outline2x,

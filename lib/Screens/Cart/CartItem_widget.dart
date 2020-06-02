@@ -79,19 +79,19 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                 widget.cartItem.manufacturer + ' ' + widget.cartItem.type,
                 style: Theme.of(context).textTheme.caption),
             subtitle: Text(
-                'Total: ${widget.cartItem.price * widget.cartItem.quantity} €',
+                'Total: ${(widget.cartItem.price * widget.cartItem.quantity).toStringAsFixed(2)} €',
                 style: Theme.of(context).textTheme.headline5),
-            leading: CircleAvatar(
-              backgroundColor: Colors.transparent,
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
               child: FadeInImage(
-                height: 350,
+                height: 50,
+                width: 50,
                 fit: BoxFit.cover,
-                placeholder: AssetImage('assets/camera_default.png'),
+                placeholder: AssetImage('assets/images/camera_default.png'),
                 image: NetworkImage(
                   widget.cartItem.imageURL,
                 ),
               ),
-              radius: 30,
             ),
             trailing: MyCounter(
               counterValue: widget.cartItem.quantity.toDouble(),

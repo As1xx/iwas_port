@@ -9,7 +9,6 @@ import 'package:iwas_port/Models/location.dart';
 import 'package:iwas_port/Models/supplier.dart';
 import 'package:iwas_port/Models/user.dart';
 import 'package:iwas_port/Models/wine.dart';
-import 'package:iwas_port/Screens/Home/Home.dart';
 import 'package:iwas_port/Screens/Loading/loading.dart';
 import 'package:iwas_port/Screens/Order/FromTo_widget.dart';
 import 'package:iwas_port/Screens/Order/Notes_widget.dart';
@@ -77,25 +76,91 @@ class _OrderScreenState extends State<OrderScreen> {
       });
     }
 
+    bool validateLocation(Cart cart, Order transaction) {
+      bool isValid;
+
+      if (transaction.method == 'Verkaufen') {
+        List<bool> errorFlags =
+        cart.validateLocationOnSell(transaction.from, productList);
+        // errorFlags[0] = isNoError; errorFlags[1] = isValid;
+        if (errorFlags[0] == false) {
+          isValid = false;
+          FlushbarHelper.createError(
+              message: 'Der Wein existiert im Lager nicht!')
+              .show(context);
+        } else if (errorFlags[0] == true && errorFlags[1] == false) {
+          isValid = false;
+          FlushbarHelper.createError(
+              message:
+              'Die Menge des Weines kann im Lager nicht verfügbar sein!')
+              .show(context);
+        } else if (errorFlags[0] == true && errorFlags[1] == true) {
+          isValid = true;
+        }
+      } else if (transaction.method == 'Kaufen') {
+        isValid = cart.validateLocationOnBuy(transaction.to, productList);
+      } else if (transaction.method == 'Transfer') {
+        List<bool> errorFlags = cart.validateLocationOnTransfer(
+            transaction.from, transaction.to, productList);
+        // errorFlags[0] = isNoError; errorFlags[1] = isValid;
+        if (errorFlags[0] == false) {
+          isValid = false;
+          FlushbarHelper.createError(
+              message: 'Der Wein existiert im Lager nicht!')
+              .show(context);
+        } else if (errorFlags[0] == true && errorFlags[1] == false) {
+          isValid = false;
+          FlushbarHelper.createError(
+              message:
+              'Die Menge des Weines kann im Lager nicht verfügbar sein!')
+              .show(context);
+        } else if (errorFlags[0] == true && errorFlags[1] == true) {
+          isValid = true;
+        }
+      }
+      return isValid;
+    }
+
+
+    void updateLocation(Cart cart, Order transaction) {
+
+
+      if (transaction.method == 'Verkaufen') {
+          cart.updateLocationOnSell(transaction.from, productList);
+
+      } else if (transaction.method == 'Kaufen') {
+          cart.updateLocationOnBuy(transaction.to, productList);
+      } else if (transaction.method == 'Transfer') {
+          cart.updateLocationOnTransfer(
+            transaction.from, transaction.to, productList);
+      }
+    }
+
+
+
+
     void submitTransaction() async {
       if (transaction.docID != null &&
-              transaction.products != null &&
-              transaction.from != null &&
-              transaction.to != null &&
-              transaction.date != null &&
-              transaction.amount != null &&
-              transaction.discount != null &&
-              transaction.tax != null) {
+          transaction.products != null &&
+          transaction.from != null &&
+          transaction.to != null &&
+          transaction.date != null &&
+          transaction.amount != null &&
+          transaction.discount != null &&
+          transaction.tax != null) {
         try {
-          await _databaseService.writeToDatabase(transaction);
-          FlushbarHelper.createSuccess(
-                  message: 'Daten erfolgreich in die Cloud hochgeladen!')
-              .show(context).then((r) =>Navigator.of(context).popUntil(ModalRoute.withName(Home.routeName)));
+          if(validateLocation(cart, transaction)){
+            await _databaseService.writeToDatabase(transaction);
+            FlushbarHelper.createSuccess(
+                message: 'Daten erfolgreich in die Cloud hochgeladen!')
+                .show(
+                context).then((r) =>Navigator.of(context).popUntil((route) => route.isFirst));
 
-          cart.updateProduct(productList, transaction.method);
-          cart.updateLocation(transaction.method, transaction.from, transaction.to);
-          cart.clearCart();
-          //transaction.discount = 0;
+            updateLocation(cart,transaction);
+            cart.updateProduct(productList, transaction.method);
+            cart.clearCart();
+          }
+
         } on DatabaseException catch (error) {
           DatabaseException.showError(context, error.message);
         } catch (otherError) {

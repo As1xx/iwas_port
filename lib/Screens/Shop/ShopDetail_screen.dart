@@ -4,7 +4,6 @@ import 'package:iwas_port/Models/Cart.dart';
 import 'package:iwas_port/Models/CartItem.dart';
 import 'package:iwas_port/Screens/Cart/Cart_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class ShopDetailScreen extends StatefulWidget {
   static const routeName = '/ShopDetailScreen';
@@ -44,12 +43,16 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
           children: <Widget>[
             Stack(
               children: <Widget>[
-                FadeInImage(
-                  height: 350,
-                  fit: BoxFit.fill,
-                  placeholder: AssetImage('assets/camera_default.png'),
-                  image: NetworkImage(
-                    cartItem.imageURL,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: FadeInImage(
+                    height: 350,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
+                    placeholder: AssetImage('assets/images/camera_default.png'),
+                    image: NetworkImage(
+                      cartItem.imageURL,
+                    ),
                   ),
                 ),
                 Align(
@@ -169,7 +172,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                             onPressed: () => cart.addCartItem(cartItem),
                             minWidth: MediaQuery.of(context).size.width,
                             child: Text(
-                              'Add to Cart',
+                              'Zum Einkaufswagen hinzufügen',
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.headline2,
                             ),

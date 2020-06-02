@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -135,7 +134,7 @@ class _AddCustomerState extends State<AddCustomer> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Text(_customer.address != null ? _customer.address:'',style: Theme.of(context).textTheme.headline4,),
+                      Flexible(child: Text(_customer.address != null ? _customer.address:'',style: Theme.of(context).textTheme.headline4,)),
                     ],
                   ),
                   SizedBox(height: 20.0),

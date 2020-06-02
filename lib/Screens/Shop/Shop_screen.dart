@@ -1,4 +1,3 @@
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/wine.dart';
 import 'package:iwas_port/Screens/Loading/loading.dart';

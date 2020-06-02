@@ -13,7 +13,7 @@ class OrderDatabaseService {
   Stream<List<Order>> get orderListOfCollection {
     try {
       return collectionReference.snapshots().map((snapshot) =>
-          snapshot.documents.map((doc) => Order.fromFireStore(doc)).toList());
+          snapshot.documents.map((doc) => Order().orderFromFireStore(doc)).toList());
     } catch (readFromDataBaseError) {
       throw DatabaseException(readFromDataBaseError.message);
     }
@@ -22,7 +22,6 @@ class OrderDatabaseService {
   // Write to Database
   Future<bool> writeToDatabase(Order order) async {
     try {
-      var test = order.products.map((product) => product.toFireStore()).toList();
       var docReference = collectionReference.document(order.docID);
       await docReference.setData(order.toFireStore());
       return true;

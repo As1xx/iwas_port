@@ -44,12 +44,18 @@ class Order {
 
   Map<String, dynamic> checkObjectTypeToFireStore(Object object) {
     if (object is Location) {
-      return Location().toFireStore();
+      Location location = object;
+      return location.toFireStore();
     } else if (object is Supplier) {
-      return Supplier().toFireStore();
+      Supplier supplier = object;
+      return supplier.toFireStore();
     } else if (object is Customer) {
-      return Customer().toFireStore();
+      Customer customer = object;
+      return customer.toFireStore();
+    }else{
+      return null;
     }
+
   }
 
 
@@ -70,19 +76,19 @@ class Order {
       };
 
   // Deserialize JSON (Key,Value) to Class for reading from Database
-  factory Order.fromFireStore(DocumentSnapshot documentSnapshot) {
+    Order orderFromFireStore(DocumentSnapshot documentSnapshot) {
     Map documentData = documentSnapshot.data;
 
     var list = documentData['Products'] as List;
     List<CartItem> cartItemList =
         list.map((item) => CartItem.fromFireStore(item)).toList();
 
-    T checkObjectTypeFromFireStore<T>(Object object, Map documentData,String objectName) {
-      if (object is Location) {
+    T checkObjectTypeFromFireStore<T>(Map documentData,String objectName) {
+      if (documentData[objectName]['Flag'] == 'Location') {
         return Location.fromOrder(documentData[objectName]) as T;
-      } else if (object is Supplier) {
+      } else if (documentData[objectName]['Flag'] == 'Supplier') {
         return Supplier.fromOrder(documentData[objectName]) as T;
-      } else if (object is Customer) {
+      } else if (documentData[objectName]['Flag'] == 'Customer') {
         return Customer.fromOrder(documentData[objectName]) as T;
       }else{
         return null;
@@ -103,8 +109,9 @@ class Order {
         note: documentData['Note'] ?? null,
         isPaymentPending: documentData['PaymentPending?'] ?? null,
         paymentMethod: documentData['PaymentMethod'] ?? null,
-        method: documentData['IsSold?'] ?? null,
-        from: ,
+        method: documentData['Method'] ?? null,
+        from: checkObjectTypeFromFireStore(documentData, 'From'),
+        to: checkObjectTypeFromFireStore(documentData, 'To'),
     );
   }
 

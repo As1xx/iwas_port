@@ -122,7 +122,7 @@ class _EditLocationState extends State<EditLocation> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Text(_location.address,style: Theme.of(context).textTheme.headline4,),
+                      Flexible(child: Text(_location.address,style: Theme.of(context).textTheme.headline4,)),
                     ],
                   ),
                   SizedBox(height: 20),

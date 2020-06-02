@@ -73,7 +73,7 @@ class AuthButtons extends StatelessWidget {
       children: <Widget>[
         GradientButton(
           increaseWidthBy: 150,
-          child: Text('SignUp', style: Theme.of(context).textTheme.display1),
+          child: Text('Registrieren', style: Theme.of(context).textTheme.headline4),
           callback: _validateSignUp,
           gradient: myGradient,
           shadowColor: Theme.of(context).accentColor,
@@ -82,15 +82,15 @@ class AuthButtons extends StatelessWidget {
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
-            text: 'Already have an account?\n',
-            style: Theme.of(context).textTheme.display1,
+            text: 'Bereits registriert?\n',
+            style: Theme.of(context).textTheme.headline4,
             children: <TextSpan>[
               TextSpan(
                 text: 'Log In',
                 recognizer: TapGestureRecognizer()..onTap = _validateLogin,
                 style: Theme.of(context)
                     .textTheme
-                    .display1
+                    .headline4
                     .copyWith(color: Theme.of(context).accentColor),
               ),
             ],
@@ -99,8 +99,8 @@ class AuthButtons extends StatelessWidget {
         SizedBox(height: 40),
         FlatButton(
           onPressed: () => Navigator.pushNamed(context, ResetPassword.routeName),
-          child: Text('Forgot Password?',
-              style: Theme.of(context).textTheme.display1),
+          child: Text('Passwort vergessen?',
+              style: Theme.of(context).textTheme.headline4),
         )
       ],
     );

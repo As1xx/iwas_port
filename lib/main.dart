@@ -32,13 +32,10 @@ import 'package:iwas_port/Services/OrderDatabaseService.dart';
 import 'package:iwas_port/Services/SupplierDatabaseService.dart';
 import 'package:iwas_port/Services/WineDatabaseService.dart';
 import 'package:iwas_port/Themes/DarkAppTheme.dart';
-import 'package:iwas_port/Themes/LightAppTheme.dart';
-import 'package:iwas_port/test/dropdownneu.dart';
 import 'package:provider/provider.dart';
 import 'Screens/Drawer/Wine/AddWine_sceen.dart';
 import 'Screens/Drawer/Wine/EditWine_screen.dart';
 import 'Screens/Home/Home.dart';
-import 'Screens/Loading/loading.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,7 +63,7 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthService().user,
         ),
         StreamProvider<List<Location>>(
-            updateShouldNotify: (_, __) => true,
+           //updateShouldNotify: (_, __) => true,
             initialData: null,//Location.initStreamData(),
             create: (_) => _locationDatabaseService.locationListOfCollection),
         StreamProvider<List<Customer>>(
@@ -79,7 +76,7 @@ class MyApp extends StatelessWidget {
           value: Cart(),
         ),
         StreamProvider<List<Order>>(
-            initialData: Order.initStreamData(),
+            initialData: null,
             create: (_) => _orderDatabaseService.orderListOfCollection),
       ],
       child: MaterialApp(

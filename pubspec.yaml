@@ -52,10 +52,10 @@ dependencies:
   getflutter: ^1.0.10
   flutter_masked_text: ^0.8.0
   toggle_switch: ^0.1.4
-  flutter_material_pickers: ^1.2.0
+  flutter_material_pickers: ^1.5.4
   direct_select_flutter: ^1.0.5
   after_init: ^0.1.2
-  timeline_list: ^0.0.3
+  timeline_list: ^0.0.5
   date_format: ^1.0.8
   transparent_image: ^1.0.0
   linear_gradient: ^0.1.12
@@ -99,10 +99,8 @@ flutter:
   fonts:
     - family: Neutra-Display
       fonts:
-        - asset: assets/fonts/Neutra-Display-Bold.ttf
+        - asset: assets/fonts/Neutra-Display-Medium-Alt.otf
           weight: 700
-  #      - asset: assets/fonts/Neutra-Display-Light.ttf
-  #        weight: 500
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

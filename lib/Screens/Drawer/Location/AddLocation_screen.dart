@@ -124,7 +124,7 @@ class _AddLocationState extends State<AddLocation> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Text(_location.address != null ? _location.address:'',style: Theme.of(context).textTheme.headline4,),
+                      Flexible(child: Text(_location.address != null ? _location.address:'',style: Theme.of(context).textTheme.headline4,)),
                     ],
                   ),
                   SizedBox(height: 20,),

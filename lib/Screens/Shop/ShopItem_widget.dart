@@ -28,7 +28,7 @@ class ShopItem extends StatelessWidget {
               arguments: cartItem),
               child: FadeInImage(
                 height: 350,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
                 placeholder: AssetImage('assets/images/camera_default.png'),
                 image: NetworkImage(
                   productItem.imageURL,

@@ -50,7 +50,7 @@ class ResetButton extends StatelessWidget {
       children: <Widget>[
         GradientButton(
           increaseWidthBy: 100,
-          child: Text('Recover Password', style: Theme.of(context).textTheme.display1),
+          child: Text('Passwort wiederherstellen', style: Theme.of(context).textTheme.headline4),
           callback: _validatePasswordRecover,
           gradient: myGradient,
           shadowColor: Theme.of(context).accentColor,

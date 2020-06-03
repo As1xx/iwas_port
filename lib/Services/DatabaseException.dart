@@ -1,7 +1,6 @@
 import 'package:flushbar/flushbar_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:vibrate/vibrate.dart';
-
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 class DatabaseException implements Exception {
 
   final String message;

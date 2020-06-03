@@ -3,7 +3,7 @@ import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:iwas_port/Services/AuthException.dart';
 import 'package:iwas_port/Services/AuthenticateService.dart';
 import 'package:provider/provider.dart';
-import 'package:vibrate/vibrate.dart';
+import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:iwas_port/Screens/Authenticate/Login/Login_notifier.dart';
 
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iwas_port/Models/location.dart';
+import 'package:iwas_port/Screens/Drawer/Location/LocationDetailitem_widget.dart';
+import 'package:iwas_port/Screens/Drawer/Location/LocationItem_widget.dart';
 import 'package:iwas_port/Screens/Drawer/Wine/WineItem_widget.dart';
 import 'package:iwas_port/styles/background_style.dart';
 
@@ -24,7 +26,7 @@ class LocationDetailScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(top: 8),
-                child: WineItem(location.productList[index]),
+                child: LocationDetailItem(wine: location.productList[index]),
               );
             },
           )),

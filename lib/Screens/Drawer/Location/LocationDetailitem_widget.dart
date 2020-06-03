@@ -18,8 +18,15 @@ class LocationDetailItem extends StatelessWidget {
           onTap: () => null,
           leading: Padding(
             padding: const EdgeInsets.only(left: 5),
-            child: ClipOval(
-              child: Image.network(wine.imageURL),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(25),
+              child: FadeInImage(
+                width: 50,
+                height: 50,
+                fit: BoxFit.cover,
+                placeholder: AssetImage('assets/images/camera_default.png'),
+                image: NetworkImage(wine.imageURL),
+              ),
             ),
           ),
           title: Padding(

@@ -69,7 +69,7 @@ Card buildFrontWidget(
 
   var isSoldWidget = Column(
     children: <Widget>[
-    Text('+ ${order.amount} €',
+    Text('+ ${order.amount.toStringAsFixed(2)} €',
             style: Theme.of(context)
                 .textTheme
                 .headline4
@@ -87,7 +87,7 @@ Card buildFrontWidget(
 
   var isBoughtWidget = Column(
     children: <Widget>[
-      Text('- ${order.amount} €',
+      Text('- ${order.amount.toStringAsFixed(2)} €',
           style: Theme.of(context)
               .textTheme
               .headline4
@@ -104,7 +104,7 @@ Card buildFrontWidget(
 
   var isTransferWidget = Column(
     children: <Widget>[
-      Text('- ${order.amount} €',
+      Text('- ${order.amount.toStringAsFixed(2)} €',
           style: Theme.of(context)
               .textTheme
               .headline4
@@ -200,22 +200,17 @@ Card buildInnerBottomWidget(
               return Card(
                   color: Theme.of(context).backgroundColor.withOpacity(1),
                   child: ListTile(
-                    leading: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(productList[index].manufacturer + ' ' + productList[index].type,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                      ],
+                    leading:  Text(productList[index].manufacturer + ' ' + productList[index].type,
+                            style: Theme.of(context).textTheme.headline4,
                     ),
-                    title: Center(
+                    title:  Center(
                       child: Text('${productList[index].quantity} x',style: Theme.of(context).textTheme.headline4,
-                      ),
+                          ),
                     ),
                     //subtitle: Text('test'),
-                    trailing: Text('${productList[index].price} €',
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
+                    trailing:Text('${productList[index].price} €',
+                        style: Theme.of(context).textTheme.headline4,
+                      ),
                     onTap:  () => key?.currentState?.toggleFold(),
                   ),
                 );

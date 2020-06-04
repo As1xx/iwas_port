@@ -18,7 +18,7 @@ class _NotesState extends State<Notes> {
   Widget build(BuildContext context) {
     return Stack(children: <Widget>[
       Container(
-        height: 190,
+        height: 220,
         child: Card(
           child: Padding(
             padding: EdgeInsets.all(20),

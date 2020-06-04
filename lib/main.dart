@@ -55,7 +55,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         StreamProvider<List<Wine>>(
-            updateShouldNotify: (_, __) => true,
             initialData: null,//Wine.initStreamData(),
             create: (_) => _wineDatabaseService.wineListOfCollection),
         StreamProvider<User>(
@@ -63,7 +62,6 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthService().user,
         ),
         StreamProvider<List<Location>>(
-           //updateShouldNotify: (_, __) => true,
             initialData: null,//Location.initStreamData(),
             create: (_) => _locationDatabaseService.locationListOfCollection),
         StreamProvider<List<Customer>>(
@@ -72,8 +70,8 @@ class MyApp extends StatelessWidget {
         StreamProvider<List<Supplier>>(
             initialData: null,//Supplier.initStreamData(),
             create: (_) => _supplierDatabaseService.supplierListOfCollection),
-        ChangeNotifierProvider.value(
-          value: Cart(),
+        ChangeNotifierProvider<Cart>(
+          create: (_) => Cart(),
         ),
         StreamProvider<List<Order>>(
             initialData: null,

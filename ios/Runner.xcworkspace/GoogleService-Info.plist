@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>568403369035-jdm3c0cm52s7rhaao5f9s9n2bqubgsqo.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.568403369035-jdm3c0cm52s7rhaao5f9s9n2bqubgsqo</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAQrT6B_0_kGdrOJbbbQ_nL_qtxw6-V3as</string>
+	<key>GCM_SENDER_ID</key>
+	<string>568403369035</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.iwasmitport.iwasPort</string>
+	<key>PROJECT_ID</key>
+	<string>iwas-mit-port</string>
+	<key>STORAGE_BUCKET</key>
+	<string>iwas-mit-port.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:568403369035:ios:3e18dadee8052c9e0841ce</string>
+	<key>DATABASE_URL</key>
+	<string>https://iwas-mit-port.firebaseio.com</string>
+</dict>
+</plist>

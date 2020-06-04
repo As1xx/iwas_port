@@ -21,7 +21,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
 
     return Stack(children: <Widget>[
       Container(
-        height: 210,
+        height: 220,
         child: Card(
           child: Padding(
             padding: EdgeInsets.all(20),

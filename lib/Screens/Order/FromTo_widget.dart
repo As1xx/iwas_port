@@ -194,7 +194,7 @@ class _FromToState extends State<FromTo> {
 
     return Stack(children: <Widget>[
       Container(
-        height: 200,
+        height: 220,
         child: Card(
           child: Padding(
             padding: EdgeInsets.all(20),
